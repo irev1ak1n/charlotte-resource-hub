@@ -24,5 +24,13 @@
     { "id": 22, "name": "Safe Alliance", "category": "Crisis Support" },
     { "id": 23, "name": "Benevolent Bridges", "category": "Crisis Support" },
     { "id": 24, "name": "Crisis Assistance Ministry", "category": "Crisis Support" },
-  ]
+    { "id": 25, "name": "Second Harvest Food Bank of Metrolina", "category": "Basic Needs Assistance" },
+    { "id": 26, "name": "Habitat for Humanity", "category": "Basic Needs Assistance" },
+    { "id": 27, "name": "Hope Haven Inc", "category": "Basic Needs Assistance" },
+    { "id": 28, "name": "Hearts & Hands Food Pantry", "category": "Basic Needs Assistance" },
+    { "id": 29, "name": "Families Forward Charlotte", "category": "Family Services" },
+    { "id": 30, "name": "Ballantyne Families Helping Neighbors in Need", "category": "Family Services" },
+    { "id": 31, "name": "Smart Start of Meck", "category": "Family Services" },
+    { "id": 32, "name": "Thompson", "category": "Family Services" }
+     ]
 }
