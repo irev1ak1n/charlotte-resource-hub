@@ -1,37 +1,12 @@
-:root{
-    --blue:#163a73;
-    --blue2:#0a1f44;
-    --give:#e8b24f;
-    --involved:#1f5aa8;
-
-    --nyc-border: rgba(255,255,255,.38);
-    --nyc-border-hover: rgba(255,255,255,.55);
-    --nyc-border-focus: rgba(255,255,255,.85);
-
-    --max:1200px;
-    --pad:clamp(16px,3vw,28px);
-    --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-}
-
-*{ box-sizing:border-box; }
-body{
-    margin:0;
-    font-family:var(--font);
-    background:#000;
-}
-a{ text-decoration:none; color:inherit; }
-
-.container{
-    width:min(var(--max), calc(100% - 2*var(--pad)));
-    margin:0 auto;
-}
-
 .hero{
-    position:relative;
-    min-height:92vh;
-    overflow:hidden;
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
     background:#000;
+    display: flex;
+    flex-direction: column;
 }
+
 
 .hero::before{
     content:"";
@@ -66,13 +41,18 @@ a{ text-decoration:none; color:inherit; }
     width:78vmin;
     height:78vmin;
     border-radius:50%;
-    background:
-            radial-gradient(circle,
-            transparent 0 32%,
-            rgba(22,58,115,.85) 32% 42%,
-            transparent 42% 55%,
-            rgba(255,255,255,.35) 55% 60%,
-            transparent 60% 100%);
+    background: radial-gradient(circle,
+    transparent 0%,
+    transparent 32%,
+    rgba(22,58,115,.85) 32%,
+    rgba(22,58,115,.85) 42%,
+    transparent 42%,
+    transparent 55%,
+    rgba(255,255,255,.35) 55%,
+    rgba(255,255,255,.35) 60%,
+    transparent 60%,
+    transparent 100%
+    );
 }
 
 .hero-rings::after{
@@ -83,11 +63,14 @@ a{ text-decoration:none; color:inherit; }
     width:56vmin;
     height:56vmin;
     border-radius:50%;
-    background:
-            radial-gradient(circle,
-            transparent 0 38%,
-            rgba(22,58,115,.9) 38% 48%,
-            transparent 48% 100%);
+    background: radial-gradient(circle,
+    transparent 0%,
+    transparent 38%,
+    rgba(22,58,115,.9) 38%,
+    rgba(22,58,115,.9) 48%,
+    transparent 48%,
+    transparent 100%
+    );
 }
 
 .hero-top{
@@ -97,9 +80,9 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .top-row{
-    display:flex;
+    display:grid;
+    grid-template-columns: auto 1fr auto;
     align-items:center;
-    justify-content:space-between;
 }
 
 .brand{
@@ -109,12 +92,18 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .logo{
-    width:46px;
-    height:46px;
+    width:72px;
+    height:72px;
     background:#fff;
     border-radius:12px;
     display:grid;
     place-items:center;
+}
+
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
 .brand-text strong{
@@ -127,38 +116,65 @@ a{ text-decoration:none; color:inherit; }
 
 .nav{
     display:flex;
-    gap:18px;
+    gap:26px;
+    letter-spacing: .06em;
     color:#fff;
     font-weight:800;
     font-size:13px;
     text-transform:uppercase;
+    justify-self:center;
+    grid-column: 2;
+    /*transform: translateX(-50px);*/
 }
 
 .nav a{
+    position: relative;
+    padding: 6px 0;
+    text-decoration: none;
+    color:#fff;
     opacity:.9;
 }
-.nav a:hover{ opacity:1; }
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:2px;
+    background: rgba(255,255,255,.85);
+    transition: width .25s ease;
+}
+
+.nav a:hover{
+    opacity:1;
+}
+
+.nav a:hover::after{
+    width:100%;
+}
+
 
 .top-actions{
     display:flex;
     gap:12px;
 }
 
-.btn{
-    height:42px;
-    padding:0 18px;
-    font-weight:900;
-    font-size:13px;
-    text-transform:uppercase;
-    border:none;
+.hero-top .container{
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
 .btn.give{ background:var(--give); }
 .btn.involved{ background:var(--involved); color:#fff; }
 
 .hero-content{
-    position:relative;
-    z-index:3;
-    padding:72px 0;
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0;
 }
 
 .hero-grid{
@@ -172,22 +188,25 @@ a{ text-decoration:none; color:inherit; }
 
 .headline{
     color:#fff;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    font-size:clamp(48px, 7vw, 110px);
-    line-height:.92;
-    letter-spacing:.8px;
-    text-transform:uppercase;
-    max-width:12ch;
-    margin:0;
+    font-family: "Bebas Neue", system-ui, sans-serif;
+
+    font-size: clamp(60px, 8vw, 132px);
+    line-height: .9;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+
+    max-width: 20ch;
+    margin: 0;
+
+    text-shadow: 0 10px 30px rgba(0,0,0,.55);
 }
 
-@media (max-width:900px){
-    .nav{ display:none; }
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-rings{ opacity:.6; }
+.headline-uw span{
+    display:block;
+    white-space: nowrap;
 }
 
-/* ================= HOME SECTIONS ================= */
+/* HOME SECTIONS  */
 
 .home-section{
     padding: 96px 0;
@@ -202,554 +221,95 @@ a{ text-decoration:none; color:inherit; }
     color:#0a1f44;
 }
 
-/* Screen-reader only helper */
-.sr-only{
-    position:absolute;
-    width:1px;
-    height:1px;
-    padding:0;
-    margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
-}
 
-
-
-/* --------------------------------------------------------------------------------- */
-
-/* Main footer layout */
-.nyc-footer-main{
-    padding: 64px 0 60px;
-    display:grid;
-    grid-template-columns: 1.25fr 1fr 1fr 1fr;
-    gap: 70px;
-    align-items:start;
-}
-
-/* Brand left */
-.nyc-footer-brand{
-    display:flex;
-    gap: 20px;
-    align-items:flex-start;
-}
-
-.nyc-logo{
-    color:#fff;
-    opacity: 1;
-}
-
-.nyc-brand-title{
-    font-weight: 950;
-    letter-spacing: .6px;
-    line-height: .95;
-    font-size: 28px;
-}
-
-/* Columns */
-.nyc-col-head{
-    color: rgba(232,178,79,1);
-    font-weight: 950;
-    letter-spacing: .6px;
-    text-transform: uppercase;
-    font-size: 13px;
-    margin-bottom: 18px;
-}
-
-.nyc-col a{
-    display:block;
-    padding: 9px 0;
-    color: rgba(255,255,255,.86);
-    text-decoration:none;
-    font-size: 16px;
-}
-
-.nyc-col a:hover{
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-/* Bottom */
-.nyc-footer-bottom{
-    padding: 18px 0 22px;
-    color: rgba(255,255,255,.75);
-    font-size: 14px;
-}
-
-.nyc-bottom-inner{
+.brand-uw{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap: 14px;
-    flex-wrap:wrap;
-}
-
-.nyc-bottom-links{
-    display:flex;
-    align-items:center;
-    gap: 10px;
-    flex-wrap:wrap;
-}
-
-.nyc-bottom-links a{
-    color: rgba(255,255,255,.75);
+    gap:14px;
     text-decoration:none;
-    font-weight: 800;
-}
-
-.nyc-bottom-links a:hover{
     color:#fff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
 
-.nyc-bottom-links .dot{ opacity:.5; }
+    padding:6px 4px;
+    border-radius:16px;
+    /*margin-left: -50px;*/
 
-/* Responsive */
-@media (max-width: 980px){
-    .nyc-newsletter-inner{ grid-template-columns: 1fr; }
-    .nyc-footer-main{ grid-template-columns: 1fr 1fr; gap: 46px; }
-}
-
-@media (max-width: 620px){
-    .nyc-footer-main{ grid-template-columns: 1fr; }
-    .nyc-brand-title{ font-size: 24px; }
-}
-
-
-/* ===================== Footer (based on new york city website design) ===================== */
-
-.nyc-footer{
-    background:#000;
-    color:#fff;
-    margin-top:65px;
-}
-
-/* ===== NEWSLETTER ===== */
-.nyc-newsletter{
-    padding:70px 0 54px;
-    background:#000;
     position:relative;
     overflow:hidden;
+
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
 
-/* subtle depth */
-.nyc-newsletter::before{
+.brand-uw:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+.brand-uw:focus-visible{
+    outline: 2px solid rgba(232,178,79,1);
+    outline-offset: 3px;
+}
+
+.brand-uw::before{
     content:"";
     position:absolute;
-    inset:-2px;
-    background:
-            radial-gradient(900px 380px at 18% 40%, rgba(255,255,255,.08), transparent 60%),
-            radial-gradient(780px 320px at 85% 25%, rgba(232,178,79,.10), transparent 62%),
-            linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,0) 40%);
+    top:-40%;
+    left:-60%;
+    width:60%;
+    height:180%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+    transform: rotate(18deg);
+    transition: left .55s ease;
     pointer-events:none;
 }
+.brand-uw:hover::before{ left:110%; }
 
-.nyc-newsletter-inner{
-    position:relative;
-    display:grid;
-    grid-template-columns:1.2fr 1fr;
-    gap:72px;
-    align-items:start;
+.brand-uw .brand-text{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
 }
 
-/* left text */
-.nyc-newsletter-left h3{
-    margin:0 0 16px;
-    font-family: Helvetica, Arial, "Segoe UI", sans-serif;
-    font-size:clamp(40px, 4.4vw, 68px);
-    line-height:1;
+.brand-uw .brand-text strong{
+    font-family: "Bree Serif", serif;
+    font-size:26px;
+    font-weight:400;
+    letter-spacing:.3px;
+    line-height:1.05;
+    text-transform:none;
+    text-shadow: 0 8px 22px rgba(0,0,0,.35);
+}
+
+.brand-uw .brand-text span{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size:12px;
     font-weight:600;
-    text-transform:uppercase;
-    color:#fff;
-    transform:scaleX(1.1);
-    transform-origin:left center;
+    opacity:.85;
 }
 
-.nyc-newsletter-left p{
-    margin:0;
-    max-width:56ch;
-    font-size:clamp(18px, 1.7vw, 24px);
-    line-height:1.32;
-    font-weight:650;
-    color:rgba(255,255,255,.95);
-}
+@media (max-width: 900px){
 
-/* form */
-.nyc-newsletter-form{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:10px;
-}
+    .nav{
+        display:none;
+    }
 
-/* labels (single source of truth) */
-.nyc-newsletter-form label{
-    display:block;
-    margin:12px 0 8px;
-    font-weight:850;
-    font-size:18px;
-    letter-spacing:.2px;
-    color:rgba(255,255,255,.92);
-}
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
 
-/* inputs (single source of truth) */
-.nyc-newsletter-form input{
-    width:100%;
-    height:54px;            /* email + top fields */
-    padding:0 14px;
-    border-radius:0;
-    background:#000;
-    color:#fff;
-    border:1px solid var(--nyc-border);
-    outline:none;
-    box-shadow:none;
-    font-size:17px;
-    font-weight:500;
-}
+    .hero-rings{
+        opacity:.6;
+    }
 
-.nyc-newsletter-form input:hover{
-    border-color:var(--nyc-border-hover);
-}
+    .brand-uw{
+        padding: 8px 10px;
+    }
 
-.nyc-newsletter-form input:focus{
-    border-color:var(--nyc-border-focus);
-    box-shadow:none;
-}
+    .brand-uw .brand-text strong{
+        font-size: 20px;
+    }
 
-/* SIGN UP button (primary) */
-.nyc-newsletter-form .nyc-primary-btn{
-    width:100%;
-    height:64px;
-
-    font-size:30px;
-    font-weight:950;
-    letter-spacing:.6px;
-
-    background:#fff;
-    color:#000;
-
-    border:1px solid rgba(255,255,255,.55);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-    cursor:pointer;
-
-    transition: filter .18s ease;
-}
-
-/* simple hover — NO color inversion */
-.nyc-newsletter-form .nyc-primary-btn:hover{
-    filter: brightness(.94);
-}
-
-/* expand area */
-.nyc-newsletter-extra{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    padding-top:8px;
-
-    max-height:0;
-    opacity:0;
-    transform:translateY(-6px);
-    overflow:hidden;
-    transition:max-height .45s ease, opacity .35s ease, transform .35s ease;
-}
-
-.nyc-newsletter-form.is-expanded .nyc-newsletter-extra{
-    max-height:1200px;
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* hide SIGN UP after expansion */
-.nyc-newsletter-form.is-expanded #newsletterPrimaryBtn{
-    display:none;
-}
-
-/* Country + Zip row */
-.nyc-newsletter-row2{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    margin-top:4px;
-}
-
-/* ===== SUBSCRIBE button (final, clean, NYC-style) ===== */
-.nyc-newsletter-form .nyc-submit{
-    margin-top:14px;
-    height:64px;
-
-    font-size:30px;
-    font-weight:950;
-    letter-spacing:.6px;
-
-    background:#fff;
-    color:#000;
-
-    border:1px solid rgba(255,255,255,.55);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
-    cursor:pointer;
-
-    transition:
-            background-color .18s ease,
-            color .18s ease,
-            border-color .18s ease,
-            box-shadow .18s ease;
-}
-
-/* hover / focus = black with strong white border (stays while hovered) */
-.nyc-newsletter-form .nyc-submit:hover,
-.nyc-newsletter-form .nyc-submit:focus-visible{
-    background:#000;
-    color:#fff;
-
-    border-color: rgba(255,255,255,.95);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.95);
-    outline:none;
-}
-
-/* mobile */
-@media (max-width:720px){
-    .nyc-newsletter-inner{ grid-template-columns:1fr; gap:38px; }
-    .nyc-newsletter-row2{ grid-template-columns:1fr; }
-}
-
-/* ===== DIVIDER ===== */
-.nyc-divider{
-    height:1px;
-    background:rgba(255,255,255,.85);
-    box-shadow:0 0 .5px rgba(255,255,255,.6);
-    margin:0 auto;
-    width:min(1200px, calc(100% - 160px));
-}
-
-/* ==================================
-   COUNTRY CUSTOM DROPDOWN (flags)
-   ================================== */
-
-.nyc-country{ position:relative; }
-
-.nyc-countrybox{
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    height: 54px;
-    background: #000;
-
-    border: 1px solid rgba(255,255,255,.55);
-    overflow: hidden;
-}
-
-.nyc-countrybox input{
-    flex: 1;
-    height: 100%;
-    padding: 0 56px 0 16px;
-    border: 0 !important;
-    background: transparent !important;
-    color: #fff;
-    outline: none;
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.nyc-country-toggle{
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    width: 48px;
-    height: 100%;
-
-    background: transparent;
-    border: 0;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-}
-
-/* vertical divider (NYC style) */
-.nyc-country-toggle::before{
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 22%;
-    bottom: 22%;
-    width: 1px;
-    background: rgba(255,255,255,.45);
-}
-
-/* arrow icon ONLY (no box) */
-.nyc-country-toggle::after{
-    content: "";
-    width: 12px;
-    height: 7px;
-
-    background:
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
-            no-repeat center / contain;
-
-    opacity: .9;
-    transform: translateX(-4px);
-}
-
-/* hover / focus like other inputs */
-.nyc-countrybox:hover{
-    border-color: rgba(255,255,255,.85);
-}
-
-.nyc-countrybox:focus-within{
-    border-color: rgba(255,255,255,.95);
-}
-
-/* dropdown */
-.nyc-countrylist{
-    position:absolute;
-    top:calc(100% + 8px);
-    left:0;
-    right:0;
-    max-height:320px;
-    overflow:auto;
-    background:#000;
-    border:1px solid var(--nyc-border-hover);
-    box-shadow:0 14px 34px rgba(0,0,0,.55);
-    display:none;
-    z-index:9999;
-}
-.nyc-countrylist.open{ display:block; }
-
-.nyc-countryitem{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px;
-    cursor:pointer;
-    color:rgba(255,255,255,.92);
-    font-weight:700;
-}
-.nyc-countryitem:hover{ background:rgba(255,255,255,.08); }
-
-.nyc-flag{
-    width:22px;
-    height:16px;
-    object-fit:cover;
-    border:1px solid rgba(255,255,255,.25);
-}
-
-/* ===== autofill control ===== */
-.nyc-newsletter-form input:-webkit-autofill,
-.nyc-countrybox input:-webkit-autofill{
-    -webkit-text-fill-color:#fff !important;
-    -webkit-box-shadow:0 0 0px 1000px #000 inset !important;
-    box-shadow:0 0 0px 1000px #000 inset !important;
-    caret-color:#fff !important;
-    border:1px solid var(--nyc-border) !important;
-    outline:none !important;
-}
-
-/* ================= ERROR MESSAGES (NYC STYLE) ================= */
-.nyc-error{
-    margin-top:6px;
-    font-size:15px;
-    font-weight:700;
-    color:#ff3b30;            /* NYC red */
-    line-height:1.2;
-}
-
-/* Red border on invalid inputs */
-.is-invalid{
-    border-color:#ff3b30 !important;
-}
-
-/* Country box invalid state */
-.nyc-countrybox.is-invalid{
-    border-color:#ff3b30 !important;
-}
-
-/* ================= SOCIAL ICONS (NYC STYLE) ================= */
-
-/* NYC-style social row (NO boxes) */
-.nyc-social {
-    display: flex;
-    align-items: center;
-    gap: 28px;                 /* spacing like NYC */
-}
-
-.nyc-social a {
-    background: transparent !important;
-    border: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 0;
-    color: #fff;
-    opacity: .95;
-    transition: transform .2s ease, opacity .2s ease;
-}
-
-.nyc-social a:hover {
-    transform: translateY(-2px);
-    opacity: 1;
-}
-
-.nyc-social svg {
-    width: auto !important;
-    height: 36px !important;
-    display: block;
-    overflow: visible !important;
-}
-
-.nyc-social a[aria-label="Instagram"]:hover { background:#E1306C; }
-.nyc-social a[aria-label="Facebook"]:hover  { background:#1877F2; }
-.nyc-social a[aria-label="TikTok"]:hover    { background:#000; }
-.nyc-social a[aria-label="YouTube"]:hover   { background:#FF0000; }
-
-.nyc-social .ig svg { fill: none; }
-.nyc-social a:not(.ig) svg { fill: currentColor; }
-
-.hidden { display: none !important; }
-
-/* success block takes the same “right side” space */
-.nyc-success {
-    width: 100%;
-}
-
-/* the NYC looking card */
-.nyc-success-inner {
-    width: 100%;
-    min-height: 210px;
-    padding: 28px 22px;
-    border: 2px solid rgba(120, 200, 170, .55);
-    background: rgba(8, 20, 16, .72);
-    backdrop-filter: blur(6px);
-    text-align: center;
-    display: grid;
-    place-items: center;
-    gap: 14px;
-}
-
-.nyc-success-title {
-    font-weight: 900;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    font-size: 18px;
-}
-
-.nyc-success-icon svg {
-    opacity: .95;
-}
-
-.nyc-success-text {
-    font-size: 18px;
-    font-weight: 700;
+    .brand-uw .brand-text span{
+        font-size:11px;
+    }
 }

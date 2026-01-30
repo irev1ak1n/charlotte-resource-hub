@@ -1,7 +1,7 @@
 {
   "resources": [
     { "id": 1, "name": "Inreach NC", "category": "Disability Support" },
-    { "id": 2, "name": "Down Syndrome Association of Greater Charlotte", "category": "Disability Support" }
+    { "id": 2, "name": "Down Syndrome Association of Greater Charlotte", "category": "Disability Support" },
     { "id": 3, "name": "Nevins Inc.", "category": "Disability Support" },
     { "id": 4, "name": "LIFESPAN Services", "category": "Disability Support" },
     { "id": 5, "name": "Healthy Charlotte Alliance", "category": "Health Support" },
@@ -15,6 +15,6 @@
     { "id": 13, "name": "MYEP", "category": "Employment & Job Training" },
     { "id": 14, "name": "Charlotte Works", "category": "Employment & Job Training" },
     { "id": 15, "name": "NC Works", "category": "Employment & Job Training" },
-    { "id": 16, "name": "MeckWorks", "category": "Employment & Job Training" },
+    { "id": 16, "name": "MeckWorks", "category": "Employment & Job Training" }
   ]
 }

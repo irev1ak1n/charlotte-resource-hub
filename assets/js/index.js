@@ -3,7 +3,7 @@
     const form    = document.getElementById('newsletterForm');
     const email   = document.getElementById('nycEmail');
     const extra   = document.getElementById('newsletterExtra');
-    const section = document.querySelector('.nyc-newsletter');
+    const section = document.querySelector('.hub-newsletter');
     const btn     = document.getElementById('newsletterPrimaryBtn');
 
     // extra fields
@@ -21,7 +21,7 @@
     const hidden    = document.getElementById("nycCountryHidden");
     const list      = document.getElementById("countryList");
     const box       = document.getElementById("countryBox");
-    const toggleBtn = box ? box.querySelector(".nyc-country-toggle") : null;
+    const toggleBtn = box ? box.querySelector(".hub-country-toggle") : null;
 
     // Safe: if newsletter block isn't on this page, do nothing
     if (!form || !email || !extra || !section) return;
@@ -144,10 +144,10 @@
                 submitBtn.textContent = "SENDING...";
             }
 
-            // Ensure target exists (in case HTML forgot it)
+            // Ensure target exists
             form.setAttribute("target", "mlFrame");
 
-            // MailerLite silent submit (posts into iframe)
+            // MailerLite silent submit
             form.submit();
 
             // Show success UI
@@ -158,22 +158,26 @@
             form.reset();
             if (hidden) hidden.value = "";
 
-        } catch (err) {
+        } // try
+        catch (err) {
             extra.insertAdjacentHTML(
                 "afterbegin",
-                `<div class="nyc-error" style="margin-bottom:10px;" aria-live="polite">
+                `<div class="newsletter-error" style="margin-bottom:10px;" aria-live="polite">
         Something went wrong. Please try again.
       </div>`
             );
-        } finally {
+        } // try-catch
+        finally {
             setTimeout(() => {
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
                 }
             }, 1200);
-        }
-    });
+
+        } // try-finally
+
+    }); // form
 
     // Live clear errors (after first submit attempt)
     if (nameEl) nameEl.addEventListener("input", () => hasTriedSubmit && setErr(nameEl, errName, ""));
@@ -250,7 +254,7 @@
             const item = document.createElement("div");
             item.className = "nyc-countryitem";
             item.innerHTML = `
-        <img class="nyc-flag" src="${FLAG(code)}" alt="">
+        <img class="hub-flag" src="${FLAG(code)}" alt="">
         <span>${name}</span>
       `;
 

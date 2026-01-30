@@ -1,0 +1,79 @@
+/* =========== Global Stylesheet =========== */
+/*Shared styles used across the site to keep layout, design,
+  and accessibility consistent on all pages. */
+
+/* Design variables */
+:root{
+    --blue:#163a73;
+    --blue2:#0a1f44;
+    --give:#e8b24f;
+    --involved:#1f5aa8;
+
+    /* borders used in newsletter form */
+    --hub-newsletter-border: rgba(255,255,255,.38);
+    --hub-newsletter-border-hover: rgba(255,255,255,.55);
+    --hub-newsletter-border-focus: rgba(255,255,255,.85);
+
+    /* Layout / typography */
+    --max:1200px;
+    --pad:clamp(16px,3vw,28px);
+    --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Global reset */
+*{
+    box-sizing:border-box;
+}
+
+/* Base page styles */
+body{
+    margin:0;
+    font-family:var(--font);
+    background:#000;
+}
+
+/* Remove default link styling */
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* -- Layout utility */
+/* Constrains content width and centers it */
+.container{
+    width:min(var(--max), calc(100% - 2*var(--pad)));
+    margin:0 auto;
+}
+
+/* -- Accessibility helper */
+/* Keeps content readable by screen readers
+   but invisible visually */
+.sr-only{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
+
+/* -- Utility helper */
+/* Used for toggling visibility via JS */
+.hidden {
+    display: none !important;
+}
+
+/* -- Base button style */
+/* Visual variants are defined in page or component styles */
+.btn{
+    height:42px;
+    padding:0 18px;
+    font-weight:900;
+    font-size:13px;
+    text-transform:uppercase;
+    border:none;
+}

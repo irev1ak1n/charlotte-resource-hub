@@ -1,0 +1,156 @@
+/* =========== Footer Styles ===========
+   Layout, branding, links, and social icons used in the site footer */
+
+/* footer grid layout */
+.hub-footer-main{
+    padding: 64px 0 60px;
+    display:grid;
+    grid-template-columns: 1.25fr 1fr 1fr 1fr;
+    gap: 70px;
+    align-items:start;
+}
+
+.hub-footer{
+    background:#000;
+    color:#fff;
+    margin-top:65px;
+}
+
+/* ---------- Footer link columns ---------- */
+.hub-col a{
+    display:block;
+    padding: 9px 0;
+    color: rgba(255,255,255,.86);
+    text-decoration:none;
+    font-size: 16px;
+}
+
+.hub-col a:hover{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Section headers inside columns */
+.nyc-col-head{
+    color: rgba(232,178,79,1);
+    font-weight: 950;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* ---------- Footer bottom bar ---------- */
+.hub-footer-bottom{
+    padding: 18px 0 22px;
+    color: rgba(255,255,255,.75);
+    font-size: 14px;
+}
+
+.hub-bottom-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 14px;
+    flex-wrap:wrap;
+}
+
+.hub-bottom-links{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    flex-wrap:wrap;
+}
+
+.hub-bottom-links a{
+    color: rgba(255,255,255,.75);
+    text-decoration:none;
+    font-weight: 800;
+}
+
+.hub-bottom-links a:hover{
+    color:#fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.hub-bottom-links .dot{ opacity:.5; }
+
+/* Divider (form-columns) */
+.hub-newsletter-divider{
+    height:1px;
+    background:rgba(255,255,255,.85);
+    box-shadow:0 0 .5px rgba(255,255,255,.6);
+    margin:0 auto;
+    width:min(1200px, calc(100% - 160px));
+}
+
+/* Responsive footer layout  */
+@media (max-width: 980px){
+    .hub-newsletter-inner
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .hub-footer-main
+    {
+        grid-template-columns: 1fr 1fr; gap: 46px;
+    }
+}
+
+@media (max-width: 620px){
+    .hub-footer-main
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .hub-brand-title
+    {
+        font-size: 24px;
+    }
+}
+
+/* ================= SOCIAL ICONS ================= */
+
+/* NYC-style social row (NO boxes) */
+.hub-social {
+    display: flex;
+    align-items: center;
+    gap: 28px;                 /* spacing like NYC */
+}
+
+.hub-social a {
+    background: transparent !important;
+    border: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    color: #fff;
+    opacity: .95;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.hub-social a:hover {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.hub-social svg {
+    width: auto !important;
+    height: 36px !important;
+    display: block;
+    overflow: visible !important;
+}
+
+.hub-social a[aria-label="Instagram"]:hover { background:#E1306C; }
+.hub-social a[aria-label="Facebook"]:hover  { background:#1877F2; }
+.hub-social a[aria-label="TikTok"]:hover    { background:#000; }
+.hub-social a[aria-label="YouTube"]:hover   { background:#FF0000; }
+
+.hub-social .ig svg { fill: none; }
+.hub-social a:not(.ig) svg { fill: currentColor; }

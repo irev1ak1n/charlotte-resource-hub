@@ -1,0 +1,463 @@
+/* =======  NEWSLETTER — EXPANDABLE FIELDS & STATES ========
+   Handles: expanded form fields, submit button, country dropdown
+   autofill, validation, success UI and mobile responsiveness */
+
+.hub-newsletter{
+    background:#000;
+    overflow:hidden;
+    position:relative;
+    padding:70px 0 54px;
+}
+
+/* subtle background depth */
+.hub-newsletter::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:
+            radial-gradient(900px 380px at 18% 40%, rgba(255,255,255,.08), transparent 60%),
+            radial-gradient(780px 320px at 85% 25%, rgba(232,178,79,.10), transparent 62%),
+            linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,0) 40%);
+    pointer-events:none;
+}
+
+/* main newsletter grid: text left, form right */
+.hub-newsletter-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:72px;
+    align-items:start;
+}
+
+/* ===== Left (Title and text) ===== */
+
+.hub-newsletter-left h3{
+    margin:0 0 16px;
+    font-family: Helvetica, Arial, "Segoe UI", sans-serif;
+    font-size:clamp(40px, 4.4vw, 68px);
+    line-height:1;
+    font-weight:600;
+    text-transform:uppercase;
+    color:#fff;
+    transform:scaleX(1.1);
+    transform-origin:left center;
+}
+
+.hub-newsletter-left p{
+    margin:0;
+    max-width:56ch;
+    font-size:clamp(18px, 1.7vw, 24px);
+    line-height:1.32;
+    font-weight:650;
+    color:rgba(255,255,255,.95);
+}
+
+/* ===== FORM BASE (Labels + Inputs) ===== */
+
+/* form */
+.hub-newsletter-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:10px;
+}
+
+/* labels (single source of truth) */
+.hub-newsletter-form label{
+    display:block;
+    margin:12px 0 8px;
+    font-weight:850;
+    font-size:18px;
+    letter-spacing:.2px;
+    color:rgba(255,255,255,.92);
+}
+
+/* inputs (single source of truth) */
+.hub-newsletter-form input{
+    width:100%;
+    height:54px;
+    padding:0 14px;
+    border-radius:0;
+    background:#000;
+    color:#fff;
+    border:1px solid var(--hub-newsletter-border);
+    outline:none;
+    box-shadow:none;
+    font-size:17px;
+    font-weight:500;
+}
+
+.hub-newsletter-form input:hover{
+    border-color:var(--hub-newsletter-border-hover);
+}
+
+.hub-newsletter-form input:focus{
+    border-color:var(--hub-newsletter-border-focus);
+    box-shadow:none;
+}
+
+/* =====  Primary CTA (SIGN UP) =====
+          Shows first, then reveals extra fields */
+
+.hub-newsletter-form .nyc-primary-btn{
+    width:100%;
+    height:64px;
+
+    font-size:30px;
+    font-weight:950;
+    letter-spacing:.6px;
+
+    background:#fff;
+    color:#000;
+
+    border:1px solid rgba(255,255,255,.55);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+    cursor:pointer;
+
+    transition: filter .18s ease;
+}
+
+/* simple hover, no color inversion */
+.hub-newsletter-form .nyc-primary-btn:hover{
+    filter: brightness(.94);
+}
+/* ==== Expandable Fields Area (hidden until .is-expanded) ==== */
+
+/* Expand container (smooth open/close) */
+.hub-newsletter-extra{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-top:8px;
+
+    /* closed by default */
+    max-height:0;
+    opacity:0;
+    transform:translateY(-6px);
+    overflow:hidden;
+
+    transition:
+            max-height .45s ease,
+            opacity .35s ease,
+            transform .35s ease;
+}
+
+/* Expanded state (opened) */
+.hub-newsletter-form.is-expanded .hub-newsletter-extra{
+    max-height:1200px;
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Hide the first CTA after expanding */
+.hub-newsletter-form.is-expanded #newsletterPrimaryBtn{
+    display:none;
+}
+
+/* Country + Zip (two columns desktop) */
+.hub-newsletter-row2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:4px;
+}
+
+/* ==== Final Submit Button (SUBSCRIBE) ==== */
+
+.hub-newsletter-form .nyc-submit{
+    margin-top:14px;
+    height:64px;
+
+    font-size:30px;
+    font-weight:950;
+    letter-spacing:.6px;
+
+    background:#fff;
+    color:#000;
+
+    border:1px solid rgba(255,255,255,.55);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+    cursor:pointer;
+
+    transition:
+            background-color .18s ease,
+            color .18s ease,
+            border-color .18s ease,
+            box-shadow .18s ease;
+}
+
+/* Hover/focus = black background + white border */
+.hub-newsletter-form .nyc-submit:hover,
+.hub-newsletter-form .nyc-submit:focus-visible{
+    background:#000;
+    color:#fff;
+
+    border-color: rgba(255,255,255,.95);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.95);
+    outline:none;
+}
+
+/* ==== Country Custom Dropdown (flags + list) ==== */
+
+.hub-country{
+    position:relative;
+}
+
+/* Container that visually matches your inputs */
+.hub-countrybox{
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    height: 54px;
+    background: #000;
+
+    border: 1px solid rgba(255,255,255,.55);
+    overflow: hidden;
+}
+
+/* The visible text input inside the dropdown box */
+.hub-countrybox input{
+    flex: 1;
+    height: 100%;
+    padding: 0 56px 0 16px; /* space for the toggle on the right */
+    border: 0 !important;
+    background: transparent !important;
+    color: #fff;
+    outline: none;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Toggle button (arrow only, no extra box) */
+.hub-country-toggle{
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    width: 48px;
+    height: 100%;
+
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+/* Vertical divider (NYC feel) */
+.hub-country-toggle::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22%;
+    bottom: 22%;
+    width: 1px;
+    background: rgba(255,255,255,.45);
+}
+
+/* Arrow icon (SVG data URI) */
+.hub-country-toggle::after{
+    content: "";
+    width: 12px;
+    height: 7px;
+
+    background:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
+            no-repeat center / contain;
+
+    opacity: .9;
+    transform: translateX(-4px);
+}
+
+/* Hover/focus ring like other inputs */
+.hub-countrybox:hover{
+    border-color: rgba(255,255,255,.85);
+}
+.hub-countrybox:focus-within{
+    border-color: rgba(255,255,255,.95);
+}
+
+/* Dropdown panel (hidden until .open) */
+.hub-countrylist{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    right:0;
+
+    max-height:320px;
+    overflow:auto;
+
+    background:#000;
+    border:1px solid var(--hub-newsletter-border-hover);
+    box-shadow:0 14px 34px rgba(0,0,0,.55);
+
+    display:none;
+    z-index:9999;
+}
+
+.hub-countrylist.open{
+    display:block;
+}
+
+/* One option row */
+.hub-countryitem{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+
+    cursor:pointer;
+    color:rgba(255,255,255,.92);
+    font-weight:700;
+}
+
+.hub-countryitem:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* Flag thumbnail */
+.hub-flag{
+    width:22px;
+    height:16px;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,.25);
+}
+
+/* ===== Autofill fix =====
+   Keeps background black */
+
+.hub-newsletter-form input:-webkit-autofill,
+.hub-countrybox input:-webkit-autofill{
+    -webkit-text-fill-color:#fff !important;
+    -webkit-box-shadow:0 0 0px 1000px #000 inset !important;
+    box-shadow:0 0 0px 1000px #000 inset !important;
+    caret-color:#fff !important;
+
+    border:1px solid var(--hub-newsletter-border) !important;
+    outline:none !important;
+}
+
+/* ===== Validation + success message ===== */
+
+/* Error message below field */
+.newsletter-error{
+    margin-top:6px;
+    font-size:15px;
+    font-weight:700;
+    color:#ff3b30; /* NYC red */
+    line-height:1.2;
+}
+
+/* Red border on invalid inputs */
+.is-invalid{
+    border-color:#ff3b30 !important;
+}
+
+/* Country wrapper invalid state */
+.hub-countrybox.is-invalid{
+    border-color:#ff3b30 !important;
+}
+
+/* Success block occupies the form area */
+.newsletter-success{
+    width:100%;
+}
+
+/* Success card */
+.newsletter-success-inner{
+    width:100%;
+    min-height:210px;
+    padding:28px 22px;
+
+    border:2px solid rgba(120, 200, 170, .55);
+    background: rgba(8, 20, 16, .72);
+    backdrop-filter: blur(6px);
+
+    text-align:center;
+    display: grid;
+    place-items: center;
+    gap: 14px;
+}
+
+.newsletter-success-title{
+    font-weight:900;
+    letter-spacing:.04em;
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+.newsletter-success-icon svg{
+    opacity:.95;
+}
+
+.newsletter-success-text{
+    font-size:18px;
+    font-weight:700;
+}
+
+/* Newsletter image — fully collapsed by default */
+.hub-newsletter-media{
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+
+    transition:
+            max-height .65s cubic-bezier(.22,.61,.36,1),
+            margin-top .55s ease,
+            opacity .45s ease .12s,
+            transform .55s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Image styles stay the same */
+.hub-newsletter-media img{
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    display: block;
+
+    box-shadow:
+            0 18px 40px rgba(0,0,0,.45),
+            inset 0 0 0 1px rgba(255,255,255,.08);
+}
+
+.hub-newsletter-inner:has(.hub-newsletter-form.is-expanded) .hub-newsletter-media{
+    margin-top: 26px;
+    max-height: 560px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ====== Responsive (Mobile) ====== */
+
+@media (max-width: 720px){
+
+    .hub-newsletter-inner{
+        grid-template-columns:1fr;
+        gap:38px;
+    }
+
+    .hub-newsletter-row2{
+        grid-template-columns:1fr;
+    }
+
+    .hub-newsletter-media{
+        margin-top: 12px;
+    }
+
+    .hub-newsletter-media img{
+        max-width: 100%;
+        border-radius: 16px;
+    }
+}
