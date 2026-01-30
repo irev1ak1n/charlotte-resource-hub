@@ -20,5 +20,9 @@
     { "id": 18, "name": "Sustain Charlotte", "category": "Environmental Assistance" },
     { "id": 19, "name": "Clean AIRE NC", "category": "Environmental Assistance" },
     { "id": 20, "name": "Catawba Riverkeeper", "category": "Environmental Assistance" },
+    { "id": 21, "name": "Storm Water Services", "category": "Crisis Support" },
+    { "id": 22, "name": "Safe Alliance", "category": "Crisis Support" },
+    { "id": 23, "name": "Benevolent Bridges", "category": "Crisis Support" },
+    { "id": 24, "name": "Crisis Assistance Ministry", "category": "Crisis Support" },
   ]
 }
