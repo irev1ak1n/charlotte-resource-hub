@@ -15,6 +15,10 @@
     { "id": 13, "name": "MYEP", "category": "Employment & Job Training" },
     { "id": 14, "name": "Charlotte Works", "category": "Employment & Job Training" },
     { "id": 15, "name": "NC Works", "category": "Employment & Job Training" },
-    { "id": 16, "name": "MeckWorks", "category": "Employment & Job Training" }
+    { "id": 16, "name": "MeckWorks", "category": "Employment & Job Training" },
+    { "id": 17, "name": "Trees Charlotte", "category": "Environmental Assistance" },
+    { "id": 18, "name": "Sustain Charlotte", "category": "Environmental Assistance" },
+    { "id": 19, "name": "Clean AIRE NC", "category": "Environmental Assistance" },
+    { "id": 20, "name": "Catawba Riverkeeper", "category": "Environmental Assistance" },
   ]
 }
