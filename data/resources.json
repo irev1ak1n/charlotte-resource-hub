@@ -84,28 +84,28 @@
     "id": 10,
     "name": "Learning Help Centers of Charlotte",
     "category": "Education & Learning",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Our goal is to provide scholastic, spiritual and social support to equip and empower our underserved neighbors.",
+    "description": "LHCC partners with dedicated volunteers and community organizations to support the entire family, offering weekly tutoring for students, skill‑building programs for parents, summer camps that help children learn and grow, and family events that promote health, connection, and overall well‑being.",
+    "address": "1901 Archdale Drive, Charlotte, NC, 28210",
+    "website": "https://www.lhcclt.org/"
   },
   {
     "id": 11,
     "name": "Augustine Literacy Project",
     "category": "Education & Learning",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "My ALP Tutor has proved to be the BEST tutor I have ever experienced. I have taught 20 years and I would take her and this program over any other tutoring program I have worked with in my years of teaching. I couldn’t be more thankful for this program and what you do to help students.",
+    "description": "The Augustine Literacy Project of Charlotte provides free, long‑term, one‑on‑one literacy tutoring to young students in under‑resourced communities, using highly trained volunteers and research‑based instruction. It focuses on helping K–2 readers in Charlotte‑Mecklenburg Title I schools build strong reading, writing, and spelling skills. The organization transforms outcomes for children while empowering community members to make a direct, lasting impact.",
+    "address": "115 West 7th Street Charlotte, NC 28202",
+    "website": "https://alpcharlotte.org/"
   },
   {
     "id": 12,
     "name": "Urban League",
     "category": "Education & Learning",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "ULCC's mission is to advocate for and equip African Americans and ALL underserved communities with the tools to achieve social and economic equality.",
+    "description": "The Urban League of Central Carolinas helps African Americans and underprivileged communities by providing workforce development, education, housing support, health access, and advocacy programs that drive economic mobility and long‑term stability. It equips individuals with certifications, career pathways, and essential resources to achieve financial independence and social justice.",
+    "address": "740 West 5th Street Charlotte, NC 28202",
+    "website": "https://urbanleaguecc.org/"
   },
   {
     "id": 13,
