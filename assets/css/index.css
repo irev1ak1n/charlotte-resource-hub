@@ -1,3 +1,6 @@
+/* =========================
+   HERO
+========================= */
 .hero{
     position: relative;
     min-height: 100svh;
@@ -6,7 +9,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 .hero::before{
     content:"";
@@ -20,12 +22,27 @@
                     rgba(0,0,0,.15) 65%,
                     rgba(0,0,0,.05) 100%
             ),
-            url("../img/homepage1.jpg")
-            center/cover no-repeat;
+            url("../img/homepage1.jpg") center/cover no-repeat;
     z-index:0;
+    filter: saturate(1.05) contrast(1.05);
 }
 
-/* RINGS — pushed further RIGHT */
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:
+            radial-gradient(1200px 600px at 30% 30%, rgba(232,178,79,.12), transparent 55%),
+            radial-gradient(900px 500px at 70% 80%, rgba(22,58,115,.18), transparent 60%),
+            radial-gradient(1400px 800px at 50% 50%, rgba(0,0,0,.05), rgba(0,0,0,.55));
+    mix-blend-mode: normal;
+}
+
+/* =========================
+   HERO RINGS
+========================= */
 .hero-rings{
     position:absolute;
     inset:0;
@@ -33,14 +50,19 @@
     z-index:1;
 }
 
-.hero-rings::before{
+.hero-rings::before,
+.hero-rings::after{
     content:"";
     position:absolute;
+    border-radius:50%;
+    animation: floaty 9s ease-in-out infinite;
+}
+
+.hero-rings::before{
     right:-28%;
     top:-18%;
     width:78vmin;
     height:78vmin;
-    border-radius:50%;
     background: radial-gradient(circle,
     transparent 0%,
     transparent 32%,
@@ -56,13 +78,10 @@
 }
 
 .hero-rings::after{
-    content:"";
-    position:absolute;
     right:-14%;
     bottom:-30%;
     width:56vmin;
     height:56vmin;
-    border-radius:50%;
     background: radial-gradient(circle,
     transparent 0%,
     transparent 38%,
@@ -71,20 +90,44 @@
     transparent 48%,
     transparent 100%
     );
+    animation-duration: 11s;
 }
 
+@keyframes floaty{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(18px); }
+}
+
+/* =========================
+   TOP BAR
+========================= */
 .hero-top{
-    position:relative;
-    z-index:3;
-    padding:18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 18px 0;
+
+    background: rgba(0,0,0,.22);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.hero-top .container{
+    padding-left: 0;
+    padding-right: 30px;
 }
 
 .top-row{
-    display:grid;
-    grid-template-columns: auto 1fr auto;
-    align-items:center;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 18px;
 }
 
+/* =========================
+   BRAND
+========================= */
 .brand{
     display:flex;
     gap:14px;
@@ -106,121 +149,11 @@
     object-fit:contain;
 }
 
-.brand-text strong{
-    font-size:20px;
-}
+.brand-text strong{ font-size:20px; }
 .brand-text span{
     font-size:12px;
     opacity:.8;
 }
-
-.nav{
-    display:flex;
-    gap:26px;
-    letter-spacing: .06em;
-    color:#fff;
-    font-weight:800;
-    font-size:13px;
-    text-transform:uppercase;
-    justify-self:center;
-    grid-column: 2;
-    /*transform: translateX(-50px);*/
-}
-
-.nav a{
-    position: relative;
-    padding: 6px 0;
-    text-decoration: none;
-    color:#fff;
-    opacity:.9;
-}
-
-.nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:0%;
-    height:2px;
-    background: rgba(255,255,255,.85);
-    transition: width .25s ease;
-}
-
-.nav a:hover{
-    opacity:1;
-}
-
-.nav a:hover::after{
-    width:100%;
-}
-
-
-.top-actions{
-    display:flex;
-    gap:12px;
-}
-
-.hero-top .container{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.btn.give{ background:var(--give); }
-.btn.involved{ background:var(--involved); color:#fff; }
-
-.hero-content{
-    position: relative;
-    z-index: 3;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 0;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns: minmax(320px, 620px) 1fr;
-    align-items:start;
-}
-.hero-left{
-    grid-column:1;
-}
-
-.headline{
-    color:#fff;
-    font-family: "Bebas Neue", system-ui, sans-serif;
-
-    font-size: clamp(60px, 8vw, 132px);
-    line-height: .9;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-
-    max-width: 20ch;
-    margin: 0;
-
-    text-shadow: 0 10px 30px rgba(0,0,0,.55);
-}
-
-.headline-uw span{
-    display:block;
-    white-space: nowrap;
-}
-
-/* HOME SECTIONS  */
-
-.home-section{
-    padding: 96px 0;
-    background:#ffffff;
-}
-
-.home-section h2{
-    margin:0 0 12px;
-    font-size: 38px;
-    font-weight: 900;
-    letter-spacing: .2px;
-    color:#0a1f44;
-}
-
 
 .brand-uw{
     display:flex;
@@ -229,9 +162,9 @@
     text-decoration:none;
     color:#fff;
 
+    transform: translateX(-35px);
     padding:6px 4px;
     border-radius:16px;
-    /*margin-left: -50px;*/
 
     position:relative;
     overflow:hidden;
@@ -240,7 +173,7 @@
 }
 
 .brand-uw:hover{
-    transform: translateY(-1px);
+    transform: translateX(-35px) translateY(-1px);
     background: rgba(255,255,255,.06);
     box-shadow: 0 10px 22px rgba(0,0,0,.18);
 }
@@ -287,29 +220,812 @@
     opacity:.85;
 }
 
+
+
+/* =========================
+   NAV PILL
+========================= */
+.nav{
+    display:flex;
+    justify-self:center;
+    align-items:center;
+
+    gap:24px;
+    padding: 12px 18px;
+
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+
+    font-weight:800;
+    font-size:13px;
+    letter-spacing: .06em;
+    text-transform:uppercase;
+
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.nav a{
+    position: relative;
+    padding: 6px 0;
+    text-decoration: none;
+    color:#fff;
+    opacity:.92;
+
+    white-space: nowrap;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.nav a:hover{
+    opacity:1;
+    transform: translateY(-1px);
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:2px;
+    border-radius: 99px;
+    background: rgba(255,255,255,.85);
+    transition: width .25s ease;
+}
+
+.nav a:hover::after{
+    width:100%;
+}
+
+/* =========================
+   NAV SEARCH
+========================= */
+.nav-search{
+    display:flex;
+    align-items:center;
+    height: 44px;
+    width: clamp(220px, 22vw, 320px);
+
+    margin-left: 18px;
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px;
+    overflow:hidden;
+
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.nav-search input{
+    flex: 1;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color:#fff;
+
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.nav-search input::placeholder{
+    color: rgba(255,255,255,.70);
+}
+
+.nav-search button{
+    width: 48px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    color: rgba(255,255,255,.92);
+
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 900;
+
+    border-left: 1px solid rgba(255,255,255,.12);
+    transition: background .18s ease, transform .18s ease;
+}
+
+.nav-search button:hover{
+    background: rgba(255,255,255,.06);
+    transform: translateY(-1px);
+}
+
+.nav-search:focus-within{
+    border-color: rgba(232,178,79,.55);
+    box-shadow:
+            0 18px 60px rgba(0,0,0,.35),
+            0 0 0 5px rgba(232,178,79,.12),
+            inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+.hero-content{
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns: minmax(320px, 620px) 1fr;
+    align-items:start;
+}
+
+.hero-left{ grid-column:1; }
+
+.headline{
+    color:#fff;
+    font-family: "Bebas Neue", system-ui, sans-serif;
+
+    font-size: clamp(60px, 8vw, 132px);
+    line-height: .9;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+
+    max-width: 20ch;
+    margin: 0;
+
+    text-shadow: 0 10px 30px rgba(0,0,0,.55);
+}
+
+.headline-uw span{
+    display:block;
+    white-space: nowrap;
+}
+
+/* =========================
+   HOME SECTIONS
+========================= */
+.home-section{
+    padding: 96px 0;
+    background:#ffffff;
+}
+
+.home-section h2{
+    margin:0 0 12px;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: .2px;
+    color:#0a1f44;
+}
+
+/* =========================
+   BUTTONS / ACTIONS
+========================= */
+.top-actions{
+    display:flex;
+    gap:12px;
+}
+
+.btn.give{ background:var(--give); }
+.btn.involved{ background:var(--involved); color:#fff; }
+
+
+/* 1) Keep the grid */
+.top-row{
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 18px;
+}
+
+/* 2) Move BRAND a bit more left (optional) */
+.brand-uw{
+    transform: translateX(-55px); /* was -35px */
+}
+
+/* 3) Push NAV to the RIGHT within the middle column */
+.nav{
+    justify-self: end;            /* key: not centered anymore */
+    margin-right: 18px;           /* space from search */
+}
+
+/* 4) Keep SEARCH at the far right (no big translate needed) */
+.nav-search{
+    justify-self: end;
+    transform: none;              /* remove translateX(60px) */
+}
+
+/* ===== NAV LAYOUT OVERRIDES (put at very bottom of index.css) ===== */
+.hero-top .top-row{
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+}
+
+/* move brand a bit left */
+.hero-top .brand-uw{
+    transform: translateX(-55px) !important; /* was -35px */
+}
+
+/* keep search at the far right */
+.hero-top .nav-search{
+    justify-self: end !important;
+    margin-left: 0 !important;
+    transform: none !important;
+}
+
+/* Top row layout: use flex for predictable alignment */
+.hero-top .container.top-row{
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+}
+
+/* Brand: optional nudge left */
+.hero-top .brand-uw{
+    transform: translateX(-55px) !important; /* tweak if needed */
+}
+
+/* Nav sits right after brand (not centered on page) */
+.hero-top .nav{
+    margin-left: 10px !important;   /* space from brand */
+    justify-self: auto !important;  /* irrelevant in flex, but neutralize */
+}
+
+/* Search goes to the far right */
+.hero-top .nav-search{
+    margin-left: auto !important;   /* key: pushes it to the right edge */
+    transform: none !important;
+}
+
+
+.hero-top .top-row{
+    display: grid !important;
+    align-items: center !important;
+    column-gap: 18px !important;
+
+    /* brand | nav | spacer | search */
+    grid-template-columns: auto auto 1fr auto !important;
+}
+
+/* nav sits right after brand */
+.hero-top .nav{
+    justify-self: start !important;
+    margin: 0 !important;
+}
+
+/* search stays far right */
+.hero-top .nav-search{
+    justify-self: end !important;
+    margin-left: 0 !important;
+    transform: none !important;
+}
+
+/* optional: smaller brand nudge (not huge) */
+.hero-top .brand-uw{
+    transform: translateX(-35px) !important; /* keep your original */
+}
+
+.hero-top .brand-uw .brand-text strong{
+    white-space: nowrap;
+    font-size: clamp(20px, 1.6vw, 26px);
+}
+
+/* ===== NAVBAR FIX (put at VERY bottom of index.css) ===== */
+
+/* Make the top row predictable */
+.hero-top .container.top-row{
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+}
+
+/* Brand stays left, no weird translate */
+.hero-top .brand-uw{
+    transform: none !important;
+    flex: 0 0 auto !important;
+    min-width: fit-content;
+}
+
+/* Force title to be ONE LINE (no wrapping) */
+.hero-top .brand-uw .brand-text strong{
+    white-space: nowrap !important;
+    font-size: clamp(20px, 1.7vw, 26px) !important;
+}
+
+/* Also keep the subtitle on one line (optional, looks cleaner) */
+.hero-top .brand-uw .brand-text span{
+    white-space: nowrap !important;
+}
+
+/* Nav moves to the right and consumes remaining space */
+.hero-top .nav{
+    margin-left: auto !important;        /* pushes nav/search right */
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 18px !important;                /* slightly tighter than 24 */
+    flex: 1 1 auto !important;
+}
+
+/* Search stays at far right */
+.hero-top .nav-search{
+    flex: 0 0 auto !important;
+    margin-left: 14px !important;
+}
+
+/* ===== NAVBAR LEFT SHIFT TUNING ===== */
+
+/* Slightly tighten the container so things don’t float */
+.hero-top .container.top-row{
+    max-width: 1320px;           /* was effectively too wide */
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Brand stays left, no extra breathing room */
+.hero-top .brand-uw{
+    margin-right: 16px;          /* reduce gap before nav */
+}
+
+/* Pull nav closer to brand */
+.hero-top .nav{
+    margin-left: 0 !important;   /* remove auto push */
+    margin-right: 14px;
+}
+
+/* Search stays right, but not hugging the edge */
+.hero-top .nav-search{
+    margin-left: auto;
+    margin-right: 6px;
+}
+
+/* Optional: slightly tighter nav pill */
+.hero-top .nav{
+    padding: 10px 16px;          /* was 12px 18px */
+}
+
+/* ===== NAVBAR FINAL (LEFT-ANCHORED) ===== */
+
+.hero-top .container.top-row{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    /* STOP CENTERING IT */
+    max-width: 1180px;          /* smaller = everything shifts left */
+    margin-left: 18px;          /* anchor point from left edge */
+    margin-right: auto;         /* no centering */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Brand */
+.hero-top .brand-uw{
+    transform: none;
+    margin-right: 10px;
+    flex: 0 0 auto;
+}
+
+.hero-top .brand-uw .brand-text strong,
+.hero-top .brand-uw .brand-text span{
+    white-space: nowrap;
+}
+
+.hero-top .brand-uw .brand-text strong{
+    font-size: clamp(20px, 1.7vw, 26px);
+}
+
+/* Nav sits right after brand */
+.hero-top .nav{
+    margin-left: 0;
+    margin-right: 12px;
+    gap: 18px;
+    flex: 0 0 auto;
+}
+
+/* Search stays to the right of nav, but INSIDE the left-anchored cluster */
+.hero-top .nav-search{
+    margin-left: auto;
+    width: clamp(200px, 18vw, 280px);   /* slightly smaller to reduce spread */
+}
+
+/* ===== NAVBAR — USE FULL WIDTH ===== */
+
+.hero-top .container.top-row{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    max-width: 1400px;        /* allow navbar to breathe */
+    margin-left: 16px;
+    margin-right: auto;
+}
+
+/* Brand stays compact */
+.hero-top .brand-uw{
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+/* NAV now EXPANDS and fills space */
+.hero-top .nav{
+    flex: 1 1 auto;                 /* key change */
+    display: flex;
+    justify-content: space-between; /* spread links */
+    gap: 32px;                      /* visual breathing */
+    padding: 12px 28px;
+}
+
+/* Search becomes part of the wide layout */
+.hero-top .nav-search{
+    flex: 0 0 auto;
+    width: clamp(240px, 22vw, 340px);
+    margin-left: 24px;
+}
+
+.hero-top .nav a.is-active{
+    opacity: 1;
+}
+.hero-top .nav a.is-active::after{
+    width: 100%;
+    background: rgba(232,178,79,.95); /* your accent */
+}
+
+.hero-top .nav a:focus-visible,
+.hero-top .brand-uw:focus-visible,
+.hero-top .nav-search button:focus-visible,
+.hero-top .nav-search input:focus-visible{
+    outline: 2px solid rgba(232,178,79,.9);
+    outline-offset: 4px;
+    border-radius: 10px;
+}
+
+.hero-top .nav-search input{
+    caret-color: rgba(232,178,79,.9);
+}
+
+.hero-top .nav-search button:active{
+    transform: translateY(0);
+    background: rgba(255,255,255,.10);
+}
+
+.hero-top{
+    transition: padding .2s ease, background .2s ease;
+}
+
+.hero-top.is-scrolled{
+    padding: 10px 0;
+    background: rgba(0,0,0,.38);
+}
+
+
+/* ===== SEARCH BAR: smoother animation (override) ===== */
+.hero-top .nav-search{
+    position: relative;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+/* kill the big glow */
+.hero-top .nav-search:focus-within{
+    border-color: rgba(232,178,79,.55) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+/* animated underline */
+.hero-top .nav-search::after{
+    content:"";
+    position:absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 99px;
+    background: rgba(232,178,79,.95);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s ease;
+    opacity: .9;
+    pointer-events:none;
+}
+
+.hero-top .nav-search:focus-within::after{
+    transform: scaleX(1);
+}
+
+/* slightly nicer input text + placeholder */
+.hero-top .nav-search input::placeholder{
+    color: rgba(255,255,255,.55);
+}
+
+/* ===== SEARCH BAR — CLEAN PREMIUM (override) ===== */
+
+.hero-top .nav-search{
+    position: relative;
+    height: 44px;
+
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+
+    backdrop-filter: blur(12px);
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.06),
+            0 14px 40px rgba(0,0,0,.18);
+
+    overflow: hidden;
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+/* УДАЛЯЕМ underline-sweep (если он был) */
+.hero-top .nav-search::after{
+    content: none !important;
+}
+
+/* Input */
+.hero-top .nav-search input{
+    flex: 1;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    color: rgba(255,255,255,.92);
+    padding: 0 14px 0 18px;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .01em;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hero-top .nav-search input::placeholder{
+    color: rgba(255,255,255,.55);
+    font-weight: 650;
+}
+
+/* Button (лупа) */
+.hero-top .nav-search button{
+    width: 46px;
+    height: 46px;          /* чуть больше для “иконки-кнопки” */
+    margin: -1px;          /* чтобы не было шва */
+    border: 0;
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.92);
+
+    border-left: 1px solid rgba(255,255,255,.10);
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    transition: background .18s ease, transform .18s ease;
+}
+
+.hero-top .nav-search button:hover{
+    background: rgba(255,255,255,.10);
+    transform: translateY(-1px);
+}
+
+.hero-top .nav-search button:active{
+    transform: translateY(0);
+}
+
+/* Focus — вместо жёлтой “рамки”, мягкий аккуратный glow */
+.hero-top .nav-search:focus-within{
+    border-color: rgba(232,178,79,.45);
+    background: rgba(0,0,0,.28);
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            0 18px 60px rgba(0,0,0,.22),
+            0 0 0 4px rgba(232,178,79,.10); /* мягкое кольцо */
+}
+
+/* ===== SEARCH BAR — PREMIUM FOCUS (FINAL OVERRIDE) ===== */
+
+.hero-top .nav-search{
+    height: 44px;
+    border-radius: 999px;
+    overflow: hidden;
+
+    background: rgba(0,0,0,.20);
+    border: 1px solid rgba(255,255,255,.14);
+
+    backdrop-filter: blur(12px);
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.06),
+            0 12px 28px rgba(0,0,0,.18);
+
+    transition:
+            background .18s ease,
+            border-color .18s ease,
+            box-shadow .18s ease,
+            transform .18s ease;
+}
+
+/* smooth “intentional” focus instead of harsh glow */
+.hero-top .nav-search:focus-within{
+    background: rgba(0,0,0,.28);
+    border-color: rgba(255,255,255,.26);
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            0 18px 46px rgba(0,0,0,.26);
+    transform: translateY(-1px);
+}
+
+/* input polish */
+.hero-top .nav-search input{
+    padding: 0 14px 0 18px;
+    color: rgba(255,255,255,.92);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: .01em;
+}
+
+.hero-top .nav-search input::placeholder{
+    color: rgba(255,255,255,.52);
+}
+
+/* button looks “built-in” */
+.hero-top .nav-search button{
+    width: 46px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    color: rgba(255,255,255,.88);
+    border-left: 1px solid rgba(255,255,255,.10);
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease;
+}
+
+.hero-top .nav-search button:hover{
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.96);
+}
+
+.hero-top .nav-search button:active{
+    background: rgba(255,255,255,.09);
+}
+
+/* svg size */
+.nav-search-icon{
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* ===== SEARCH BAR — NO YELLOW, PREMIUM FOCUS (override) ===== */
+
+:root{
+    --accent: rgba(232,178,79,.95);    /* your gold */
+    --focusBlue: rgba(120,180,255,.55);
+}
+
+.hero-top .nav-search{
+    background: rgba(0,0,0,.22) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.06),
+            0 12px 28px rgba(0,0,0,.18) !important;
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease !important;
+}
+
+/* kill any yellow outlines from inner elements */
+.hero-top .nav-search input,
+.hero-top .nav-search button{
+    outline: none !important;
+}
+
+/* focus = subtle, not yellow */
+.hero-top .nav-search:focus-within{
+    background: rgba(0,0,0,.28) !important;
+    border-color: rgba(255,255,255,.26) !important;   /* NOT gold */
+    box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            0 18px 46px rgba(0,0,0,.26),
+            0 0 0 3px rgba(120,180,255,.10) !important;      /* soft blue halo */
+    transform: translateY(-1px) !important;
+}
+
+/* OPTIONAL: tiny gold underline instead of full yellow border */
+.hero-top .nav-search{
+    position: relative !important;
+}
+.hero-top .nav-search::after{
+    content:"";
+    position:absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 99px;
+    background: rgba(232,178,79,.95);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s ease;
+    opacity: .9;
+    pointer-events:none;
+}
+.hero-top .nav-search:focus-within::after{
+    transform: scaleX(1);
+}
+
+/* ===== SEARCH ICON — CLEAN, NO GLOW ===== */
+
+.hero-top .nav-search button{
+    background: transparent !important;
+    box-shadow: none !important;
+    color: rgba(255,255,255,.88);
+
+    transition: transform .15s ease, background .15s ease !important;
+}
+
+/* subtle hover movement ONLY */
+.hero-top .nav-search button:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.06);
+}
+
+/* pressed state */
+.hero-top .nav-search button:active{
+    transform: translateY(0);
+    background: rgba(255,255,255,.10);
+}
+
+/* absolutely kill any focus glow */
+.hero-top .nav-search button:focus-visible{
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* ===== SEARCH INPUT CARET (cursor) COLOR FIX ===== */
+
+.hero-top .nav-search input{
+    caret-color: rgba(255,255,255,.85); /* clean white cursor */
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+@media (prefers-reduced-motion: reduce){
+    .hero-rings::before,
+    .hero-rings::after{ animation: none; }
+
+    .nav a,
+    .nav-search button{ transition: none; }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px){
+    .hero-search{
+        max-width: 100%;
+    }
+    .hero-search input{
+        font-size: 15px;
+        padding: 0 16px;
+    }
+    .hero-search button{
+        padding: 0 16px;
+    }
+}
+
 @media (max-width: 900px){
+    .nav{ display:none; }
+    .nav-search{ display:none; }
 
-    .nav{
-        display:none;
-    }
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-rings{ opacity:.6; }
 
-    .hero-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero-rings{
-        opacity:.6;
-    }
-
-    .brand-uw{
-        padding: 8px 10px;
-    }
-
-    .brand-uw .brand-text strong{
-        font-size: 20px;
-    }
-
-    .brand-uw .brand-text span{
-        font-size:11px;
-    }
+    .brand-uw{ padding: 8px 10px; }
+    .brand-uw .brand-text strong{ font-size: 20px; }
+    .brand-uw .brand-text span{ font-size: 11px; }
 }
