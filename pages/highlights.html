@@ -5,42 +5,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Latest • Charlotte Resource Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/tsa-logo.css">
+    <link rel="stylesheet" href="../assets/css/newsletter.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
 </head>
 
 <body>
-<header class="hero-top">
-    <div class="container top-row">
-        <div class="brand" style="cursor:pointer" onclick="location.href='../index.html'">
-            <div class="logo">
-                <svg viewBox="0 0 64 64" width="28" height="28">
-                    <path d="M10 22l10 12 12-18 12 18 10-12 2 30H8l2-30z" fill="#0a1f44" />
-                    <path d="M12 52h40v6H12z" fill="#0a1f44" />
-                </svg>
-            </div>
-            <div class="brand-text">
-                <strong>Charlotte Resource Hub</strong>
-                <span>The Latest</span>
-            </div>
-        </div>
 
-        <div class="top-actions">
-            <a href="./about.html" class="btn about">About</a>
-            <a href="../index.html#services" class="btn what-we-do">What We Do</a>
+<section class="hero">
+    <div class="hero-rings"></div>
 
-            <div class="nav-item-dropdown">
-                <a href="./directory.html" class="btn directory">Directory</a>
-                <div class="dropdown-menu" id="directoryDropdown"></div>
+    <div class="hero-top">
+        <div class="container top-row">
+
+            <a href="../index.html" class="brand brand-uw" aria-label="Go to homepage">
+                <div class="brand-text">
+                    <strong>Charlotte Resource Hub</strong>
+                    <span>The Queen City Community Resources</span>
+                </div>
+            </a>
+
+            <nav class="nav">
+                <a href="../pages/about.html">About</a>
+                <a href="../pages/about.html" class="is-active">What We Do</a>
+                <a href="../pages/directory.html">Directory</a>
+                <a href="../pages/get-involved.html">Get Involved</a>
+                <a href="../pages/references.html">References</a>
+                <a href="../pages/highlights.html">The Latest</a>
+            </nav>
+
+
+            <div class="nav-search" role="search" aria-label="Search resources">
+                <input
+                        id="navSearchInput"
+                        type="search"
+                        placeholder="Search resources..."
+                        aria-label="Search resources"
+                />
+                <button id="navSearchBtn" type="button" aria-label="Search">
+                    <svg class="nav-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Z"
+                              fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16.3 16.3 21 21"
+                              fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
 
-            <a href="./get-help.html" class="btn get-help">Get Help</a>
-            <a href="./get-involved.html" class="btn involved">Get Involved</a>
-            <a href="./give.html" class="btn give">Give</a>
-            <a href="./references.html" class="btn references">References</a>
         </div>
     </div>
-</header>
+
+    <div class="hero-content">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1 class="headline headline-uw">
+                    <span>FOR THE GREATER</span>
+                    <span>GOOD IN GREATER</span>
+                    <span>CHARLOTTE</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
 
 <main class="home-section" style="padding-top: 110px;">
     <div class="container">
@@ -65,7 +99,10 @@
     </div>
 </main>
 
-<script src="../assets/js/index.js" defer></script>
-</body>
+<div id="siteFooter"></div>
 
+<script src="../assets/js/includes.js" defer></script>
+<script src="../assets/js/index.js" defer></script>
+
+</body>
 </html>
