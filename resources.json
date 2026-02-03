@@ -1,0 +1,290 @@
+[
+  {
+    "id": 1,
+    "name": "Inreach NC",
+    "category": "Disability Support",
+    "quote": "157 Living support was provided to 84 individuals in our 24/7 staffed group homes. 235 individuals were provided with job support, helping them secure employment, complete job training, and thrive as valued members of their company’s workforce. Provided assistance to over 400 individuals, covering expenses such as rent, utilities, therapy sessions, car repairs, and more through our First In Families project.",
+    "description": "InReach is a recognized leader in providing housing, employment, and community support for individuals with intellectual and developmental disabilities in Charlotte/Mecklenburg and nearby counties.",
+    "address": "4014 Monroe Rd Building 4 Suite 170, Charlotte, NC 28205",
+    "website": "https://inreachnc.org/"
+  },
+  {
+    "id": 2,
+    "name": "Down Syndrome Association of Greater Charlotte",
+    "category": "Disability Support",
+    "quote": "Don’t look away because you’re uncomfortable. Comfort starts here…",
+    "description": "The Down Syndrome Association (DSA) of Greater Charlotte is an approved 501(c)3 non-profit, family support organization. The goal of the DSA of Greater Charlotte and its families is to enable individuals with Down syndrome (Ds) to reach their full potential and become respected members of their community.",
+    "address": "3900 Park Road, Suite C Charlotte, NC 28209",
+    "website": "https://dsagreatercharlotte.org/"
+  },
+  {
+    "id": 3,
+    "name": "Nevins Inc.",
+    "category": "Disability Support",
+    "quote": "Providing exceptional person-centered care to adults with intellectual and developmental disabilities since 1959.",
+    "description": "Nevins supports individuals in Mecklenburg county with developmental disabilities such as Intellectual Development Disorder and illness, epilepsy, down syndrome, cerebral palsy, traumatic brain injury, autism and learning disabilities.",
+    "address": "3523 Nevin Road Charlotte, NC 28269",
+    "website": "https://www.nevinsinc.org/"
+  },
+  {
+    "id": 4,
+    "name": "LIFESPAN Services",
+    "category": "Disability Support",
+    "quote": "Our mission, and our passion, is to illuminate the abilities of children and adults with disabilities by providing education, employment, and enrichment opportunities to live, work, and play in their communities throughout their lifetimes.",
+    "description": "LIFESPAN Services help to make the abilities of children and adults shine by providing education, employment, and enrichment opportunities to live, work and play in their communities throughout their life. They spend each day supporting people of all ages and abilities, guiding them toward moments of everyday joy and the simple experiences that make life meaningful.",
+    "address": "1511 Shopton Road, Suite A Charlotte, NC 28217",
+    "website": "https://www.lifespanservices.org/"
+  },
+  {
+    "id": 5,
+    "name": "Healthy Charlotte Alliance",
+    "category": "Health Support",
+    "quote": "Our Mission is to improve the health and quality of life for all people of Mecklenburg County.",
+    "description": "Healthy Charlotte Alliance was founded by physicians with a desire to support a healthier Charlotte. They achieve this mission through health education, engaging volunteers, and financial investments in proven-effective health programs.",
+    "address": "338 S Sharon Amity Road, #504 Charlotte, NC 28211",
+    "website": "https://www.healthycharlottealliance.org/"
+  },
+  {
+    "id": 6,
+    "name": "RAIN",
+    "category": "Health Support",
+    "quote": "RAIN empowers people living with HIV and those at risk to be healthy and stigma free.",
+    "description": "RAIN has supported thousands in the Charlotte community and is known for being reliable, caring, and committed. They work with clients to get medical care and medications they need, offer emergency help with rent, utilities and food, and support underprivileged people with other challenges that affect their health and stability.",
+    "address": "N/A",
+    "website": "https://carolinarain.org/"
+  },
+  {
+    "id": 7,
+    "name": "Hospitality House of Charlotte",
+    "category": "Health Support",
+    "quote": "We have utilized the services of Hospitality House several times during our journey. We appreciate the services of the many volunteer groups who provide meals.",
+    "description": "Hospitality House of Charlotte provides affordable housing and a supportive community for patients and families who must travel to Charlotte for critical medical care. It also offers a safe, comfortable place to stay so families can focus on healing rather than housing.",
+    "address": "1400 Scott Avenue Charlotte, NC 28203",
+    "website": "https://www.hospitalityhouseofcharlotte.org/"
+  },
+  {
+    "id": 8,
+    "name": "NAMI Family & Friends",
+    "category": "Health Support",
+    "quote": "I have a better understanding of how mental illness impacts the person affected…it was nice to hear the stories of the instructors and their paths. The handbook (eBook) given has a lot of helpful information which I did not know about.",
+    "description": "NAMI Family & Friends is a free 90-minute or four-hour seminar that informs people who have loved ones with a mental health condition how to best support them. It’s also an opportunity to meet other people in similar situations and gain community support.",
+    "address": "1930 Abbott Street Suite 403 Charlotte, NC 28203",
+    "website": "https://namicharlotte.org/"
+  },
+  {
+    "id": 9,
+    "name": "Freedom School Partners",
+    "category": "Education & Learning",
+    "quote": "Freedom School Partners is a Charlotte area non-profit with a mission to inspire our scholars to love reading and learning, believe in themselves, and create extraordinary futures. We advocate relentlessly for our scholars by focusing on educational equity, as well as the root causes of academic achievement gaps.",
+    "description": "Freedom School Partners is a Charlotte area non-profit with a mission to inspire our scholars to love reading and learning, believe in themselves, and create extraordinary futures. We advocate relentlessly for our scholars by focusing on educational equity, as well as the root causes of academic achievement gaps.",
+    "address": "1030 Arosa Ave, Charlotte 28203",
+    "website": "https://freedomschoolpartners.org/"
+  },
+  {
+    "id": 10,
+    "name": "Learning Help Centers of Charlotte",
+    "category": "Education & Learning",
+    "quote": "Our goal is to provide scholastic, spiritual and social support to equip and empower our underserved neighbors.",
+    "description": "LHCC partners with dedicated volunteers and community organizations to support the entire family, offering weekly tutoring for students, skill‑building programs for parents, summer camps that help children learn and grow, and family events that promote health, connection, and overall well‑being.",
+    "address": "1901 Archdale Drive, Charlotte, NC, 28210",
+    "website": "https://www.lhcclt.org/"
+  },
+  {
+    "id": 11,
+    "name": "Augustine Literacy Project",
+    "category": "Education & Learning",
+    "quote": "My ALP Tutor has proved to be the BEST tutor I have ever experienced. I have taught 20 years and I would take her and this program over any other tutoring program I have worked with in my years of teaching. I couldn’t be more thankful for this program and what you do to help students.",
+    "description": "The Augustine Literacy Project of Charlotte provides free, long‑term, one‑on‑one literacy tutoring to young students in under‑resourced communities, using highly trained volunteers and research‑based instruction. It focuses on helping K–2 readers in Charlotte‑Mecklenburg Title I schools build strong reading, writing, and spelling skills. The organization transforms outcomes for children while empowering community members to make a direct, lasting impact.",
+    "address": "115 West 7th Street Charlotte, NC 28202",
+    "website": "https://alpcharlotte.org/"
+  },
+  {
+    "id": 12,
+    "name": "Urban League",
+    "category": "Education & Learning",
+    "quote": "ULCC's mission is to advocate for and equip African Americans and ALL underserved communities with the tools to achieve social and economic equality.",
+    "description": "The Urban League of Central Carolinas helps African Americans and underprivileged communities by providing workforce development, education, housing support, health access, and advocacy programs that drive economic mobility and long‑term stability. It equips individuals with certifications, career pathways, and essential resources to achieve financial independence and social justice.",
+    "address": "740 West 5th Street Charlotte, NC 28202",
+    "website": "https://urbanleaguecc.org/"
+  },
+  {
+    "id": 13,
+    "name": "MYEP",
+    "category": "Employment & Job Training",
+    "quote": "Our mission is to make sure every young person has the support and opportunities they need to succeed today and build a brighter future.",
+    "description": "Provides paid work experiences to help high-school aged teens to develop career goals, stay in school, achieve academically, and develop social skills needed to succeed in work and life.",
+    "address": "N/A",
+    "website": "https://www.charlottenc.gov/City-Government/Initiatives-and-Involvement/Office-of-Youth-Opportunities"
+  },
+  {
+    "id": 14,
+    "name": "Charlotte Works",
+    "category": "Employment & Job Training",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 15,
+    "name": "NC Works",
+    "category": "Employment & Job Training",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 16,
+    "name": "MeckWorks",
+    "category": "Employment & Job Training",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 17,
+    "name": "Trees Charlotte",
+    "category": "Environmental Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 18,
+    "name": "Sustain Charlotte",
+    "category": "Environmental Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 19,
+    "name": "Clean AIRE NC",
+    "category": "Environmental Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 20,
+    "name": "Catawba Riverkeeper",
+    "category": "Environmental Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 21,
+    "name": "Storm Water Services",
+    "category": "Crisis Support",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 22,
+    "name": "Safe Alliance",
+    "category": "Crisis Support",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 23,
+    "name": "Benevolent Bridges",
+    "category": "Crisis Support",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 24,
+    "name": "Crisis Assistance Ministry",
+    "category": "Crisis Support",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 25,
+    "name": "Second Harvest Food Bank of Metrolina",
+    "category": "Basic Needs Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 26,
+    "name": "Habitat for Humanity",
+    "category": "Basic Needs Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 27,
+    "name": "Hope Haven Inc",
+    "category": "Basic Needs Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 28,
+    "name": "Hearts & Hands Food Pantry",
+    "category": "Basic Needs Assistance",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 29,
+    "name": "Families Forward Charlotte",
+    "category": "Family Services",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 30,
+    "name": "Ballantyne Families Helping Neighbors in Need",
+    "category": "Family Services",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 31,
+    "name": "Smart Start of Meck",
+    "category": "Family Services",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  },
+  {
+    "id": 32,
+    "name": "Thompson",
+    "category": "Family Services",
+    "quote": "",
+    "description": "",
+    "address": "",
+    "website": ""
+  }
+]
