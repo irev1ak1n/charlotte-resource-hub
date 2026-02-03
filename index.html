@@ -14,33 +14,33 @@
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/newsletter.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-
 </head>
 
 <body>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
     <div class="hero-rings"></div>
 
     <div class="hero-top">
         <div class="container top-row">
-            <a href="index.html" class="brand brand-uw" aria-label="Go to homepage">
 
+            <a href="index.html" class="brand brand-uw" aria-label="Go to homepage">
                 <div class="brand-text">
                     <strong>Charlotte Resource Hub</strong>
                     <span>The Queen City Community Resources</span>
                 </div>
-
             </a>
 
             <nav class="nav">
-                <a href="#about" class="is-active">About</a>
-                <a>What We Do</a>
-                <a>Directory</a>
-                <a>Get Involved</a>
-                <a>References</a>
-                <a>The Latest</a>
+                <a href="pages/about.html" class="is-active">About</a>
+                <a href="pages/about.html">What We Do</a>
+                <a href="pages/directory.html">Directory</a>
+                <a href="pages/get-involved.html">Get Involved</a>
+                <a href="pages/references.html">References</a>
+                <a href="pages/highlights.html">The Latest</a>
             </nav>
+
 
             <div class="nav-search" role="search" aria-label="Search resources">
                 <input
@@ -51,13 +51,14 @@
                 />
                 <button id="navSearchBtn" type="button" aria-label="Search">
                     <svg class="nav-search-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16.3 16.3 21 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Z"
+                              fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16.3 16.3 21 21"
+                              fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round"/>
                     </svg>
                 </button>
-
             </div>
-
 
         </div>
     </div>
@@ -75,14 +76,96 @@
     </div>
 </section>
 
+<section class="offer-tiles" id="what-we-do">
+    <div class="container">
+        <div class="offer-grid">
+
+            <a class="offer-tile" href="pages/directory.html" style="--img:url('assets/img/homepage1.jpg');">
+                <div class="offer-media"></div>
+                <div class="offer-top">
+          <span class="offer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2v9M10 2v9M7 6h3M14 2v8c0 2 2 2 2 4v8"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+                    <div class="offer-kicker">BASIC NEEDS</div>
+                </div>
+                <div class="offer-body">
+                    <h3>Food Assistance</h3>
+                    <p>Find food banks, pantries, meal programs, and emergency groceries near you.</p>
+                    <span class="offer-link">Explore →</span>
+                </div>
+            </a>
+
+            <a class="offer-tile" href="pages/directory.html" style="--img:url('assets/img/homepage1.jpg');">
+                <div class="offer-media"></div>
+                <div class="offer-top">
+          <span class="offer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"
+                    fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+                    <div class="offer-kicker">STABILITY</div>
+                </div>
+                <div class="offer-body">
+                    <h3>Housing & Shelters</h3>
+                    <p>Explore emergency shelters, rent assistance, and housing support programs.</p>
+                    <span class="offer-link">Explore →</span>
+                </div>
+            </a>
+
+            <a class="offer-tile" href="pages/directory.html" style="--img:url('assets/img/homepage1.jpg');">
+
+            <div class="offer-media"></div>
+                <div class="offer-top">
+          <span class="offer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21s-7-4.6-7-11a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 6.4-7 11-7 11z"
+                    fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 7v6M9 10h6"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+                    <div class="offer-kicker">WELL-BEING</div>
+                </div>
+                <div class="offer-body">
+                    <h3>Health Support</h3>
+                    <p>Clinics, mental health resources, wellness programs, and patient support.</p>
+                    <span class="offer-link">Explore →</span>
+                </div>
+            </a>
+
+            <a class="offer-tile" href="pages/directory.html" style="--img:url('assets/img/homepage1.jpg');">
+                <div class="offer-media"></div>
+                <div class="offer-top">
+          <span class="offer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"
+                    fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+                    <div class="offer-kicker">OPPORTUNITY</div>
+                </div>
+                <div class="offer-body">
+                    <h3>Jobs & Training</h3>
+                    <p>Career programs, skills training, job placement, and workforce support.</p>
+                    <span class="offer-link">Explore →</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+
 <section class="home-section" id="services">
     <div class="container">
-        <div class="section-head">
-            <h2>Welcome to Charlotte: the Queen City!</h2>
-            <p class="section-lead">
-               Use these resources to take advantage of all that Charlotte offers. Get information about education services, health support, and crisis support, and much more on this website!
-            </p>
-        </div>
+
 
     </div>
 </section>

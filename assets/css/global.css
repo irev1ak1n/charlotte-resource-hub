@@ -1,8 +1,7 @@
 /* =========== Global Stylesheet =========== */
-/*Shared styles used across the site to keep layout, design,
+/*Styles used across the site to keep layout, design,
   and accessibility consistent on all pages. */
 
-/* Design variables */
 :root{
     --blue:#163a73;
     --blue2:#0a1f44;

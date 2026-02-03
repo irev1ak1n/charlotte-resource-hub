@@ -4,23 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Directory • Charlotte Resource Hub</title>
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="../assets/css/global.css">
+    <title>Get Involved • Charlotte Resource Hub</title>
     <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/newsletter.css">
-    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/tsa-logo.css">
 </head>
 
 <body>
-
-<!-- simple top bar so you can navigate back -->
 <header class="hero-top">
     <div class="container top-row">
         <div class="brand" style="cursor:pointer" onclick="location.href='../index.html'">
@@ -32,7 +21,7 @@
             </div>
             <div class="brand-text">
                 <strong>Charlotte Resource Hub</strong>
-                <span>Directory</span>
+                <span>Get Involved</span>
             </div>
         </div>
 
@@ -55,33 +44,22 @@
 
 <main class="home-section" style="padding-top: 110px;">
     <div class="container">
-
         <div class="section-head">
-            <h2>Resource Directory</h2>
+            <h2>Join the Cause</h2>
             <p class="section-lead">
-                This list loads from <code>data/resources.json</code> (no backend).
+                There are many ways to support your neighbors in Charlotte.
             </p>
+            <p>
+                Whether by volunteering your time, sharing resources, or organizing events, your involvement makes a
+                difference.
+            </p>
+            <br>
+            <a href="./submit.html" class="btn involved">Submit a Resource</a>
         </div>
-
-        <!-- quick filter/search  -->
-        <div style="display:grid; gap:12px; max-width: 520px; margin: 18px 0 22px;">
-            <input id="resourceSearch" type="text" placeholder="Search by name or category..."
-                   style="height:48px; padding:0 14px; border-radius:10px; border:1px solid rgba(0,0,0,.18);" />
-            <select id="categoryFilter"
-                    style="height:48px; padding:0 14px; border-radius:10px; border:1px solid rgba(0,0,0,.18);">
-                <option value="">All categories</option>
-            </select>
-        </div>
-
-        <!-- status + list -->
-        <div id="resourceStatus" style="margin: 6px 0 12px; font-weight:600;"></div>
-        <ul id="resourceList" style="display:grid; gap:10px; padding-left: 0; list-style:none;"></ul>
-
     </div>
 </main>
 
-<!-- run the directory loader -->
-<script src="../assets/js/app.js" defer></script>
+<script src="../assets/js/index.js" defer></script>
 </body>
 
 </html>
