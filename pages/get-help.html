@@ -5,42 +5,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Get Help • Charlotte Resource Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/tsa-logo.css">
+    <link rel="stylesheet" href="../assets/css/newsletter.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
 </head>
 
 <body>
-<header class="hero-top">
-    <div class="container top-row">
-        <div class="brand" style="cursor:pointer" onclick="location.href='../index.html'">
-            <div class="logo">
-                <svg viewBox="0 0 64 64" width="28" height="28">
-                    <path d="M10 22l10 12 12-18 12 18 10-12 2 30H8l2-30z" fill="#0a1f44" />
-                    <path d="M12 52h40v6H12z" fill="#0a1f44" />
-                </svg>
-            </div>
-            <div class="brand-text">
-                <strong>Charlotte Resource Hub</strong>
-                <span>Get Help</span>
-            </div>
-        </div>
 
-        <div class="top-actions">
-            <a href="./about.html" class="btn about">About</a>
-            <a href="../index.html#services" class="btn what-we-do">What We Do</a>
+<section class="hero">
+    <div class="hero-rings"></div>
 
-            <div class="nav-item-dropdown">
-                <a href="./directory.html" class="btn directory">Directory</a>
-                <div class="dropdown-menu" id="directoryDropdown"></div>
+    <div class="hero-top">
+        <div class="container top-row">
+
+            <a href="../index.html" class="brand brand-uw" aria-label="Go to homepage">
+                <div class="brand-text">
+                    <strong>Charlotte Resource Hub</strong>
+                    <span>The Queen City Community Resources</span>
+                </div>
+            </a>
+
+            <nav class="nav">
+                <a href="../pages/about.html">About</a>
+                <a href="../pages/about.html">What We Do</a>
+                <a href="../pages/directory.html"class="is-active">Directory</a>
+                <a href="../pages/get-involved.html">Get Involved</a>
+                <a href="../pages/references.html">References</a>
+                <a href="../pages/highlights.html">The Latest</a>
+            </nav>
+
+
+            <div class="nav-search" role="search" aria-label="Search resources">
+                <input
+                        id="navSearchInput"
+                        type="search"
+                        placeholder="Search resources..."
+                        aria-label="Search resources"
+                />
+                <button id="navSearchBtn" type="button" aria-label="Search">
+                    <svg class="nav-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10.5 18a7.5 7.5 0 1 1 5.3-12.8A7.5 7.5 0 0 1 10.5 18Z"
+                              fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16.3 16.3 21 21"
+                              fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
 
-            <a href="./get-help.html" class="btn get-help">Get Help</a>
-            <a href="./get-involved.html" class="btn involved">Get Involved</a>
-            <a href="./give.html" class="btn give">Give</a>
-            <a href="./references.html" class="btn references">References</a>
         </div>
     </div>
-</header>
+
+    <div class="hero-content">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1 class="headline headline-uw">
+                    <span>FOR THE GREATER</span>
+                    <span>GOOD IN GREATER</span>
+                    <span>CHARLOTTE</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
 
 <main class="home-section" style="padding-top: 110px;">
     <div class="container">
@@ -68,7 +102,191 @@
     </div>
 </main>
 
+
+<footer class="hub-footer" id="footer">
+
+    <section class="hub-newsletter">
+        <div class="container hub-newsletter-inner">
+            <div class="hub-newsletter-left">
+                <h3>NEWSLETTER</h3>
+                <p>
+                    What’s good in NC?
+                    From trusted local resources and community programs to events and opportunities across Charlotte, our emails make sure you never miss what really matters.
+                </p>
+
+                <div class="hub-newsletter-media">
+                    <img
+                            src="assets/img/newsletter-form.jpg"
+                            alt="Charlotte community resources and programs"
+                            loading="lazy"
+                    >
+                </div>
+            </div>
+
+            <form class="hub-newsletter-form" id="newsletterForm"
+                  action="https://assets.mailerlite.com/jsonp/2047723/forms/176992539224573375/subscribe"
+                  method="post"
+                  target="mlFrame"
+                  novalidate>
+
+                <input type="hidden" name="ml-submit" value="1">
+
+                <label for="nycEmail">*Email</label>
+                <input id="nycEmail" name="fields[email]" type="email" required autocomplete="email">
+                <div class="newsletter-error" id="errEmail" aria-live="polite"></div>
+
+                <div class="hub-newsletter-extra" id="newsletterExtra" aria-hidden="true">
+                    <label for="nycName">*Full Name</label>
+                    <input id="nycName" name="fields[name]" type="text" autocomplete="name">
+                    <div class="newsletter-error" id="errName" aria-live="polite"></div>
+
+                    <div class="hub-newsletter-row2">
+                        <div class="hub-country">
+                            <label for="nycCountryInput">*Country</label>
+
+                            <div class="hub-countrybox" id="countryBox">
+                                <input
+                                        id="nycCountryInput"
+                                        type="text"
+                                        placeholder="Select a country"
+                                        autocomplete="off"
+                                        aria-expanded="false"
+                                />
+                                <button type="button" class="hub-country-toggle" aria-label="Toggle country list">▾</button>
+                            </div>
+
+                            <input type="hidden" id="nycCountryHidden" name="fields[country]">
+                            <div class="hub-countrylist" id="countryList" role="listbox" aria-hidden="true"></div>
+                            <div class="newsletter-error" id="errCountry" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="nycZip">*Zip Code</label>
+                            <input id="nycZip" name="fields[zip]" type="text" inputmode="numeric" autocomplete="postal-code">
+                            <div class="newsletter-error" id="errZip" aria-live="polite"></div>
+                        </div>
+                    </div>
+
+                    <label for="nycPhone">Phone Number (optional)</label>
+                    <input id="nycPhone" name="fields[phone]" type="tel" autocomplete="tel">
+
+                    <button type="submit" class="nyc-submit">SUBSCRIBE</button>
+
+                    <div class="nyc-legal">
+                        <p>By clicking sign up, you are agreeing to the <a href="#" target="_blank" rel="noopener">Terms and Conditions</a>.</p>
+                        <p class="muted">
+                            Message and data rates may apply. By providing my mobile number, I agree to receive marketing text messages
+                            with updates and special offers. Reply STOP to unsubscribe.
+                        </p>
+                    </div>
+                </div>
+
+                <button type="button" class="nyc-primary-btn" id="newsletterPrimaryBtn">SIGN UP</button>
+            </form>
+
+            <iframe name="mlFrame" id="mlFrame" style="display:none" title="MailerLite hidden frame"></iframe>
+
+            <div class="newsletter-success hidden" id="newsletterSuccess" role="status" aria-live="polite">
+                <div class="newsletter-success-inner">
+                    <div class="newsletter-success-title">GET READY TO EXPLORE MORE OF CHARLOTTE</div>
+
+                    <div class="newsletter-success-icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" width="64" height="64">
+                            <path d="M10 18h44v28H10z" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <path d="M10 20l22 16 22-16" fill="none" stroke="currentColor" stroke-width="3"/>
+                        </svg>
+                    </div>
+
+                    <div class="newsletter-success-text">
+                        Thanks for subscribing. Next stop: your inbox.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="hub-newsletter-divider"></div>
+
+    <div class="container hub-footer-main">
+
+        <div class="nyc-left-stack">
+
+            <div class="hub-social nyc-social--nyc">
+                <a href="#" aria-label="Instagram" class="ig">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="YouTube" class="yt">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M23 7.6s-.2-1.8-.9-2.6c-.9-.9-1.9-.9-2.4-1C16.6 3.7 12 3.7 12 3.7s-4.6 0-7.7.3c-.5.1-1.5.1-2.4 1-.7.8-.9 2.6-.9 2.6S1 9.6 1 11.5v1.9c0 1.9.2 3.9.2 3.9s.2 1.8.9 2.6c.9.9 2.1.9 2.6 1 1.9.2 7.3.3 7.3.3s4.6 0 7.7-.3c.5-.1 1.5-.1 2.4-1 .7-.8.9-2.6.9-2.6s.2-2 .2-3.9v-1.9c0-1.9-.2-3.9-.2-3.9z"/>
+                        <path d="M10 9.2v5.6L15.5 12 10 9.2z" fill="#000"/>
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="Facebook" class="fb">
+                    <svg viewBox="0 0 320 512" aria-hidden="true">
+                        <path d="M279.14 288l14.22-92.66h-88.91V117.78c0-25.35 12.42-50.06 52.24-50.06H295V6.26S259.36 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.2V288z"/>
+                    </svg>
+                </a>
+
+            </div>
+
+        </div>
+
+        <nav class="hub-col">
+            <div class="nyc-col-head">POPULAR TOPICS</div>
+            <a href="#directory">Food Assistance</a>
+            <a href="#directory">Housing & Shelters</a>
+            <a href="#directory">Healthcare & Clinics</a>
+            <a href="#directory">Jobs & Training</a>
+            <a href="#directory">Youth & Family Support</a>
+            <a href="#directory">Legal Aid</a>
+        </nav>
+
+        <nav class="hub-col">
+            <div class="nyc-col-head">ABOUT PROJECT</div>
+            <a href="#about">Mission</a>
+            <a href="#about">How We Verify</a>
+            <a href="#about">Team</a>
+            <a href="#updates">Updates</a>
+            <a href="#submit">Submit a Resource</a>
+            <a href="#footer">Contact</a>
+        </nav>
+
+        <nav class="hub-col">
+            <div class="nyc-col-head">RESOURCES</div>
+            <a href="#directory">Directory</a>
+            <a href="#help">Get Help</a>
+            <a href="#community">Programs</a>
+            <a href="#events">Events</a>
+            <a href="#volunteer">Volunteer</a>
+            <a href="#references">References</a>
+        </nav>
+
+    </div>
+
+    <div class="hub-footer-bottom">
+        <div class="container hub-bottom-inner">
+            <span>© <span id="year"></span> Charlotte Resource Hub. All rights reserved.</span>
+            <div class="hub-bottom-links">
+                <a href="#references">Sources</a>
+                <span class="dot">•</span>
+                <a href="#about">Privacy</a>
+                <span class="dot">•</span>
+                <a href="#about">Terms</a>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
 <script src="../assets/js/index.js" defer></script>
+
 </body>
 
 </html>
