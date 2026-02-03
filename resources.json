@@ -120,171 +120,171 @@
     "id": 14,
     "name": "Charlotte Works",
     "category": "Employment & Job Training",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Leading the development of a skilled and in-demand workforce by engaging businesses, aligning community partners, empowering and connecting job seekers to meaningful employment, and fostering inclusive economic growth.",
+    "description": "Charlotte Works connects job seekers and employers, provides training, analyzes and shares data to educate the public on workforce needs, and aligns workforce initiatives to help the economic growth of Charlotte. ",
+    "address": "8601 McAlpine Park Dr, Charlotte, NC 28211",
+    "website": "https://www.charlotteworks.com"
   },
   {
     "id": 15,
     "name": "NC Works",
     "category": "Employment & Job Training",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "This website helps employers and job seekers. They all are united!",
+    "description": "NCWorks in North Carolina’s statewide workforce system that connects job-seekers, employers, and training programs. It also helps residents find jobs, build skills, and access career services while supporting employers with hiring, training, and talent development. ",
+    "address": "301 North Wilmington Street, Raleigh, North Carolina 27601",
+    "website": "https://www.ncworks.gov"
   },
   {
     "id": 16,
     "name": "MeckWorks",
     "category": "Employment & Job Training",
     "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "description": "MeckWorks helps Mecklenburg County residents facing significant life barriers gain rapid employment, stability, and long‑term economic mobility through integrated social‑work support, job placement, and wrap‑around services.",
+    "address": "301 Billingsley Road Charlotte, NC 28211",
+    "website": "https://dcr.mecknc.gov/employment/meckworks"
   },
   {
     "id": 17,
     "name": "Trees Charlotte",
     "category": "Environmental Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "...we must take a more aggressive approach to ensure the continued health and well-being of our tree canopy, and we must actively plant thousands of trees to account for growth and development in our city and around the region.",
+    "description": "TreesCharlotte is a nonprofit that aims to partner with the community to plant and care for trees, and grow a healthier canopy for everyone. TreesCharlotte’s mission is to have a community with a shared responsibility for trees. You can volunteer or donate to support TreesCharlotte.",
+    "address": "4404 Stuart Andrew Blvd Suite M, Charlotte, NC 28217",
+    "website": "https://treescharlotte.org/"
   },
   {
     "id": 18,
     "name": "Sustain Charlotte",
     "category": "Environmental Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "We work to address the region’s most pressing challenges",
+    "description": "Sustain Charlotte is an organization that addresses the region’s most pressing challenges, which includes: carbon emissions, environmental conservation, sustainable transportation, and more. To support this organization, you can volunteer.",
+    "address": "1100 S Mint St #208, Charlotte, NC 28203",
+    "website": "https://sustaincharlotte.org/"
   },
   {
     "id": 19,
     "name": "Clean AIRE NC",
     "category": "Environmental Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "We advocate for clean 'AIRE', Action and Innovation to Restore the Environment",
+    "description": "CleanAIRE NC is an organization that wants everyone in North Carolina to have clean air and a healthy environment. They teach people about air pollution, push for better climate policies, and work with communities to create real solutions. Their goal is to make North Carolina a cleaner, safer place to live now and in the future.",
+    "address": "N/A",
+    "website": "https://cleanairenc.org/"
   },
   {
     "id": 20,
     "name": "Catawba Riverkeeper",
     "category": "Environmental Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Catawba Riverkeeper strives for a community where everyone works in partnership to preserve and protect the vital waters of the Catawba",
+    "description": "With a staff consisting of scientists, activists, and enthusiasts, the Catawba Riverkeeper organization advocates for the Catawba river, which is the river that flows through the Charlotte Metropolitan Area and provides water to 2 million residents.",
+    "address": "102 Main St Suite 100, McAdenville, NC 28101",
+    "website": "https://www.catawbariverkeeper.org/"
   },
   {
     "id": 21,
     "name": "Storm Water Services",
     "category": "Crisis Support",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Charlotte-Mecklenburg Storm Water Services staff includes both City of Charlotte and Mecklenburg County employees. Staff coordinates closely to provide comprehensive stormwater services and ensure service to residents is seamless.",
+    "description": "Charlotte‑Mecklenburg Storm Water Services is the team that takes care of storm drains, creeks, and flood‑prone areas in Charlotte. They fix drainage problems, monitor water quality, and run projects that help prevent flooding and pollution. Their goal is to keep neighborhoods safe and protect the environment by making sure rainwater flows where it’s supposed to and doesn’t harm local waterways.",
+    "address": "600 East 4th Street, Charlotte, NC 28202",
+    "website": "https://www.charlottenc.gov/Services/Stormwater"
   },
   {
     "id": 22,
     "name": "Safe Alliance",
     "category": "Crisis Support",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "We provide hope and healing to those impacted by domestic violence, sexual assault, and human trafficking",
+    "description": "Safe Alliance is an organization that helps people in the Charlotte area who are dealing with domestic violence or sexual assault. They offer a 24/7 crisis hotline, emergency shelter, counseling, legal support, and programs that help survivors stay safe and rebuild their lives. Their goal is to make sure survivors have the support they need to heal and move forward.",
+    "address": "601 E 5th St #400, Charlotte, NC 28202",
+    "website": "https://www.safealliance.org/"
   },
   {
     "id": 23,
     "name": "Benevolent Bridges",
     "category": "Crisis Support",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Creating a sustainable impact, fostering hope and connection within the community.",
+    "description": "Benevolent Bridges is an organization that provides assistance to the homeless through a comprehensive approach to restoring dignity, promoting health, and fostering a sense of community connection for those experiencing homelessness.",
+    "address": "3540 Toringdon Way, Charlotte, NC 28277",
+    "website": "https://www.benevolentbridges.org"
   },
   {
     "id": 24,
     "name": "Crisis Assistance Ministry",
     "category": "Crisis Support",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Help, Hope & Understanding, for people struggling with limited financial resources",
+    "description": "The mission of Crisis Assistance Ministry is to provide assistance and advocacy for people in financial crisis, helping them move toward self-sufficiency. They offer emergency rent assistance, free essential items and long-term financial coaching.",
+    "address": "500 Spruce St, Charlotte, NC 28202",
+    "website": "https://crisisassistance.org"
   },
   {
     "id": 25,
     "name": "Second Harvest Food Bank of Metrolina",
     "category": "Basic Needs Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Together we CAN end hunger",
+    "description": "The Second Harvest Food Bank of Metrolina provides quality food and grocery items to assist people in need in Charlotte and surrounding counties.",
+    "address": "500-B Spratt St, Charlotte, NC 28206",
+    "website": "https://www.secondharvestmetrolina.org"
   },
   {
     "id": 26,
-    "name": "Habitat for Humanity",
+    "name": "Habitat Charlotte Region",
     "category": "Basic Needs Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Habitat Charlotte Region focuses on affordable homeownership",
+    "description": "Habitat Charlotte Region’s Community Resources page connects local residents with programs that support housing stability, financial wellness, and basic needs. It’s designed to help individuals and families find trustworthy assistance beyond Habitat’s own services.",
+    "address": "N/A",
+    "website": "https://www.habitatcltregion.org/get-support/community-resources"
   },
   {
     "id": 27,
     "name": "Hope Haven Inc",
     "category": "Basic Needs Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "The best way to predict your future is to create it.",
+    "description": "Hope Haven is a Community that provides recovery for individuals and families impacted by substance use disorder, so they can build healthy independent lives.",
+    "address": "3815 N Tryon St, Charlotte, NC 28206",
+    "website": "https://hopehaveninc.org/"
   },
   {
     "id": 28,
     "name": "Hearts & Hands Food Pantry",
     "category": "Basic Needs Assistance",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Simply the kindest people I have ever met. So professionally ran. Especially during the Covid pandemic.",
+    "description": "Hearts & Hands Food Pantry is a food bank that provides shelf stable and perishable groceries, personal care products, baby needs including diapers and formula, and pet supplies.",
+    "address": "4040 Chesapeake Dr, Charlotte, NC 28216",
+    "website": "https://www.heartsandhandsfoodpantry.com"
   },
   {
     "id": 29,
     "name": "Families Forward Charlotte",
     "category": "Family Services",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "At Families Forward Charlotte, we aim to help local families take the necessary steps towards long-term financial stability.",
+    "description": "Families Forward Charlotte works with local families who are struggling financially and helps them get on a path toward long-term stability. They match each family with a trained volunteer who supports them for one to two years, offering guidance, encouragement, and practical help. ",
+    "address": "N/A",
+    "website": "https://www.familiesforwardcharlotte.org"
   },
   {
     "id": 30,
     "name": "Ballantyne Families Helping Neighbors in Need",
     "category": "Family Services",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Because of your generous support, I was able to provide for my boys as a single mom.",
+    "description": "Ballantyne Families provides food assistance to struggling families who attend or work in the Ballantyne area public schools through seasonal giving events and a food pantry.",
+    "address": "N/A",
+    "website": "https://ballantynefamilies.org/"
   },
   {
     "id": 31,
     "name": "Smart Start of Meck",
     "category": "Family Services",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "The Dolly Parton Imagination Library has really helped grow my 2-year-old son's love of reading! He gets so excited when a new book comes in the mail and loves picking it up to read on his own",
+    "description": "Smart Start of Mecklenburg County helps young children in Charlotte get the best possible start in life by supporting families, childcare providers, and community programs that focus on early learning, health, and development. Like the Dolly Parton Imagination Library that helps kids read!",
+    "address": "601 E 5th St #200, Charlotte, NC 28202",
+    "website": "https://www.smartstartofmeck.org/"
   },
   {
     "id": 32,
     "name": "Thompson",
     "category": "Family Services",
-    "quote": "",
-    "description": "",
-    "address": "",
-    "website": ""
+    "quote": "Our five-year plan is about more than numbers—it’s about transforming lives. By 2030, we will serve 8,000 children and families each year, ensuring every child has the opportunity to heal, grow, and thrive.",
+    "description": "Thompson is an organization that is dedicated to transforming lives by focusing on Prevention, Mental Health, and Foster care. They work tirelessly to ensure all children are healthy, all families are thriving, and all communities are strong.",
+    "address": "6800 Saint Peter’s Lane, Matthews, NC 28105",
+    "website": "https://www.thompsoncff.org/"
   }
 ]
