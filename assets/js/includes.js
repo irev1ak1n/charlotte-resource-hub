@@ -1,31 +1,45 @@
+// Immediately-invoked function so nothing leaks to global scope
 (async () => {
-    async function injectFooter() {
-        const footerMount = document.getElementById("siteFooter");
-        if (!footerMount) return;
 
-        // are we on /pages/... ?
+    // Loads footer.html and injects it into the page
+    async function injectFooter() {
+
+        // Where the footer will be placed
+        const footerMount = document.getElementById("siteFooter");
+        if (!footerMount) return; // stop if page doesn’t have a footer slot
+
+        // Prevent loading the footer more than once
+        if (footerMount.dataset.loaded === "1") return;
+        footerMount.dataset.loaded = "1";
+
+        // Check if we are inside /pages/ folder
         const inPages = location.pathname.includes("/pages/");
         const base = inPages ? ".." : ".";
 
-        // load the footer partial
+        // Fetch the footer partial
         const res = await fetch(`${base}/partials/footer.html`, { cache: "no-store" });
         if (!res.ok) throw new Error(`Footer include failed: ${res.status}`);
 
+        // Inserts footer HtML into the page
         footerMount.innerHTML = await res.text();
 
-        // if we are inside /pages/, rewrite asset paths:
-        // assets/...  -> ../assets/...
+        // Fix relative paths when footer is loaded from /pages/
         if (inPages) {
-            footerMount.querySelectorAll('[src^="assets/"], [href^="assets/"]').forEach(node => {
-                const attr = node.hasAttribute("src") ? "src" : "href";
-                node.setAttribute(attr, "../" + node.getAttribute(attr));
-            });
+            footerMount
+                .querySelectorAll('[src^="assets/"], [href^="assets/"]')
+                .forEach(el => {
+                    const attr = el.hasAttribute("src") ? "src" : "href";
+                    el.setAttribute(attr, "../" + el.getAttribute(attr));
+                });
+        }
+
+        // Initializes newsletter logic after footer is loaded
+        if (window.initNewsletter) {
+            window.initNewsletter();
         }
     }
-    try {
-        await injectFooter();
-    } catch (e) {
-        console.error(e);
-    }
+
+    // Runs footer injection and catch any errors
+    injectFooter().catch(console.error);
 
 })();
