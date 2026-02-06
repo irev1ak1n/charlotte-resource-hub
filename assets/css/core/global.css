@@ -19,35 +19,28 @@
     --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Global reset */
 *{
     box-sizing:border-box;
 }
 
-/* Base page styles */
 body{
     margin:0;
     font-family:var(--font);
     background:#000;
 }
 
-/* Remove default link styling */
+/* removes default link styling */
 a{
     text-decoration: none;
     color: inherit;
 }
 
-
-/* -- Layout utility */
-/* Constrains content width and centers it */
 .container{
     width:min(var(--max), calc(100% - 2*var(--pad)));
     margin:0 auto;
 }
 
-/* -- Accessibility helper */
-/* Keeps content readable by screen readers
-   but invisible visually */
+/* Keeps content readable by screen readers but invisible visually */
 .sr-only{
     position:absolute;
     width:1px;
@@ -60,14 +53,12 @@ a{
     border:0;
 }
 
-/* -- Utility helper */
-/* Used for toggling visibility via JS */
+/* utlity helper for toggling visibility via JS*/
 .hidden {
     display: none !important;
 }
 
 /* -- Base button style */
-/* Visual variants are defined in page or component styles */
 .btn{
     height:42px;
     padding:0 18px;

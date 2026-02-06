@@ -1,5 +1,5 @@
 window.initNavSearch = function () {
-    /* ================= SEARCH PLACEHOLDER TYPEWRITER ================= */
+    /* search placeholder typewriter  */
     const searchInput = document.getElementById("navSearchInput");
     if (!searchInput) return;
 
@@ -60,7 +60,7 @@ window.initNavSearch = function () {
 };
 
 window.initNavScroll = function () {
-    /* ================= NAVBAR SCROLL SHRINK ================= */
+    /* navbar scroll shrink */
     const topBar = document.querySelector(".hero-top");
     if (!topBar) return;
 

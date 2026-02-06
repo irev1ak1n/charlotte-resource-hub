@@ -1,11 +1,10 @@
 window.initNewsletter = function () {
 
-    /* ================= ELEMENTS ================= */
-    const form    = document.getElementById('newsletterForm');
-    const email   = document.getElementById('nycEmail');
-    const extra   = document.getElementById('newsletterExtra');
+    const form  = document.getElementById('newsletterForm');
+    const email = document.getElementById('nycEmail');
+    const extra = document.getElementById('newsletterExtra');
     const section = document.querySelector('.hub-newsletter');
-    const btn     = document.getElementById('newsletterPrimaryBtn');
+    const btn= document.getElementById('newsletterPrimaryBtn');
 
     // extra fields
     const nameEl = document.getElementById('nycName');
