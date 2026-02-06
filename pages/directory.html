@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/components/newsletter.css">
     <link rel="stylesheet" href="../assets/css/components/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/directory.css">
+
 </head>
 
 <body>
@@ -43,20 +45,45 @@
 
         <div class="section-head">
             <h2>Resource Directory</h2>
-            <p class="section-lead">
-                This list loads from <code>data/resources.json</code> (no backend).
-            </p>
         </div>
 
         <!-- quick filter/search  -->
-        <div style="display:grid; gap:12px; max-width: 520px; margin: 18px 0 22px;">
-            <input id="resourceSearch" type="text" placeholder="Search by name or category..."
-                   style="height:48px; padding:0 14px; border-radius:10px; border:1px solid rgba(0,0,0,.18);" />
-            <select id="categoryFilter"
-                    style="height:48px; padding:0 14px; border-radius:10px; border:1px solid rgba(0,0,0,.18);">
-                <option value="">All categories</option>
-            </select>
+        <!-- Directory toolbar -->
+        <div class="dir-toolbar" aria-label="Directory controls">
+            <div class="dir-controls">
+                <label class="dir-field dir-search">
+                    <span class="sr-only">Search</span>
+                    <span class="dir-icon" aria-hidden="true">⌕</span>
+                    <input id="resourceSearch" type="search" placeholder="Search resources, categories, keywords…" />
+                </label>
+
+                <label class="dir-field">
+                    <span class="dir-label">Category</span>
+                    <select id="categoryFilter">
+                        <option value="">All categories</option>
+                    </select>
+                </label>
+
+                <label class="dir-field">
+                    <span class="dir-label">Sort</span>
+                    <select id="sortSelect">
+                        <option value="name-asc">Name (A → Z)</option>
+                        <option value="name-desc">Name (Z → A)</option>
+                        <option value="category-asc">Category (A → Z)</option>
+                        <option value="category-desc">Category (Z → A)</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="dir-meta">
+                <div id="resourceStatus" class="dir-status">Loading…</div>
+                <div class="dir-actions">
+                    <button id="clearFilters" class="dir-btn" type="button">Clear</button>
+                </div>
+            </div>
         </div>
+
+        <ul id="resourceList" class="dir-list" aria-live="polite"></ul>
 
         <div id="resourceStatus" style="margin: 6px 0 12px; font-weight:600;"></div>
         <ul id="resourceList" style="display:grid; gap:10px; padding-left: 0; list-style:none;"></ul>
@@ -66,7 +93,6 @@
 
 <div id="siteFooter"></div>
 
-<!--<script src="../assets/js/index.js" defer></script>-->
 <script src="../assets/js/core/includes.footer.js" defer></script>
 <script src="../assets/js/core/includes.nav.js" defer></script>
 <script src="../assets/js/core/newsletter.js" defer></script>

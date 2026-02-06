@@ -61,7 +61,7 @@
         });
     }
 
-    /* ================= NAVBAR SCROLL SHRINK ================= */
+    /* navbar scroll shrink */
     function initNavScroll() {
         const topBar = document.querySelector(".hero-top");
         if (!topBar) return;
@@ -90,12 +90,12 @@
         navMount.querySelectorAll(".nav a.is-active")
             .forEach(a => a.classList.remove("is-active"));
 
-        // set
         navMount.querySelectorAll(".nav a").forEach(a => {
             const href = a.getAttribute("href") || "";
 
             // ignore anchors/external
-            if (href.startsWith("#") || href.startsWith("http")) return;
+            if (href.startsWith("#") || href.startsWith("http"))
+                return;
 
             const target = normalize(href);
 
@@ -113,7 +113,7 @@
         });
     }
 
-    /* ================= NAV INJECTION ================= */
+    /* nav injection */
     async function injectNav() {
         const navMount = document.getElementById("siteNav");
         if (!navMount) return;
@@ -128,7 +128,6 @@
         const res = await fetch(`${base}/partials/nav.html`, { cache: "no-store" });
         if (!res.ok) throw new Error(`Nav include failed: ${res.status}`);
 
-        // inject
         navMount.innerHTML = await res.text();
 
         // fix asset paths inside injected nav (only if needed)
@@ -139,7 +138,6 @@
             });
         }
 
-        // init everything that depends on nav existing
         setActiveLink(navMount);
         initNavSearch();
         initNavScroll();

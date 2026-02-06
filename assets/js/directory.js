@@ -1,9 +1,13 @@
 console.log("DIRECTORY.JS LOADED");
 
-const listEl = document.getElementById("resourceList");
+const listEl   = document.getElementById("resourceList");
 const statusEl = document.getElementById("resourceStatus");
 const searchEl = document.getElementById("resourceSearch");
 const filterEl = document.getElementById("categoryFilter");
+
+// NEW (optional UI controls)
+const sortEl  = document.getElementById("sortSelect");
+const clearEl = document.getElementById("clearFilters");
 
 let allResources = [];
 
@@ -11,6 +15,7 @@ let allResources = [];
 if (!listEl || !statusEl) {
     console.log("No directory elements found. Exiting.");
 } else {
+
     function setStatus(msg) {
         statusEl.textContent = msg;
     }
@@ -25,6 +30,14 @@ if (!listEl || !statusEl) {
         return res.json();
     }
 
+    function getName(r) {
+        return (r?.name ?? r?.title ?? "Unnamed resource").toString();
+    }
+
+    function getCategory(r) {
+        return (r?.category ?? r?.type ?? "Uncategorized").toString();
+    }
+
     function render(resources) {
         listEl.innerHTML = "";
 
@@ -35,17 +48,14 @@ if (!listEl || !statusEl) {
 
         resources.forEach(r => {
             const li = document.createElement("li");
-            li.style.border = "1px solid rgba(0,0,0,.12)";
-            li.style.borderRadius = "12px";
-            li.style.padding = "14px";
-            li.style.background = "#fff";
+            // ✅ No inline styles — let CSS handle card styling via .dir-list > li
 
-            const name = r.name ?? r.title ?? "Unnamed resource";
-            const category = r.category ?? r.type ?? "Uncategorized";
+            const name = getName(r);
+            const category = getCategory(r);
 
             li.innerHTML = `
-        <div style="font-weight:800; font-size:18px; margin-bottom:6px;">${name}</div>
-        <div style="opacity:.85;">${category}</div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:6px;">${escapeHtml(name)}</div>
+        <div style="opacity:.85;">${escapeHtml(category)}</div>
       `;
 
             listEl.appendChild(li);
@@ -56,7 +66,7 @@ if (!listEl || !statusEl) {
         if (!filterEl) return;
 
         const cats = Array.from(
-            new Set(resources.map(r => (r.category || r.type || "").trim()).filter(Boolean))
+            new Set(resources.map(r => getCategory(r).trim()).filter(Boolean))
         ).sort((a, b) => a.localeCompare(b));
 
         filterEl.innerHTML = `<option value="">All categories</option>`;
@@ -68,13 +78,39 @@ if (!listEl || !statusEl) {
         });
     }
 
+    function applySort(resources) {
+        const mode = (sortEl?.value || "name-asc").toLowerCase();
+
+        const sorted = [...resources];
+        sorted.sort((a, b) => {
+            const nameA = getName(a).toLowerCase();
+            const nameB = getName(b).toLowerCase();
+            const catA  = getCategory(a).toLowerCase();
+            const catB  = getCategory(b).toLowerCase();
+
+            switch (mode) {
+                case "name-desc":
+                    return nameB.localeCompare(nameA);
+                case "category-asc":
+                    return catA.localeCompare(catB) || nameA.localeCompare(nameB);
+                case "category-desc":
+                    return catB.localeCompare(catA) || nameA.localeCompare(nameB);
+                case "name-asc":
+                default:
+                    return nameA.localeCompare(nameB);
+            }
+        });
+
+        return sorted;
+    }
+
     function applyFilters() {
         const q = (searchEl?.value || "").trim().toLowerCase();
         const cat = (filterEl?.value || "").trim().toLowerCase();
 
         const filtered = allResources.filter(r => {
-            const name = (r.name || r.title || "").toLowerCase();
-            const category = (r.category || r.type || "").toLowerCase();
+            const name = getName(r).toLowerCase();
+            const category = getCategory(r).toLowerCase();
 
             const matchesSearch = !q || name.includes(q) || category.includes(q);
             const matchesCat = !cat || category === cat;
@@ -82,8 +118,27 @@ if (!listEl || !statusEl) {
             return matchesSearch && matchesCat;
         });
 
-        setStatus(`Showing ${filtered.length} of ${allResources.length}`);
-        render(filtered);
+        const finalList = applySort(filtered);
+
+        setStatus(`Showing ${finalList.length} of ${allResources.length}`);
+        render(finalList);
+    }
+
+    function clearFilters() {
+        if (searchEl) searchEl.value = "";
+        if (filterEl) filterEl.value = "";
+        if (sortEl) sortEl.value = "name-asc";
+        applyFilters();
+    }
+
+    // simple XSS-safe output for name/category (good habit since JSON is data)
+    function escapeHtml(str) {
+        return String(str)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
     }
 
     // Boot
@@ -97,11 +152,16 @@ if (!listEl || !statusEl) {
                 : (Array.isArray(data.resources) ? data.resources : []);
 
             populateCategories(allResources);
-            setStatus(`Loaded ${allResources.length} resources`);
-            render(allResources);
 
+            // ✅ default to sorted list right away
+            applyFilters();
+            setStatus(`Loaded ${allResources.length} resources`);
+
+            // Events
             if (searchEl) searchEl.addEventListener("input", applyFilters);
             if (filterEl) filterEl.addEventListener("change", applyFilters);
+            if (sortEl) sortEl.addEventListener("change", applyFilters);
+            if (clearEl) clearEl.addEventListener("click", clearFilters);
         })
         .catch(err => {
             console.error("FETCH ERROR:", err);

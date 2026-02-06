@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,6 +14,9 @@
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/components/newsletter.css">
     <link rel="stylesheet" href="../assets/css/components/footer.css">
+
+    <!-- NEW -->
+    <link rel="stylesheet" href="../assets/css/pages/get-involved.css">
 </head>
 
 <body>
@@ -29,8 +31,8 @@
         <div class="container hero-grid">
             <div class="hero-left">
                 <h1 class="headline headline-uw">
-                    <span>FOR THE GREATER</span>
-                    <span>GOOD IN GREATER</span>
+                    <span>GET</span>
+                    <span>INVOLVED</span>
                     <span>CHARLOTTE</span>
                 </h1>
             </div>
@@ -40,27 +42,147 @@
 
 <main class="home-section" style="padding-top: 110px;">
     <div class="container">
-        <div class="section-head">
-            <h2>Join the Cause</h2>
-            <p class="section-lead">
-                There are many ways to support your neighbors in Charlotte.
-            </p>
-            <p>
-                Whether by volunteering your time, sharing resources, or organizing events, your involvement makes a
-                difference.
-            </p>
-            <br>
-            <a href="./submit.html" class="btn involved">Submit a Resource</a>
+        <div class="gi-simple">
+            <!-- LEFT -->
+            <section class="gi-left">
+                <h2 class="gi-h2">Suggest a Community Resource</h2>
+
+                <p class="gi-p">
+                    Help us keep Charlotte connected by strengthening our community resource directory.
+                    If you know a nonprofit organization, local program, clinic, shelter, hotline,
+                    training opportunity, or any service that supports people in the Charlotte area,
+                    you can submit it here for consideration.
+                </p>
+
+                <p class="gi-p">
+                    Every submission is carefully reviewed by our team to ensure accuracy, relevance,
+                    and safety before it is added to the public directory. This helps keep the information
+                    reliable and useful for everyone who depends on these resources.
+                </p>
+
+                <p class="gi-p gi-muted">
+                    Please include a working website or phone number so community members can easily
+                    contact the resource and get help when they need it.
+                </p>
+
+            </section>
+
+            <!-- RIGHT -->
+            <section class="gi-right" aria-label="Resource submission form">
+                <form id="resourceSuggestForm" class="gi-form" autocomplete="on" novalidate>
+
+                    <div class="gi-row">
+                        <label class="gi-field">
+                            <span class="gi-label">Resource name *</span>
+                            <input name="name" required maxlength="120" placeholder="Crisis Assistance Ministry" />
+                        </label>
+
+                        <label class="gi-field">
+                            <span class="gi-label">Category *</span>
+                            <select name="category" required>
+                                <option value="" selected>Select a category</option>
+                                <option>Housing & Shelters</option>
+                                <option>Food Assistance</option>
+                                <option>Healthcare</option>
+                                <option>Mental Health</option>
+                                <option>Jobs & Training</option>
+                                <option>Youth Programs</option>
+                                <option>Legal Help</option>
+                                <option>Transportation</option>
+                                <option>Other</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="gi-row">
+                        <label class="gi-field">
+                            <span class="gi-label">Website / link *</span>
+                            <input name="url" type="url" required placeholder="https://..." />
+                        </label>
+
+                        <label class="gi-field">
+                            <span class="gi-label">Phone (optional)</span>
+                            <input name="phone" inputmode="tel" placeholder="(704) 555-1234" />
+                        </label>
+                    </div>
+
+                    <div class="gi-row">
+                        <label class="gi-field gi-full">
+                            <span class="gi-label">Address (optional)</span>
+                            <input name="address" placeholder="Street address, Charlotte, NC" />
+                        </label>
+                    </div>
+
+                    <div class="gi-row">
+                        <label class="gi-field gi-full">
+                            <span class="gi-label">Short description *</span>
+                            <textarea name="description" required maxlength="600" rows="5"
+                                      placeholder="What does this resource provide? Who is it for? Any eligibility info?"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="gi-row">
+                        <label class="gi-field">
+                            <span class="gi-label">First name (optional)</span>
+                            <input name="firstName" maxlength="40" placeholder="First name" autocomplete="given-name" />
+                        </label>
+
+                        <label class="gi-field">
+                            <span class="gi-label">Last name (optional)</span>
+                            <input name="lastName" maxlength="40" placeholder="Last name" autocomplete="family-name" />
+                        </label>
+                    </div>
+
+                    <div class="gi-row">
+                        <label class="gi-field gi-full">
+                            <span class="gi-label">Your email (optional)</span>
+                            <input name="submitterEmail" type="email" placeholder="name@email.com" autocomplete="email" />
+                        </label>
+                    </div>
+
+                    <label class="gi-check">
+                        <input type="checkbox" required />
+                        <span>I confirm this information is accurate to the best of my knowledge.</span>
+                    </label>
+
+                    <button type="submit" class="gi-submit">Submit</button>
+
+                    <p class="gi-fine">
+                        Submissions are reviewed before publication to prevent spam and ensure accuracy.
+                    </p>
+
+                    <p id="submitSuccess" class="gi-success" hidden>
+                        Thanks! Your suggestion was received for review.
+                    </p>
+                </form>
+            </section>
         </div>
     </div>
 </main>
 
 <div id="siteFooter"></div>
 
-<!--<script src="../assets/js/index.js" defer></script>-->
 <script src="../assets/js/core/includes.footer.js" defer></script>
 <script src="../assets/js/core/includes.nav.js" defer></script>
 <script src="../assets/js/core/newsletter.js" defer></script>
+
+<script>
+    const form = document.getElementById("resourceSuggestForm");
+    const ok = document.getElementById("submitSuccess");
+
+    form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // basic browser validation
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        ok.hidden = false;
+        form.reset();
+        // keep success visible
+        setTimeout(() => { ok.hidden = true; }, 7000);
+    });
+</script>
 
 </body>
 </html>

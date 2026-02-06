@@ -23,12 +23,15 @@ window.initNewsletter = function () {
     const box       = document.getElementById("countryBox");
     const toggleBtn = box ? box.querySelector(".hub-country-toggle") : null;
 
-    // Safe: if newsletter block isn't on this page, do nothing
+    // if newsletter block isn't on this page, do nothing
     if (!form || !email || !extra || !section) return;
 
-    /* ================= NEWSLETTER EXPAND (LOCKED OPEN) ================= */
-    let lockedOpen = false;     // once expanded, never auto-collapse
-    let hasTriedSubmit = false; // show red messages after user tries to submit
+    // newsletter expand (locked open)
+
+    // once expanded, never auto-collapse
+    let lockedOpen = false;
+    // show red messages after user tries to submit
+    let hasTriedSubmit = false;
 
     function looksLikeEmail(v) {
         v = (v || '').trim();
@@ -42,7 +45,7 @@ window.initNewsletter = function () {
         extra.setAttribute('aria-hidden', String(!on));
     }
 
-    // expand + lock when email becomes valid (won't shrink on delete)
+    // expand and lock when email becomes valid (won't shrink on delete)
     email.addEventListener('input', () => {
         if (looksLikeEmail(email.value)) {
             lockedOpen = true;
@@ -55,7 +58,7 @@ window.initNewsletter = function () {
         if (hasTriedSubmit) setErr(email, errEmail, "");
     });
 
-    // expand + lock when user clicks SIGN UP
+    // expand and lock when user clicks SIGN UP
     if (btn) {
         btn.addEventListener('click', () => {
             lockedOpen = true;
@@ -64,19 +67,19 @@ window.initNewsletter = function () {
         });
     }
 
-    /* ================= RED NYC-STYLE ERRORS ================= */
+    /* red errors */
     function setErr(inputEl, errEl, msg) {
         if (!inputEl || !errEl) return;
         const hasMsg = !!msg;
 
         errEl.textContent = msg || "";
         inputEl.classList.toggle("is-invalid", hasMsg);
-    }
+    } //
 
     function setCountryErr(msg) {
         if (errCountry) errCountry.textContent = msg || "";
         if (box) box.classList.toggle("is-invalid", !!msg);
-    }
+    } // setCountryErr
 
     function validateAll() {
         let ok = true;
@@ -184,7 +187,7 @@ window.initNewsletter = function () {
     if (zipEl)  zipEl.addEventListener("input", () => hasTriedSubmit && setErr(zipEl, errZip, ""));
     if (input)  input.addEventListener("input", () => hasTriedSubmit && setCountryErr(""));
 
-    /* ================= COUNTRY DROPDOWN (OPEN BY CLICKING WHOLE BOX) ================= */
+    /* country dropdown (open by clicking whole box)  */
     if (!input || !hidden || !list || !box || !toggleBtn) return;
 
     const FLAG = code => `https://flagcdn.com/w20/${code.toLowerCase()}.png`;
@@ -255,8 +258,7 @@ window.initNewsletter = function () {
             item.className = "nyc-countryitem";
             item.innerHTML = `
         <img class="hub-flag" src="${FLAG(code)}" alt="">
-        <span>${name}</span>
-      `;
+        <span>${name}</span>`;
 
             item.addEventListener("click", () => {
                 input.value = name;
@@ -303,7 +305,7 @@ window.initNewsletter = function () {
         }
     }
 
-    // Clicking the whole control toggles (textbox + arrow area)
+    // Clicking the whole control toggles
     box.addEventListener("click", toggleOpenFromBox);
 
     // Arrow toggles too (avoid double-trigger)
@@ -313,16 +315,15 @@ window.initNewsletter = function () {
         toggleOpenFromBox(e);
     });
 
-    // Typing filters only if dropdown is open
+    // typing filters only if dropdown is open
     input.addEventListener("input", () => {
         if (list.classList.contains("open")) render(input.value);
     });
 
-    // Clicking outside closes
+    // clicking outside closes
     document.addEventListener("click", (e) => {
         if (!box.contains(e.target) && !list.contains(e.target)) close();
     });
 
     render("");
-
 };

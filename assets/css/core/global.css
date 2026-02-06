@@ -1,4 +1,4 @@
-/* =========== Global Stylesheet =========== */
+/* Global Styles  */
 /*Styles used across the site to keep layout, design,
   and accessibility consistent on all pages. */
 
@@ -13,7 +13,7 @@
     --hub-newsletter-border-hover: rgba(255,255,255,.55);
     --hub-newsletter-border-focus: rgba(255,255,255,.85);
 
-    /* Layout / typography */
+    /* Layout */
     --max:1200px;
     --pad:clamp(16px,3vw,28px);
     --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -58,7 +58,7 @@ a{
     display: none !important;
 }
 
-/* -- Base button style */
+/* Base button style */
 .btn{
     height:42px;
     padding:0 18px;
