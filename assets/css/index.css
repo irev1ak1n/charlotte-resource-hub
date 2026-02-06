@@ -1237,16 +1237,19 @@
 
 
 .hero-top .container.top-row{
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+
+    padding-left: 80px !important;
+    padding-right: 24px !important;
+
     display: flex !important;
     align-items: center !important;
-    gap: 22px !important;
-
-    max-width: 1400px !important;
-    margin: 0 auto !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+    gap: 18px !important;
 }
 
+/* Brand */
 .hero-top .brand-uw{
     transform: none !important;
     flex: 0 0 auto !important;
@@ -1257,63 +1260,17 @@
     white-space: nowrap !important;
 }
 
+/* Nav pill */
 .hero-top .nav{
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important;
     justify-content: center !important;
-    gap: 28px !important;
-    padding: 12px 34px !important;
+    gap: 24px !important;
+    padding: 11px 26px !important;
 }
 
+/* Search */
 .hero-top .nav-search{
     flex: 0 0 auto !important;
-    width: clamp(300px, 26vw, 420px) !important;
-    margin-left: 0 !important;
-}
-
-.hero-top .container.top-row{
-    display:flex !important;
-    align-items:center !important;
-    gap:18px !important;
-
-    max-width: 1280px !important;
-    margin: 0 auto !important;
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-}
-
-.hero-top .nav{
-    flex: 1 1 auto !important;
-    justify-content: center !important;
-    gap: 22px !important;
-    padding: 11px 22px !important;
-}
-
-.hero-top .nav-search{
-    width: clamp(260px, 22vw, 340px) !important;
-}
-
-
-.hero-top .nav{
-    padding: 11px 26px !important;
-    gap: 24px !important;
-}
-
-.hero-top .nav-search{
     width: clamp(280px, 24vw, 360px) !important;
-
-}
-
-.hero-top .container.top-row{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-}
-
-.hero-top .brand-uw{ margin-left: -16px !important; }
-
-.hero-top .nav{
-    margin-right: 22px !important;  /* try 18–32px */
-}
-
-.hero-top .nav-search{
-    margin-right: 15px !important;
+    margin-left: 16px !important;
 }
