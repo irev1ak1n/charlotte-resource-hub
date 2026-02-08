@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources • Charlotte Resource Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/core/global.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/components/newsletter.css">
+    <link rel="stylesheet" href="../assets/css/components/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/resources.css">
+</head>
+
+<body>
+<section class="hero">
+
+    <div id="siteNav"></div>
+
+    <div class="hero-content">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1 class="headline headline-uw">
+                    <span>SUPPORT & SERVICES</span>
+                    <span>ACROSS CHARLOTTE</span>
+                    <span></span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Housing, health, jobs, assistance, and community programs in one place.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="home-section" style="padding-top: 130px;">
+    <div class="container">
+        <section class="dir-wrap" aria-label="Resource directory">
+            <aside class="dir-side" aria-label="Filters">
+                <div class="dir-side-head">
+                    <h3 class="dir-side-title">Categories</h3>
+                    <button id="clearFilters" class="dir-side-clear" type="button">Clear</button>
+                </div>
+
+                <div id="categoryList" class="dir-cats" role="list"></div>
+            </aside>
+
+            <div class="dir-main">
+                <div class="dir-top">
+                    <div class="dir-search">
+                        <span class="dir-icon" aria-hidden="true">⌕</span>
+                        <input id="resourceSearch"
+                               type="search"
+                               placeholder="Search resources, categories, keywords…"
+                               autocomplete="off" />
+                    </div>
+
+                    <div class="dir-top-right">
+                        <label class="dir-mini">
+                            <span>Sort</span>
+                            <select id="sortSelect">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="category-asc">Category (A-Z)</option>
+                                <option value="category-desc">Category (Z-A)</option>
+                            </select>
+                        </label>
+
+                        <div class="dir-view" role="group" aria-label="View">
+                            <button id="viewList" class="dir-view-btn is-active" type="button">List</button>
+                            <button id="viewGrid" class="dir-view-btn" type="button">Grid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dir-meta">
+                    <div id="resourceStatus" class="dir-status">Loading…</div>
+                </div>
+
+                <ul id="resourceList" class="dir-list" aria-live="polite"></ul>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="../assets/js/core/includes.footer.js" defer></script>
+<script src="../assets/js/core/includes.nav.js" defer></script>
+<script src="../assets/js/core/newsletter.js" defer></script>
+<script src="../assets/js/resources.js" defer></script>
+</body>
+</html>

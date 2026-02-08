@@ -67,3 +67,64 @@ a{
     text-transform:uppercase;
     border:none;
 }
+
+body.no-hero .hero-top{
+    background: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    isolation: isolate;
+}
+
+body.no-hero .hero-top::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-2;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.58) 0%,
+                    rgba(0,0,0,.34) 45%,
+                    rgba(0,0,0,.18) 75%,
+                    rgba(0,0,0,.10) 100%
+            ),
+            url("/assets/img/homepage1.jpg") top center / 120% no-repeat;
+
+    transform: scale(1.06);
+    filter: saturate(1.06) contrast(1.06) blur(7px);
+}
+
+body.no-hero .hero-top::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+
+    background: rgba(0,0,0,.42);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+
+    box-shadow:
+            0 18px 40px rgba(0,0,0,.30),
+            inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+body.no-hero .nav{
+    background: rgba(0,0,0,.42) !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+}
+
+body.no-hero .nav-search{
+    background: rgba(0,0,0,.34) !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+}
+
+body.no-hero .nav-search input::placeholder{
+    color: rgba(255,255,255,.68) !important;
+}

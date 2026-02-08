@@ -1,0 +1,37 @@
+.hero-about::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.78) 0%,
+                    rgba(0,0,0,.48) 40%,
+                    rgba(0,0,0,.20) 70%,
+                    rgba(0,0,0,.08) 100%
+            ),
+            url("/assets/img/about-us.jpg") center / cover no-repeat;
+    z-index:0;
+    filter: saturate(1.05) contrast(1.05);
+}
+
+.about-page .section-head{
+    max-width: 1000px;
+}
+
+.about-copy h2{
+    margin-bottom: 16px;
+}
+
+.about-copy p{
+    font-size: 20px;
+    line-height: 1.7;
+    letter-spacing: .01em;
+    margin: 0 0 14px;
+}
+
+.about-copy .about-lead{
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}

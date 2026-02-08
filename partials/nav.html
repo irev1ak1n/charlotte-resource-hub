@@ -8,13 +8,57 @@
             </div>
         </a>
 
-        <nav class="nav" id="siteNav">
-            <a href="../pages/about.html" data-nav="about">About</a>
-            <a href="../pages/directory.html" data-nav="directory">Directory</a>
-            <a href="../pages/get-involved.html" data-nav="get-involved">Get Involved</a>
-            <a href="../pages/highlights.html" data-nav="highlights">The Latest</a>
-            <a href="../pages/references.html" data-nav="references">References</a>
+        <nav class="nav" id="siteNav" aria-label="Primary">
+            <a href="../pages/highlights.html" data-nav="highlights">Now in CLT</a>
 
+            <div class="nav-item has-dd">
+                <a class="nav-link" href="../pages/things.html" data-nav="things" aria-haspopup="true" aria-expanded="false">
+                    Things To Do
+                    <span class="dd-caret" aria-hidden="true">▾</span>
+                </a>
+
+                <div class="nav-dd" role="menu" aria-label="Things To Do submenu">
+                    <a role="menuitem" href="../pages/things.html?cat=art">Art & Culture</a>
+                    <a role="menuitem" href="../pages/things.html?cat=outdoor">Outdoor & Activities</a>
+                    <a role="menuitem" href="../pages/things.html?cat=family">Family Fun</a>
+                    <a role="menuitem" href="../pages/things.html?cat=weekly">Weekly</a>
+                    <a role="menuitem" class="dd-all" href="../pages/things.html">View All</a>
+                </div>
+            </div>
+
+            <div class="nav-item has-dd">
+                <a class="nav-link" href="../pages/events.html" data-nav="events" aria-haspopup="true" aria-expanded="false">
+                    Events
+                    <span class="dd-caret" aria-hidden="true">▾</span>
+                </a>
+
+                <div class="nav-dd" role="menu" aria-label="Events submenu">
+                    <a role="menuitem" href="../pages/events.html?cat=free">Free Events</a>
+                    <a role="menuitem" href="../pages/events.html?cat=music">Live Music</a>
+                    <a role="menuitem" href="../pages/events.html?cat=markets">Markets & Pop-ups</a>
+                    <a role="menuitem" href="../pages/events.html?cat=social">Social Clubs</a>
+                    <a role="menuitem" class="dd-all" href="../pages/events.html">Browse All</a>
+                </div>
+            </div>
+
+            <a href="../pages/about-us.html" data-nav="about">Who We Are</a>
+
+            <div class="nav-item has-dd">
+                <a class="nav-link" href="../pages/more.html" data-nav="more" aria-haspopup="true" aria-expanded="false">
+                    More
+                    <span class="dd-caret" aria-hidden="true">▾</span>
+                </a>
+
+                <div class="nav-dd" role="menu" aria-label="More submenu">
+                    <a role="menuitem" href="../pages/resources.html">Explore (Search Hub)</a>
+                    <a role="menuitem" href="../pages/maps-guides.html">Maps & Guides</a>
+                    <a role="menuitem" href="../pages/volunteer.html">Volunteer & Donate</a>
+                    <a role="menuitem" href="../pages/faq.html">FAQs</a>
+                    <a role="menuitem" href="../pages/contact-us.html">Contact Us</a>
+                </div>
+            </div>
+
+            <a href="../pages/references.html" data-nav="references">References</a>
         </nav>
 
         <div class="nav-search" role="search" aria-label="Search resources">

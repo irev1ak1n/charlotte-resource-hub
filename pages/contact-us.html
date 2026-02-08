@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Involved • Charlotte Resource Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/core/global.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/components/newsletter.css">
+    <link rel="stylesheet" href="../assets/css/components/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/contact-us.css">
+</head>
+<body>
+
+<!-- nav stays -->
+<div id="siteNav"></div>
+
+<header class="cu-hero" aria-label="Contact page header">
+    <div class="container">
+        <h1 class="cu-title">Contact Us</h1>
+        <p class="cu-subtitle">Want to know more about Charlotte? Our team is ready to assist you.</p>
+    </div>
+</header>
+
+<main class="cu-main">
+    <div class="container">
+        <div class="cu-grid">
+
+            <section class="cu-left">
+
+                <h2 class="cu-left-title">Let’s Talk</h2>
+
+                <p class="cu-p">
+                    Have a suggestion for improving the website or having difficulty finding something?
+                </p>
+
+                <p class="cu-p">
+                    Need a specific service, have a question or wish to pass along a message?
+                </p>
+
+                <p class="cu-p">
+                    Use the form below to contact us and your request will be routed as quickly as possible.
+                    If you wish to be contacted, please remember to include an email address or phone number!
+                </p>
+
+            </section>
+
+            <section class="cu-right" aria-label="Contact form">
+                <form id="contactForm" class="cu-form" autocomplete="on" novalidate>
+
+                    <div class="cu-row">
+                        <label class="cu-field">
+                            <span class="cu-label">NAME *</span>
+                            <input name="name" required placeholder="NAME*" autocomplete="name" />
+                            <span class="cu-error">Please enter your name.</span>
+                        </label>
+
+                        <label class="cu-field">
+                            <span class="cu-label">EMAIL *</span>
+                            <input name="email" type="email" required placeholder="EMAIL*" autocomplete="email" />
+                            <span class="cu-error">Please enter a valid email address.</span>
+                        </label>
+                    </div>
+
+                    <label class="cu-field">
+                        <span class="cu-label">PHONE</span>
+                        <input name="phone" inputmode="tel" placeholder="PHONE (OPTIONAL)" autocomplete="tel" />
+                        <!-- no error span here (optional field) -->
+                    </label>
+
+                    <label class="cu-field">
+                        <span class="cu-label">MESSAGE *</span>
+                        <textarea name="message" required rows="6" placeholder="HOW CAN WE HELP YOU?*"></textarea>
+                        <span class="cu-error">Please enter a message.</span>
+                    </label>
+
+                    <button type="submit" class="cu-submit">SUBMIT</button>
+
+                    <p id="submitSuccess" class="cu-success" hidden>
+                        Thanks! Your message was received.
+                    </p>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let valid = true;
+
+        form.querySelectorAll(".cu-field").forEach(field => {
+            const input = field.querySelector("input, textarea");
+            const isRequired = input?.hasAttribute("required");
+
+            field.classList.remove("has-error");
+
+            if (isRequired && !input.value.trim()) {
+                field.classList.add("has-error");
+                valid = false;
+            }
+        });
+
+        if (!valid) return;
+
+        document.getElementById("submitSuccess")?.removeAttribute("hidden");
+        form.reset();
+    });
+</script>
+
+<div id="siteFooter"></div>
+
+<script src="../assets/js/core/includes.footer.js" defer></script>
+<script src="../assets/js/core/includes.nav.js" defer></script>
+<script src="../assets/js/core/newsletter.js" defer></script>
+
+</body>
+</html>
