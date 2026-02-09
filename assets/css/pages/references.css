@@ -31,7 +31,6 @@
     color:rgba(12,16,24,.82);
 }
 
-
 .ref-main{
     padding: 36px 0 80px;
     background: #f6f8fb;
@@ -117,9 +116,13 @@
     border: 1px solid #e6ebf2;
     color: #0b1220;
     text-decoration: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.35;
 }
 
 .ref-links a:hover{
@@ -143,4 +146,3 @@
     .ref-links{ grid-template-columns: 1fr; }
     .ref-embed{ height: 440px; }
 }
-

@@ -1313,6 +1313,20 @@
 }
 
 
+.nav-dd{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(-50%, 8px, 0);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+
+.nav-item.has-dd.open .nav-dd{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate3d(-50%, 0, 0);  
+}
 
 
 
