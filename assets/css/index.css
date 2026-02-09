@@ -1295,39 +1295,11 @@
     color: #fff;
 }
 
-/* hover open for desktop */
-@media (hover:hover){
-    .nav-item.has-dd:hover > .nav-dd{
-        display: block;
-    }
-    .nav-item.has-dd:hover > .nav-link{
-        color: #fff;
-    }
-}
-
-/* keep dropdown within viewport a bit better */
-.nav-item.has-dd:last-of-type .nav-dd{
+.nav > .nav-item.has-dd:last-child .nav-dd{
     left: auto;
     right: 0;
     transform: none;
 }
-
-
-.nav-dd{
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translate3d(-50%, 8px, 0);
-    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
-}
-
-.nav-item.has-dd.open .nav-dd{
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translate3d(-50%, 0, 0);  
-}
-
 
 
 
