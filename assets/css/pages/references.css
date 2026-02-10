@@ -146,3 +146,49 @@
     .ref-links{ grid-template-columns: 1fr; }
     .ref-embed{ height: 440px; }
 }
+
+
+
+.ref-project{
+    padding: 28px;
+}
+
+.ref-project-grid{
+    display: grid;
+    grid-template-columns: 2fr .8fr;
+    gap: 10px;
+    align-items: start;
+}
+
+.ref-project-text{
+    max-width: 85ch;
+}
+
+.ref-project-logo{
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+    .ref-project-grid{
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .ref-project-text{
+        max-width: none;
+    }
+}
+
+.ref-project .ref-h2{
+    margin-top: 0;
+    margin-bottom: 14px;
+
+}
+
+.ref-project .ref-p{
+    font-size: 18px;
+    line-height: 1.8;
+}

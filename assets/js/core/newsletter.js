@@ -10,7 +10,7 @@ window.initNewsletter = function () {
     const nameEl = document.getElementById('nycName');
     const zipEl  = document.getElementById('nycZip');
 
-    // error placeholders (add these divs in HTML)
+    // error placeholders
     const errEmail   = document.getElementById('errEmail');
     const errName    = document.getElementById('errName');
     const errCountry = document.getElementById('errCountry');
