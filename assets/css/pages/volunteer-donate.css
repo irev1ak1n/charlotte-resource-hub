@@ -1,3 +1,15 @@
+.hero::before{
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.75) 0%,
+                    rgba(0,0,0,.45) 35%,
+                    rgba(0,0,0,.15) 65%,
+                    rgba(0,0,0,.05) 100%
+            ),
+            url("/assets/img/volunteering.jpg") center/cover no-repeat;
+}
+
 .gi-like-contact{
     padding: 70px 0 80px;
     background: #f6f6f8;
