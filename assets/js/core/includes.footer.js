@@ -1,7 +1,5 @@
-// Immediately-invoked function so nothing leaks to global scope
 (async () => {
 
-    // Loads footer.html and injects it into the page
     async function injectFooter() {
 
         // Where the footer will be placed

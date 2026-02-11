@@ -251,7 +251,6 @@
     cursor: pointer;
 }
 
-/* Vertical divider (NYC feel) */
 .hub-country-toggle::before{
     content: "";
     position: absolute;
@@ -262,7 +261,6 @@
     background: rgba(255,255,255,.45);
 }
 
-/* Arrow icon (SVG data URI) */
 .hub-country-toggle::after{
     content: "";
     width: 12px;
@@ -276,7 +274,6 @@
     transform: translateX(-4px);
 }
 
-/* Hover/focus ring like other inputs */
 .hub-countrybox:hover{
     border-color: rgba(255,255,255,.85);
 }

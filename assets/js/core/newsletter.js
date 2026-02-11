@@ -133,6 +133,9 @@ window.initNewsletter = function () {
         setExpanded(true);
 
         e.preventDefault();
+
+        syncCountryHiddenFromVisible();
+
         if (!validateAll()) return;
 
         const submitBtn = form.querySelector(".nyc-submit");
@@ -245,6 +248,31 @@ window.initNewsletter = function () {
         ["UG","Uganda"],["TZ","Tanzania"]
     ];
 
+    function normalizeCountry(v){
+        return (v || "").trim().toLowerCase();
+    }
+
+    function syncCountryHiddenFromVisible(){
+        if (!input || !hidden) return;
+
+        const typed = normalizeCountry(input.value);
+        if (!typed) {
+            hidden.value = "";
+            return;
+        }
+
+        // match against the known list
+        const match = countries.find(([code, name]) => normalizeCountry(name) === typed);
+
+        if (match) {
+            hidden.value = match[1]; // store full name (same as your click handler)
+            if (hasTriedSubmit) setCountryErr("");
+        } else {
+            // if user typed something that isn't a real option, keep hidden empty
+            hidden.value = "";
+        }
+    }
+
     function render(filter = "") {
         const q = (filter || "").toLowerCase();
         list.innerHTML = "";
@@ -318,7 +346,11 @@ window.initNewsletter = function () {
     // typing filters only if dropdown is open
     input.addEventListener("input", () => {
         if (list.classList.contains("open")) render(input.value);
+        syncCountryHiddenFromVisible();
     });
+
+    input.addEventListener("change", syncCountryHiddenFromVisible);
+    input.addEventListener("blur", syncCountryHiddenFromVisible);
 
     // clicking outside closes
     document.addEventListener("click", (e) => {
