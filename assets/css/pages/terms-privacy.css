@@ -1,0 +1,132 @@
+.legal-simple{
+    background: #fff;
+    padding: 56px 0 90px;
+}
+
+.legal-simple-wrap{
+    max-width: 980px;
+}
+
+.legal-title{
+    margin: 0 0 10px;
+    font-family: "Bree Serif", serif;
+    font-size: clamp(44px, 4.6vw, 68px);
+    line-height: 1.05;
+    color: rgba(12,16,24,.92);
+}
+
+.legal-updated{
+    margin: 0 0 26px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(12,16,24,.70);
+}
+
+.legal-section{
+    padding: 18px 0;
+    border-top: 1px solid rgba(0,0,0,.10);
+}
+
+.legal-section:first-of-type{
+    border-top: 0;
+    padding-top: 0;
+}
+
+.legal-section h2{
+    margin: 0 0 10px;
+    font-family: "Bree Serif", serif;
+    font-size: 22px;
+    line-height: 1.25;
+    color: rgba(12,16,24,.92);
+}
+
+.legal-section p{
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.85;
+    color: rgba(12,16,24,.80);
+    max-width: 75ch;
+}
+
+.legal-section p + p{
+    margin-top: 12px;
+}
+
+.legal-section ul{
+    margin: 0 0 0 18px;
+    padding: 0;
+    font-size: 17px;
+    line-height: 1.85;
+    color: rgba(12,16,24,.80);
+}
+
+.legal-section li{
+    margin: 6px 0;
+}
+
+.legal-section a{
+    color: rgba(12,16,24,.92);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.legal-section a:hover{
+    opacity: .8;
+}
+
+.tc-cta{
+    margin-top: 80px;
+    padding: 90px 0;
+    background: #365a93;
+    color: #fff;
+}
+
+.tc-cta-inner{
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tc-cta h2{
+    margin: 0 0 18px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(52px, 6vw, 86px);
+    letter-spacing: .05em;
+}
+
+.tc-cta p{
+    margin: 0 0 28px;
+    font-size: 18px;
+    line-height: 1.8;
+    opacity: .9;
+}
+
+.tc-cta-link{
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 4px;
+    transition: opacity .2s ease;
+}
+
+.tc-cta-link:hover{
+    opacity: .8;
+}
+
+@media (max-width: 640px){
+    .legal-simple{
+        padding: 42px 0 70px;
+    }
+
+    .legal-section h2{
+        font-size: 20px;
+    }
+
+    .legal-section p,
+    .legal-section ul{
+        font-size: 16px;
+    }
+}

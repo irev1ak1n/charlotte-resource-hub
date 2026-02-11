@@ -1,0 +1,164 @@
+.gi-like-contact{
+    padding: 70px 0 80px;
+    background: #f6f6f8;
+}
+
+.gi-like-inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.gi-like-left{
+    max-width: 62ch;
+}
+
+.gi-like-h2{
+    margin: 0 0 18px;
+    font-family: "Bree Serif", serif;
+    font-size: clamp(40px, 3.6vw, 56px);
+    line-height: 1.05;
+    color: rgba(12,16,24,.92);
+}
+
+.gi-like-p{
+    margin: 0 0 28px;
+    font-family: "Bree Serif", serif;
+    font-size: 20px;
+    line-height: 1.85;
+    color: rgba(12,16,24,.76);
+}
+
+.gi-like-note{
+    margin: 0;
+    font-family: "Bree Serif", serif;
+    font-size: 18px;
+    line-height: 1.75;
+    color: rgba(12,16,24,.68);
+}
+
+.gi-form{
+    display: grid;
+    gap: 18px;
+}
+
+.gi-row{
+    display: grid;
+    gap: 18px;
+}
+
+.gi-row2{
+    grid-template-columns: 1fr 1fr;
+}
+
+.gi-row3{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gi-form input,
+.gi-form select,
+.gi-form textarea{
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.20);
+    border-radius: 4px;
+    background: #f3f3f5;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: rgba(12,16,24,.78);
+}
+
+.gi-form input,
+.gi-form select{
+    height: 52px;
+    padding: 0 16px;
+}
+
+.gi-form textarea{
+    padding: 16px;
+    resize: vertical;
+    min-height: 120px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.gi-form input:focus,
+.gi-form select:focus,
+.gi-form textarea:focus{
+    border-color: rgba(0,0,0,.35);
+    box-shadow: 0 0 0 3px rgba(0,0,0,.08);
+    background: #fff;
+}
+
+.gi-form input::placeholder,
+.gi-form textarea::placeholder{
+    color: rgba(12,16,24,.38);
+}
+
+.gi-form select:invalid{
+    color: rgba(12,16,24,.38);
+}
+
+.gi-submit{
+    height: 56px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    background: #3f5669;
+    color: #fff;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .04em;
+
+    cursor: pointer;
+    transition: background .15s ease, transform .08s ease;
+}
+
+.gi-submit:hover{
+    background: #344a5a;
+}
+
+.gi-submit:active{
+    transform: translateY(1px);
+}
+
+.gi-success{
+    margin: 10px 0 0;
+    padding: 10px 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(0,0,0,.04);
+    border-radius: 10px;
+    color: rgba(12,16,24,.82);
+    font-weight: 700;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.gi-invalid{
+    border-color: #b3261e !important;
+    background: #fff !important;
+}
+
+@media (max-width: 980px){
+    .gi-like-inner{
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+}
+
+@media (max-width: 640px){
+    .gi-row2{
+        grid-template-columns: 1fr;
+    }
+    .gi-row3{
+        grid-template-columns: 1fr;
+    }
+}

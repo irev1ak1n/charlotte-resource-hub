@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer & Donate | Charlotte Resource Hub</title>
+
+    <link rel="icon" href="/assets/img/icon.jpg" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/core/global.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/components/newsletter.css">
+    <link rel="stylesheet" href="../assets/css/components/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/volunteer-donate.css">
+</head>
+
+<body>
+
+<section class="hero hero--small">
+    <div id="siteNav"></div>
+
+    <div class="hero-content">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1 class="headline headline-uw">
+                    <span>VOLUNTEER &amp; DONATE</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-section gi-like-contact">
+    <div class="container gi-like-inner">
+
+        <div class="gi-like-left">
+            <h2 class="cu-left-title">Let’s Get Involved</h2>
+
+            <p class="gi-like-p">
+                Want to volunteer or suggest a trusted opportunity in Charlotte?
+                Use this form and we’ll review it before adding anything to the hub.
+            </p>
+
+            <p class="gi-like-p">
+                If you’re submitting a resource, include the organization name and a link or phone number.
+            </p>
+        </div>
+
+        <div class="gi-like-right">
+            <form id="giForm" class="gi-form" novalidate autocomplete="on">
+
+                <div class="gi-row gi-row2">
+                    <input name="firstName" placeholder="FIRST NAME*" required autocomplete="given-name">
+                    <input name="lastName" placeholder="LAST NAME*" required autocomplete="family-name">
+                </div>
+
+                <div class="gi-row gi-row2">
+                    <input name="email" type="email" placeholder="EMAIL*" required autocomplete="email">
+                    <input name="phone" type="tel" placeholder="PHONE (OPTIONAL)" autocomplete="tel">
+                </div>
+
+                <input name="address" placeholder="ADDRESS*" required autocomplete="street-address">
+
+                <div class="gi-row gi-row3">
+                    <input name="city" placeholder="CITY*" required autocomplete="address-level2">
+                    <input name="state" placeholder="STATE*" required autocomplete="address-level1" maxlength="2">
+                    <input name="zip" placeholder="ZIP*" required inputmode="numeric" autocomplete="postal-code">
+                </div>
+
+                <textarea name="message" placeholder="HOW CAN YOU HELP / WHAT SHOULD WE ADD?*" required></textarea>
+
+                <button type="submit" class="gi-submit">SUBMIT</button>
+
+                <div id="giSuccess" class="gi-success hidden" role="status" aria-live="polite">
+                    Thanks — we received your message.
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+
+
+<div id="siteFooter"></div>
+
+<script src="../assets/js/core/includes.footer.js" defer></script>
+<script src="../assets/js/core/includes.nav.js" defer></script>
+<script src="../assets/js/core/newsletter.js" defer></script>
+<script src="../assets/js/volunteer-donate.js" defer></script>
+
+</body>
+</html>
