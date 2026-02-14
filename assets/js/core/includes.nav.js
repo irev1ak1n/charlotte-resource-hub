@@ -57,28 +57,210 @@
 
         const searchBtn = document.getElementById("navSearchBtn");
 
-        function goToResourcesSearch() {
-            const q = searchInput.value.trim();
-            if (!q) return;
+        // helper - safe word match (prevents "contact" matching "contactless")
+        const hasWord = (text, word) =>
+            new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text);
+
+        // block garbage / nonsense queries
+        function isValidQuery(raw) {
+            const s = (raw || "").trim();
+
+            // must contain at least one letter or digit
+            if (!/[a-z0-9]/i.test(s)) return false;
+
+            // reject if it's basically punctuation / symbols / gibberish
+            // allow letters, digits, spaces, apostrophes, hyphens, &, commas, periods
+            const allowed = /^[a-z0-9\s'&.,-]+$/i;
+            if (!allowed.test(s)) return false;
+
+            // at least 2 chars after trimming
+            if (s.length < 2) return false;
+
+            // reject if it's mostly punctuation (e.g., ";;--..", ":::")
+            const lettersDigits = (s.match(/[a-z0-9]/gi) || []).length;
+            const ratio = lettersDigits / s.length;
+            if (ratio < 0.35) return false;
+
+            return true;
+        }
+
+        function goToSmartSearch() {
+            const raw = searchInput.value.trim();
+            if (!raw) return;
+
+            // If the query looks like junk, do nothing (keeps them on the homepage/current page)
+            if (!isValidQuery(raw)) return;
+
+            const q = raw.toLowerCase().replace(/\s+/g, " ").trim();
 
             const inPages = location.pathname.includes("/pages/");
             const base = inPages ? ".." : ".";
 
-            window.location.href =
-                `${base}/pages/resources.html?q=${encodeURIComponent(q)}`;
+            const routes = [
+                {
+                    page: "news.html",
+                    keys: [
+                        "news",
+                        "updates",
+                        "highlights",
+                        "now in clt",
+                        "now in charlotte",
+                        "clt news",
+                        "community news",
+                        "latest",
+                        "latest news",
+                    ],
+                },
+
+                { page: "events.html?cat=free", keys: ["free events"] },
+                { page: "events.html?cat=music", keys: ["live music", "concerts"] },
+
+                {
+                    page: "events.html",
+                    keys: [
+                        "events",
+                        "event",
+                        "festival",
+                        "festivals",
+                        "markets",
+                        "pop up",
+                        "popup",
+                    ],
+                },
+
+                { page: "things.html?cat=art", keys: ["art", "art & culture", "culture"] },
+                {
+                    page: "things.html?cat=outdoor",
+                    keys: ["outdoor", "outdoors", "parks", "hiking"],
+                },
+
+                {
+                    page: "things.html",
+                    keys: [
+                        "things to do",
+                        "things",
+                        "activities",
+                        "what to do",
+                        "fun",
+                        "weekend",
+                        "chill",
+                    ],
+                },
+
+                {
+                    page: "volunteer-donate.html",
+                    keys: [
+                        "volunteer",
+                        "donate",
+                        "donation",
+                        "give",
+                        "get involved",
+                        "help out",
+                        "community service",
+                    ],
+                },
+
+                {
+                    page: "references.html",
+                    keys: ["references", "sources", "citations", "works cited"],
+                },
+
+                {
+                    page: "faqs.html",
+                    keys: ["faq", "faqs", "questions", "help questions"],
+                },
+
+                {
+                    page: "contact-us.html",
+                    keys: [
+                        "contact",
+                        "contact us",
+                        "email",
+                        "message",
+                        "reach out",
+                        "get in touch",
+                    ],
+                },
+
+                {
+                    page: "about-us.html",
+                    keys: ["about", "about us", "who we are", "our mission", "mission", "purpose"],
+                },
+
+                // resources category intent (should FILTER, not just open the page)
+                {
+                    page: "resources.html",
+                    keys: ["education", "school", "students", "youth", "after school", "tutoring", "literacy"],
+                },
+                {
+                    page: "resources.html",
+                    keys: ["housing", "shelter", "rent", "homeless", "eviction", "temporary housing"],
+                },
+                {
+                    page: "resources.html",
+                    keys: ["food", "food pantry", "meals", "groceries", "hunger"],
+                },
+                {
+                    page: "resources.html",
+                    keys: ["health", "clinic", "medical", "mental health", "therapy", "counseling"],
+                },
+                {
+                    page: "resources.html",
+                    keys: ["jobs", "job training", "employment", "career", "resume", "workforce"],
+                },
+
+                // genereral resources terms
+                {
+                    page: "resources.html",
+                    keys: ["resources", "city resources", "directory", "resource hub", "help", "support", "assistance", "services"],
+                },
+            ];
+
+            const matches = (keys) =>
+                keys.some((k) => {
+                    if (k.includes(" ")) return q.includes(k);
+                    return hasWord(q, k);
+                });
+
+            const pageOnlyTerms = new Set([
+                "resources",
+                "city resources",
+                "directory",
+                "resource hub",
+            ]);
+
+            for (const r of routes) {
+                if (!matches(r.keys)) continue;
+
+                // Resources usually filter via ?q=
+                if (r.page.startsWith("resources.html")) {
+                    if (!pageOnlyTerms.has(q)) {
+                        window.location.href = `${base}/pages/resources.html?q=${encodeURIComponent(raw)}`;
+                        return;
+                    }
+                    window.location.href = `${base}/pages/resources.html`;
+                    return;
+                }
+
+                window.location.href = `${base}/pages/${r.page}`;
+                return;
+            }
+
+            // fallback: treat as directory search
+            window.location.href = `${base}/pages/resources.html?q=${encodeURIComponent(raw)}`;
         }
 
         // Enter key
         searchInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
-                goToResourcesSearch();
+                goToSmartSearch();
             }
         });
 
         // Search button click
         if (searchBtn) {
-            searchBtn.addEventListener("click", goToResourcesSearch);
+            searchBtn.addEventListener("click", goToSmartSearch);
         }
     }
 
