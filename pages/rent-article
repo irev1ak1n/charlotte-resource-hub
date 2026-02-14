@@ -42,7 +42,7 @@
             <p></p>
             
             <div class="article-image"
-                 style="background-image: url('/assets/img/rent-article.jpg!d');">
+                 style="background-image: url('/assets/img/rent-article.jpg');">
             </div>
 
             <div class="article-content">
