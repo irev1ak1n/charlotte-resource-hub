@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Wellness Clinic Weekend | Charlotte Resource Hub</title>
+    <title>New Rent Assistance Intake Dates | Charlotte Resource Hub</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
 
         <article class="article-page">
 
-            <h2 class="article-title">Free Wellness Clinic Weekend</h2>
+            <h1 class="article-title">New Rent Assistance Intake Dates</h1>
             
             <div class="h1-meta">
                 <span class="hl-tag">Housing</span>
@@ -42,13 +42,14 @@
             <p></p>
             
             <div class="article-image"
-                 style="background-image: url('/assets/img/rent-article.jpg');">
+                 style="background-image: url('/assets/img/rent-article.jpg!d');">
             </div>
 
             <div class="article-content">
                 <p>
 New dates are available for residents to apply for rent assistance in North Charlotte. The program helps people avoid eviction and understand what documents they need to apply with.
                 </p>
+
             </div>
 
             <div class="article-back">
