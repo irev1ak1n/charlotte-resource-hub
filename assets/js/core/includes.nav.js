@@ -65,7 +65,7 @@
             const base = inPages ? ".." : ".";
 
             window.location.href =
-                `${base}/pages/resources?q=${encodeURIComponent(q)}`;
+                `${base}/pages/resources.html?q=${encodeURIComponent(q)}`;
         }
 
         // Enter key
