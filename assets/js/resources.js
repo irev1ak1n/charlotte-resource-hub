@@ -21,9 +21,15 @@ let filters = {
 
 if (!listEl || !statusEl) {
     console.log("No directory elements found. Exiting.");
-} else {
+}
+else {
     function setStatus(msg) {
         statusEl.textContent = msg;
+    }
+
+    function getQueryParam(name) {
+        const url = new URL(window.location.href);
+        return (url.searchParams.get(name) || "").trim();
     }
 
     async function loadResources() {
@@ -345,8 +351,25 @@ if (!listEl || !statusEl) {
             allResources = Array.isArray(data) ? data : (Array.isArray(data.resources) ? data.resources : []);
             renderSidebar(allResources);
             setView("list");
+
+            const navQ = getQueryParam("q");
+            if (navQ && searchEl) searchEl.value = navQ;
+
             applyFilters();
-            setStatus(`Loaded ${allResources.length} resources`);
+
+            if (navQ && searchEl) {
+                searchEl.focus({ preventScroll: true });
+                searchEl.setSelectionRange(0, searchEl.value.length);
+
+                const y = searchEl.getBoundingClientRect().top + window.scrollY - 120;
+                window.scrollTo({ top: y, behavior: "smooth" });
+            }
+
+            // if (navQ) {
+            //     document.querySelector(".dir-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            // }
+
+            // setStatus(`Loaded ${allResources.length} resources`);
 
             if (searchEl) searchEl.addEventListener("input", applyFilters);
             if (sortEl) sortEl.addEventListener("change", applyFilters);

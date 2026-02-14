@@ -160,6 +160,9 @@ window.initNewsletter = function () {
             form.classList.add("hidden");
             if (successBox) successBox.classList.remove("hidden");
 
+            const media = section.querySelector('.hub-newsletter-media');
+            if (media) media.classList.add('hidden');
+
             // Clear values
             form.reset();
             if (hidden) hidden.value = "";

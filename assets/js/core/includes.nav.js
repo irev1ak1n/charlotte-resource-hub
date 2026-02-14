@@ -54,6 +54,32 @@
         searchInput.addEventListener("focus", () => {
             searchInput.placeholder = basePlaceholder;
         });
+
+        const searchBtn = document.getElementById("navSearchBtn");
+
+        function goToResourcesSearch() {
+            const q = searchInput.value.trim();
+            if (!q) return;
+
+            const inPages = location.pathname.includes("/pages/");
+            const base = inPages ? ".." : ".";
+
+            window.location.href =
+                `${base}/pages/resources?q=${encodeURIComponent(q)}`;
+        }
+
+        // Enter key
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                goToResourcesSearch();
+            }
+        });
+
+        // Search button click
+        if (searchBtn) {
+            searchBtn.addEventListener("click", goToResourcesSearch);
+        }
     }
 
     function initNavScroll() {

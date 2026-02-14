@@ -10,7 +10,7 @@
                     rgba(0,0,0,.20) 70%,
                     rgba(0,0,0,.08) 100%
             ),
-            url("/assets/img/about-us.jpg") center / cover no-repeat;
+            url("/assets/img/about-us2.jpg") center / cover no-repeat;
     z-index:0;
     filter: saturate(1.05) contrast(1.05);
 }
@@ -34,4 +34,13 @@
     font-size: 20px;
     line-height: 1.7;
     margin-bottom: 18px;
+}
+
+
+.tc-cta h2{
+    margin: 0 0 18px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(52px, 6vw, 86px);
+    letter-spacing: .05em;
+    color: #fff;
 }
