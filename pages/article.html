@@ -16,49 +16,294 @@
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/components/newsletter.css">
     <link rel="stylesheet" href="../assets/css/components/footer.css">
+    <link rel="stylesheet" href="../assets/css/pages/article.css">
 </head>
 
 <body>
+<div id="siteNav"></div>
 
-<section class="hero article-hero">
+<main class="article-wrap">
+    <div class="container article-container">
+        <header class="article-head">
+            <!-- eyebrow (like "OUTDOORS & ADVENTURE") -->
+            <div class="article-eyebrow" id="aEyebrow"></div>
 
-    <!-- dynamic background image -->
-    <div class="article-hero-bg" id="articleImage"></div>
+            <h1 id="aTitle" class="article-title"></h1>
 
-    <div id="siteNav"></div>
+            <!-- subtitle under title -->
+            <p id="aDek" class="article-dek"></p>
 
-    <div class="hero-content">
-        <div class="container hero-grid">
-            <div class="hero-left">
-
-                <span class="article-tag" id="articleTag">CATEGORY</span>
-
-                <h1 class="headline headline-uw" id="articleTitle">
-                    Article Title
-                </h1>
-
-                <p class="hero-subtitle" id="articleSubtitle">
-                    Article subtitle goes here.
-                </p>
-
+            <!-- byline row -->
+            <div class="article-byline">
+                <span class="article-by" id="aBy"></span>
+                <span class="article-dot" aria-hidden="true">•</span>
+                <time class="article-date" id="aDate"></time>
+                <span class="article-dot article-dot-2" aria-hidden="true">•</span>
+                <span class="article-source" id="aSource"></span>
             </div>
+
+            <!-- your tag + loc line can stay (small meta row) -->
+            <div class="article-meta">
+                <span id="aTag" class="hl-tag"></span>
+                <span id="aLoc" class="hl-loc"></span>
+            </div>
+        </header>
+
+        <!-- Text 1 -->
+        <section class="article-section">
+            <div id="aText1" class="article-text"></div>
+        </section>
+
+        <!-- Image 1 -->
+        <figure class="article-figure" id="fig1">
+            <img id="aImg1" class="article-img" alt="" loading="lazy" />
+            <figcaption id="aCap1" class="article-cap"></figcaption>
+        </figure>
+
+        <!-- Text 2 -->
+        <section class="article-section">
+            <div id="aText2" class="article-text"></div>
+        </section>
+
+        <!-- Image 2 -->
+        <figure class="article-figure" id="fig2">
+            <img id="aImg2" class="article-img" alt="" loading="lazy" />
+            <figcaption id="aCap2" class="article-cap"></figcaption>
+        </figure>
+
+        <!-- Text 3 -->
+        <section class="article-section article-section-last">
+            <div id="aText3" class="article-text"></div>
+        </section>
+
+        <div class="article-actions">
+            <a class="hl-btn" href="/pages/news.html">← Back to News</a>
         </div>
     </div>
-</section>
 
+    <!-- Optional More Happenings -->
+    <section class="more-wrap">
+        <div class="container">
+            <div class="more-head">
+                <h2 class="more-title">More Happenings</h2>
+                <a class="more-link" href="/pages/news.html">View all</a>
+            </div>
 
-<main class="article container">
-    <article class="article-content" id="articleContent">
-
-    </article>
+            <div id="moreGrid" class="more-grid"></div>
+        </div>
+    </section>
 </main>
 
 <div id="siteFooter"></div>
 
 <script src="../assets/js/core/includes.footer.js" defer></script>
-<script src="../assets/js/core/includes.nav.js" defer></script>
 <script src="../assets/js/core/newsletter.js" defer></script>
-<script src="../assets/js/article.js" defer></script>
+<script src="../assets/js/core/includes.nav.js" defer></script>
+
+<script>
+    (async function () {
+        try {
+            const params = new URLSearchParams(location.search);
+            const id = (params.get("id") || "").trim();
+
+            // header els
+            const eyebrowEl = document.getElementById("aEyebrow");
+            const titleEl = document.getElementById("aTitle");
+            const dekEl = document.getElementById("aDek");
+            const byEl = document.getElementById("aBy");
+            const dateEl = document.getElementById("aDate");
+            const sourceEl = document.getElementById("aSource");
+
+            // meta els
+            const tagEl = document.getElementById("aTag");
+            const locEl = document.getElementById("aLoc");
+
+            // content els
+            const text1El = document.getElementById("aText1");
+            const text2El = document.getElementById("aText2");
+            const text3El = document.getElementById("aText3");
+
+            const img1El = document.getElementById("aImg1");
+            const img2El = document.getElementById("aImg2");
+
+            const cap1El = document.getElementById("aCap1");
+            const cap2El = document.getElementById("aCap2");
+
+            const fig1 = document.getElementById("fig1");
+            const fig2 = document.getElementById("fig2");
+
+            // -------- helpers --------
+            function escapeHTML(str) {
+                return String(str)
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+
+            // Supports:
+            // "## Heading" → <h2 class="article-h2">Heading</h2>
+            // normal text → <p>...</p>
+            function renderBlock(line) {
+                const s = String(line || "").trim();
+                if (!s) return "";
+
+                if (s.startsWith("## ")) {
+                    const heading = s.slice(3).trim();
+                    return `<h2 class="article-h2">${escapeHTML(heading)}</h2>`;
+                }
+
+                return `<p>${escapeHTML(s)}</p>`;
+            }
+
+            const toHTML = (arr) => (arr || []).map(renderBlock).join("");
+
+            // -------- guard: no id --------
+            if (!id) {
+                titleEl.textContent = "No article selected";
+                text1El.innerHTML = `<p>Please go back and open an article from the News page.</p>`;
+                fig1.style.display = "none";
+                fig2.style.display = "none";
+                return;
+            }
+
+            // -------- fetch data --------
+            const res = await fetch("/data/news.json", { cache: "no-store" });
+            if (!res.ok) throw new Error("news.json not found (status " + res.status + ")");
+
+            const items = await res.json();
+            const item = items.find((x) => x.id === id);
+
+            if (!item) {
+                titleEl.textContent = "Article not found";
+                text1El.innerHTML = `<p>That article id does not exist: <strong>${escapeHTML(id)}</strong></p>`;
+                fig1.style.display = "none";
+                fig2.style.display = "none";
+                return;
+            }
+
+            // -------- header fill --------
+            document.title = item.title + " | Charlotte Resource Hub";
+            titleEl.textContent = item.title;
+
+            // Eyebrow: use item.section first; else fall back to tag
+            const eyebrow = (item.section || item.tag || "").toUpperCase();
+            eyebrowEl.textContent = eyebrow;
+
+            // Dek/subtitle under title
+            dekEl.textContent = item.subtitle || item.dek || "";
+
+            // Byline pieces
+            const author = item.author || "Charlotte Resource Hub Staff";
+            byEl.textContent = "By " + author;
+
+            // Date formatting (expects item.date like "2026-02-15" OR any parseable date string)
+            const d = item.date ? new Date(item.date) : null;
+            if (d && !isNaN(d.getTime())) {
+                const pretty = d.toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+                dateEl.textContent = pretty;
+                dateEl.setAttribute("datetime", d.toISOString().slice(0, 10));
+            } else {
+                dateEl.textContent = "Updated recently";
+                dateEl.removeAttribute("datetime");
+            }
+
+            // Source (optional)
+            const source = item.source || "";
+            sourceEl.textContent = source;
+
+            // If no subtitle or no source, hide cleanly
+            if (!dekEl.textContent.trim()) dekEl.style.display = "none";
+            if (!sourceEl.textContent.trim()) {
+                sourceEl.style.display = "none";
+                const dot2 = document.querySelector(".article-dot-2");
+                if (dot2) dot2.style.display = "none";
+            }
+
+            // Meta line (tag + loc)
+            tagEl.textContent = item.tag || "";
+            locEl.textContent = item.loc || "";
+            if (!tagEl.textContent.trim()) tagEl.style.display = "none";
+            if (!locEl.textContent.trim()) locEl.style.display = "none";
+
+            // -------- content fill (show MORE) --------
+            const intro = item.intro || [];
+            const body = item.body || [];
+
+            const text1 = [...intro];        // all intro lines
+            const text2 = body.slice(0, 4);  // first chunk
+            const text3 = body.slice(4);     // rest of article
+
+            text1El.innerHTML = toHTML(text1);
+            text2El.innerHTML = toHTML(text2);
+            text3El.innerHTML = toHTML(text3);
+
+            // -------- images --------
+            const img1 = item.img;
+            const img2 = item.img2 || item.img;
+
+            if (img1 && String(img1).trim()) {
+                img1El.src = img1;
+                img1El.alt = item.title || "Article image";
+            } else {
+                fig1.style.display = "none";
+            }
+
+            if (img2 && String(img2).trim()) {
+                img2El.src = img2;
+                img2El.alt = (item.title || "Article image") + " photo";
+            } else {
+                fig2.style.display = "none";
+            }
+
+            cap1El.textContent = item.caption1 || "";
+            cap2El.textContent = item.caption2 || "";
+
+            if (!cap1El.textContent.trim()) cap1El.style.display = "none";
+            if (!cap2El.textContent.trim()) cap2El.style.display = "none";
+
+            // -------- More Happenings --------
+            const moreGrid = document.getElementById("moreGrid");
+            if (moreGrid) {
+                const others = items.filter((x) => x.id !== id).slice(0, 4);
+
+                moreGrid.innerHTML = others
+                    .map(
+                        (x) => `
+            <a class="more-card" href="/pages/article.html?id=${x.id}">
+              <div class="more-media" style="--img:url('${x.img}')"></div>
+              <div class="more-body">
+                <div class="more-meta">
+                  <span class="more-tag">${escapeHTML(x.tag || "")}</span>
+                  <span class="more-loc">${escapeHTML(x.loc || "")}</span>
+                </div>
+                <h3 class="more-h3">${escapeHTML(x.title || "")}</h3>
+              </div>
+            </a>
+          `
+                    )
+                    .join("");
+            }
+        } catch (err) {
+            console.error(err);
+            const title = document.getElementById("aTitle");
+            const text1 = document.getElementById("aText1");
+            const fig1 = document.getElementById("fig1");
+            const fig2 = document.getElementById("fig2");
+
+            if (title) title.textContent = "Could not load article";
+            if (text1) text1.innerHTML = `<p>Open DevTools → Console to see the error.</p>`;
+            if (fig1) fig1.style.display = "none";
+            if (fig2) fig2.style.display = "none";
+        }
+    })();
+</script>
+
 
 </body>
 </html>

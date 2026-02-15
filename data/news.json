@@ -1,0 +1,164 @@
+[
+  {
+    "id": "mutual-aid",
+    "tag": "Community Support",
+    "loc": "East Charlotte",
+    "title": "New Mutual Aid Network Launched",
+    "img": "/assets/img/news/articles/mutual-aid-article.jpg",
+    "img2": "/assets/img/news/articles/mutual-aid-article-2.jpg",
+    "intro": [
+      "In East Charlotte, a new mutual aid center has opened to help neighbors get support faster.",
+      "The center focuses on food, basic supplies, and creating a place where people feel welcome asking for help."
+    ],
+    "body": [
+      "## What the center provides",
+      "The center provides pantry food, hygiene items, and everyday supplies that many families rely on. Volunteers greet visitors and help them find what they need for the day.",
+      "Because the location is close to several apartment communities, residents can walk in without needing transportation. This makes help easier to reach during busy or stressful times.",
+      "The space is calm and welcoming, allowing people to slow down and feel comfortable. Visitors are encouraged to ask questions and learn about resources nearby.",
+
+      "## Support beyond supplies",
+      "Volunteers take time to listen and offer guidance. They help explain what support is available and how to access it.",
+      "For people who need additional help, the center shares information about food pantries, benefits assistance, and housing services in the area.",
+
+      "## How the community can help",
+      "Community members support the center by donating unopened items or helping during sorting and packing days. Even a small amount of time makes a difference.",
+      "The network is built on trust and care. It aims to strengthen relationships between neighbors and reduce feelings of isolation.",
+      "The long term goal is to help people meet immediate needs while also connecting them to ongoing support across the community."
+    ]
+  },
+  {
+    "id": "job-fair",
+    "tag": "Jobs & Training",
+    "loc": "Uptown",
+    "title": "Upcoming Job Fair",
+    "img": "/assets/img/news/articles/job-fair-article.jpg",
+    "img2": "/assets/img/news/articles/job-fair-article-2.jpg",
+    "intro": [
+      "A job fair in Uptown is bringing employers and training programs together in one place.",
+      "It gives job seekers a chance to explore opportunities and learn what companies are looking for."
+    ],
+    "body": [
+      "## What you will find there",
+      "Visitors can meet hiring teams and learn about open roles across different industries. Employers are ready to answer questions and share details about their work.",
+      "Many companies talk about schedules, expectations, and opportunities for growth. This helps visitors understand what daily work might look like.",
+
+      "## Preparing to show up strong",
+      "Bringing a resume can be helpful, but it is not required. The event is designed to welcome people at different stages of their job search.",
+      "Some tables offer guidance for resumes and interviews. These tips can help job seekers feel more prepared and confident.",
+      "Talking with employers in person allows visitors to make a stronger impression. A short conversation can help build a connection.",
+
+      "## After the event",
+      "The location is accessible and close to public transportation. This makes the event easier to attend for many residents.",
+      "Job seekers are encouraged to take notes and collect contact information. This can be useful after the event ends.",
+      "Following up with employers by applying online or sending a message can help keep the conversation going."
+    ]
+  },
+  {
+    "id": "wellness-clinic",
+    "tag": "Health Support",
+    "loc": "West Charlotte",
+    "title": "Free Wellness Clinic Weekend",
+    "img": "/assets/img/news/articles/wellness-clinic-article-new.jpg",
+    "img2": "/assets/img/news/articles/wellness-clinic-article-2.jpg",
+    "intro": [
+      "A free wellness clinic weekend in West Charlotte will offer basic health screenings and support.",
+      "The clinic welcomes families and seniors who want to learn more about their health."
+    ],
+    "body": [
+      "## What the clinic offers",
+      "Staff and volunteers provide basic checkups and screenings during the event. They explain results and suggest next steps when needed.",
+      "The clinic is designed to feel friendly and low stress. Visitors are encouraged to ask questions and take their time.",
+      "Information about local clinics and community health programs is also available. This helps visitors find affordable care options.",
+
+      "## Help for people without regular care",
+      "People without insurance are welcome to attend. Staff share information about low cost services and support programs.",
+      "Bringing identification or a list of medications can be helpful, but it is not required. The focus is on making care accessible.",
+
+      "## Tips for a smoother visit",
+      "Arriving earlier in the day may help reduce wait times. Staff aim to give each visitor enough attention.",
+      "Families can also ask about routine care for children and older adults. The clinic helps plan future visits.",
+      "The goal is to help people feel informed and supported when making health decisions."
+    ]
+  },
+  {
+    "id": "rent-assistance",
+    "tag": "Housing",
+    "loc": "North Charlotte",
+    "title": "New Rent Assistance Intake Dates",
+    "img": "/assets/img/news/articles/rent-article.jpg",
+    "img2": "/assets/img/news/rent-article-2.jpg",
+    "intro": [
+      "New intake dates are available for residents seeking rent assistance in North Charlotte.",
+      "These programs help families stay housed during challenging financial times."
+    ],
+    "body": [
+      "## Getting ready to apply",
+      "Many assistance programs ask for basic documents such as identification, proof of income, and lease information. Preparing these ahead of time can help.",
+      "Some programs also request notices related to rent balance or payment history. Checking requirements early can reduce stress.",
+
+      "## What happens at intake",
+      "During intake events, staff often explain eligibility and guide applicants through the process. This support helps people understand each step.",
+      "If one program is not a match, staff may suggest other options. Many groups also connect residents to food and utility support.",
+
+      "## Staying on track",
+      "Arriving early can increase the chance of being seen. Intake spots may be limited on busy days.",
+      "Bringing copies of documents can be helpful so originals stay safe. Staff can explain what happens after applying.",
+      "Residents who miss an intake date are encouraged to watch for future sessions. Staying informed is important.",
+      "These programs aim to provide stability and reduce the risk of eviction for families in need."
+    ]
+  },
+  {
+    "id": "stem-signups",
+    "tag": "Youth Programs",
+    "loc": "South End",
+    "title": "After School STEM Signups Open",
+    "img": "/assets/img/news/articles/stem-kid-article.jpeg",
+    "img2": "/assets/img/news/articles/stem-kid-article-2.jpg",
+    "intro": [
+      "After school STEM programs are now open for students who enjoy hands on learning.",
+      "These programs help students grow skills while building curiosity and confidence."
+    ],
+    "body": [
+      "## Learning through projects",
+      "Students take part in activities that focus on learning by doing. Projects allow them to test ideas and see results.",
+      "Programs often include coding, robotics, engineering builds, and science activities. These experiences connect school lessons to real world skills.",
+
+      "## Building confidence and teamwork",
+      "Working in groups helps students practice teamwork and communication. They learn how to share ideas and solve problems together.",
+      "The environment encourages creativity and exploration. Making mistakes is part of the learning process.",
+      "For families, these programs offer a safe place for students after the school day ends. This can make daily schedules easier.",
+
+      "## How to join",
+      "Some programs include time for homework or tutoring before activities begin. This supports academic success.",
+      "Meeting schedules vary depending on the program. Families can choose what fits best.",
+      "Early registration is recommended since space may be limited. Waitlists are often available."
+    ]
+  },
+  {
+    "id": "volunteer-drives",
+    "tag": "Get Involved",
+    "loc": "Citywide",
+    "title": "Volunteer Drives This Saturday",
+    "img": "/assets/img/news/articles/volunteer-article.jpg",
+    "img2": "/assets/img/news/articles/volunteer-article-2.jpg",
+    "intro": [
+      "Citywide volunteer events this Saturday invite residents to support local efforts.",
+      "Activities include food packing, cleanup projects, and donation sorting."
+    ],
+    "body": [
+      "## Easy to join",
+      "Most volunteer roles are beginner friendly and open to all experience levels. Instructions are given at the start.",
+      "Volunteers may help pack food boxes, organize supplies, or clean shared spaces. Each task supports the community.",
+
+      "## A good way to connect",
+      "These events are a good way to meet others and learn about local organizations. Many people return after their first experience.",
+      "Some locations allow volunteers to choose tasks based on interests. Options include indoor and outdoor work.",
+
+      "## Making the day go smoothly",
+      "Shifts run for several hours, but flexible attendance is often allowed. Even a short visit is helpful.",
+      "Comfortable clothing and closed shoes are recommended. Organizers aim to keep tasks safe and simple.",
+      "Attending with friends can make the experience more enjoyable. Group signups may be available.",
+      "Volunteering helps strengthen neighborhoods and builds a sense of shared responsibility."
+    ]
+  }
+]

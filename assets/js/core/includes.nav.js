@@ -243,7 +243,6 @@
                     keys: ["about", "about us", "who we are", "our mission", "mission", "purpose"],
                 },
 
-                // resources category intent (should FILTER, not just open the page)
                 {
                     page: "resources.html",
                     keys: ["education", "school", "students", "youth", "after school", "tutoring", "literacy"],
@@ -265,7 +264,7 @@
                     keys: ["jobs", "job training", "employment", "career", "resume", "workforce"],
                 },
 
-                // genereral resources terms
+                // general resources terms
                 {
                     page: "resources.html",
                     keys: ["resources", "city resources", "directory", "resource hub", "help", "support", "assistance", "services"],
