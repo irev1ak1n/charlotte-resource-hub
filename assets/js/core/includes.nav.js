@@ -3,6 +3,13 @@
         const searchInput = document.getElementById("navSearchInput");
         if (!searchInput) return;
 
+        const url = new URL(window.location.href);
+        const qParam = (url.searchParams.get("q") || "").trim();
+
+        if (qParam) {
+            searchInput.value = qParam;
+        }
+
         const basePlaceholder = "Search resources...";
         const examples = [
             "Food assistance in Charlotte",
@@ -57,7 +64,7 @@
 
         const searchBtn = document.getElementById("navSearchBtn");
 
-        // helper - safe word match (prevents "contact" matching "contactless")
+        // safe word match (prevents "contact" matching "contactless")
         const hasWord = (text, word) =>
             new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text);
 
@@ -68,18 +75,65 @@
             // must contain at least one letter or digit
             if (!/[a-z0-9]/i.test(s)) return false;
 
-            // reject if it's basically punctuation / symbols / gibberish
-            // allow letters, digits, spaces, apostrophes, hyphens, &, commas, periods
+            // allow only reasonable characters
             const allowed = /^[a-z0-9\s'&.,-]+$/i;
             if (!allowed.test(s)) return false;
 
-            // at least 2 chars after trimming
+            // at least 2 chars
             if (s.length < 2) return false;
 
-            // reject if it's mostly punctuation (e.g., ";;--..", ":::")
+            // reject if mostly punctuation
             const lettersDigits = (s.match(/[a-z0-9]/gi) || []).length;
             const ratio = lettersDigits / s.length;
             if (ratio < 0.35) return false;
+
+            const q = s.toLowerCase().replace(/\s+/g, " ").trim();
+
+            // numbers-only should never navigate
+            if (/^\d+$/.test(q)) return false;
+
+            // guard absurdly long paste
+            if (q.length > 80) return false;
+
+            const tokens = q.split(" ").filter(Boolean);
+
+            const allowedSingles = new Set([
+                // site navigation intents
+                "news","updates","highlights","events","event","things","activities","fun","weekend","chill",
+                "volunteer","donate","donation","give","help","support",
+                "contact","email","message","about","mission","purpose",
+                "faq","faqs","questions",
+                "references","sources","citations",
+
+                // directory / resources general
+                "resources","directory","services","assistance","aid","support","programs","organizations",
+                // education / youth
+                "education","school","schools","learning","students","student",
+                "youth","kids","children","after-school","tutoring","literacy","mentoring",
+                // housing
+                "housing","shelter","shelters","rent","rental","homeless","eviction","utilities",
+                // food
+                "food","meals","pantry","pantries","groceries","hunger",
+                // health
+                "health","medical","clinic","clinics","mental","therapy","counseling","wellness",
+                // jobs / workforce
+                "jobs","job","employment","career","careers","training","workforce","resume","internships",
+                // crisis / safety
+                "crisis","emergency","hotline","safety","abuse","violence",
+                // location terms
+                "charlotte","clt","mecklenburg","nc"
+            ]);
+
+
+            if (tokens.length === 1) {
+                const t = tokens[0];
+
+                // block any one-word query that isn't an approved intent
+                if (!allowedSingles.has(t)) return false;
+
+                // (extra safety) block repeated chars like "aaaaaa"
+                if (/^(.)\1{4,}$/i.test(t)) return false;
+            }
 
             return true;
         }
@@ -95,6 +149,7 @@
 
             const inPages = location.pathname.includes("/pages/");
             const base = inPages ? ".." : ".";
+            const resourcesPath = `${base}/pages/resources`;
 
             const routes = [
                 {
@@ -233,21 +288,42 @@
                 if (!matches(r.keys)) continue;
 
                 // Resources usually filter via ?q=
-                if (r.page.startsWith("resources.html")) {
-                    if (!pageOnlyTerms.has(q)) {
-                        window.location.href = `${base}/pages/resources.html?q=${encodeURIComponent(raw)}`;
+                if (r.page.startsWith("resources.html") || r.page.startsWith("resources")) {
+                    // If user typed ONLY generic page terms, just open resources page
+                    if (pageOnlyTerms.has(q)) {
+                        window.location.href = resourcesPath;
                         return;
                     }
-                    window.location.href = `${base}/pages/resources.html`;
+
+                    // Build URL safely (no string bugs)
+                    const u = new URL(resourcesPath, window.location.href);
+                    u.searchParams.set("q", raw);
+
+                    let catSlug = "";
+                    if (matches(["education", "school", "students", "youth", "after school", "tutoring", "literacy"])) catSlug = "education";
+                    else if (matches(["housing", "shelter", "rent", "homeless", "eviction", "temporary housing"])) catSlug = "housing";
+                    else if (matches(["food", "food pantry", "meals", "groceries", "hunger"])) catSlug = "food";
+                    else if (matches(["health", "clinic", "medical", "mental health", "therapy", "counseling"])) catSlug = "health";
+                    else if (matches(["jobs", "job training", "employment", "career", "resume", "workforce"])) catSlug = "jobs";
+
+                    if (catSlug) u.searchParams.set("cat", catSlug);
+
+                    window.location.href = u.toString();
                     return;
                 }
+
 
                 window.location.href = `${base}/pages/${r.page}`;
                 return;
             }
 
             // fallback: treat as directory search
-            window.location.href = `${base}/pages/resources.html?q=${encodeURIComponent(raw)}`;
+            sessionStorage.setItem("nav_q", raw);
+            sessionStorage.setItem("nav_cat", "");
+            const u = new URL(`${base}/pages/resources`, window.location.href);
+            u.searchParams.set("q", raw);
+            window.location.href = u.toString();
+
         }
 
         // Enter key

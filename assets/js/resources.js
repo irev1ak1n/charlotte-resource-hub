@@ -1,4 +1,6 @@
-console.log("DIRECTORY.JS LOADED");
+// resources.js
+
+console.log("RESOURCES.JS LOADED");
 
 const listEl = document.getElementById("resourceList");
 const statusEl = document.getElementById("resourceStatus");
@@ -12,6 +14,13 @@ const catWrap = document.getElementById("categoryList");
 const viewListBtn = document.getElementById("viewList");
 const viewGridBtn = document.getElementById("viewGrid");
 
+const norm = (s) =>
+    (s || "")
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/\s+/g, " ")
+        .trim();
+
 let allResources = [];
 let filters = {
     category: "",
@@ -21,8 +30,7 @@ let filters = {
 
 if (!listEl || !statusEl) {
     console.log("No directory elements found. Exiting.");
-}
-else {
+} else {
     function setStatus(msg) {
         statusEl.textContent = msg;
     }
@@ -31,6 +39,18 @@ else {
         const url = new URL(window.location.href);
         return (url.searchParams.get(name) || "").trim();
     }
+
+    // NEW: map smart-search category slugs -> your exact category labels
+    // (Edit right-hand values if your JSON uses slightly different names)
+    const CAT_MAP = {
+        education: "Education & Learning",
+        crisis: "Crisis Support",
+        jobs: "Employment & Job Training",
+        health: "Health Support",
+        food: "Basic Needs Assistance",
+        // enable only if you actually have this category label:
+        housing: "Housing & Shelters",
+    };
 
     async function loadResources() {
         const url = new URL("../data/resources.json", window.location.href);
@@ -314,7 +334,8 @@ else {
                 city.includes(q) ||
                 nb.includes(q);
 
-            const matchesCat = !cat || category === cat;
+            const matchesCat = !cat || norm(category) === norm(cat);
+
 
             const matchesCity = filters.cities.size === 0 || (city && filters.cities.has(city));
             const matchesNb = filters.neighborhoods.size === 0 || (nb && filters.neighborhoods.has(nb));
@@ -349,13 +370,60 @@ else {
     loadResources()
         .then(data => {
             allResources = Array.isArray(data) ? data : (Array.isArray(data.resources) ? data.resources : []);
-            renderSidebar(allResources);
             setView("list");
 
-            const navQ = getQueryParam("q");
+            // read nav params and apply before rendering sidebar
+            const navQ = getQueryParam("q") || sessionStorage.getItem("nav_q") || "";
+            const navCat = getQueryParam("cat") || sessionStorage.getItem("nav_cat") || "";
+
+            // clear so it doesn't "stick" on later visits
+            sessionStorage.removeItem("nav_q");
+            sessionStorage.removeItem("nav_cat");
+
             if (navQ && searchEl) searchEl.value = navQ;
 
+            if (navCat) {
+                const mapped = CAT_MAP[navCat.toLowerCase()];
+                if (mapped) filters.category = mapped;
+            }
+
+            // render with correct active category chip
+            renderSidebar(allResources);
             applyFilters();
+
+            // --- sync NAV search <-> Resources search (wait for injected nav) ---
+            (function syncNavToResourceSearch() {
+                const tryBind = () => {
+                    const navInput = document.getElementById("navSearchInput");
+                    if (!navInput || !searchEl) return false;
+
+                    // 1) put the current resources search into the nav input
+                    navInput.value = searchEl.value || "";
+
+                    // 2) when NAV changes, update resources search + filter
+                    navInput.addEventListener("input", () => {
+                        searchEl.value = navInput.value;
+                        applyFilters();
+                    });
+
+                    // 3) when resources search changes, keep NAV in sync
+                    searchEl.addEventListener("input", () => {
+                        navInput.value = searchEl.value;
+                    });
+
+                    return true;
+                };
+
+                // try now, otherwise retry until nav is injected
+                if (tryBind()) return;
+
+                let tries = 0;
+                const t = setInterval(() => {
+                    tries++;
+                    if (tryBind() || tries > 40) clearInterval(t); // ~2s max
+                }, 50);
+            })();
+
 
             if (navQ && searchEl) {
                 searchEl.focus({ preventScroll: true });
@@ -364,12 +432,6 @@ else {
                 const y = searchEl.getBoundingClientRect().top + window.scrollY - 120;
                 window.scrollTo({ top: y, behavior: "smooth" });
             }
-
-            // if (navQ) {
-            //     document.querySelector(".dir-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
-            // }
-
-            // setStatus(`Loaded ${allResources.length} resources`);
 
             if (searchEl) searchEl.addEventListener("input", applyFilters);
             if (sortEl) sortEl.addEventListener("change", applyFilters);
