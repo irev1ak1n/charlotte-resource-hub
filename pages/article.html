@@ -231,11 +231,13 @@
             if (!tagEl.textContent.trim()) tagEl.style.display = "none";
             if (!locEl.textContent.trim()) locEl.style.display = "none";
 
-            // -------- content fill (show MORE) --------
             const intro = item.intro || [];
             const body = item.body || [];
 
-            const text1 = [...intro];        // all intro lines
+            const text1 = intro.length
+                ? [intro.join(" ")]
+                : [];
+
             const text2 = body.slice(0, 4);  // first chunk
             const text3 = body.slice(4);     // rest of article
 
