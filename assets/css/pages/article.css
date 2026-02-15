@@ -381,6 +381,24 @@
     margin-bottom: 48px;
 }
 
+.article-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+}
+
+/* secondary / ghost button */
+.hl-btn-ghost {
+    background: transparent;
+    border: 2px solid rgba(0,0,0,.35);
+    color: rgba(0,0,0,.85);
+}
+
+.hl-btn-ghost:hover {
+    background: rgba(0,0,0,.04);
+}
+
+
 /* mobile tuning */
 @media (max-width: 520px){
     .article-intro .article-text{

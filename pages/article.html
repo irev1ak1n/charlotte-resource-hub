@@ -77,7 +77,13 @@
         </section>
 
         <div class="article-actions">
-            <a class="hl-btn" href="/pages/news.html">← Back to News</a>
+            <button class="hl-btn hl-btn-ghost" id="backBtn">
+                ← Back
+            </button>
+
+            <a class="hl-btn" href="/pages/news.html">
+                Back to News
+            </a>
         </div>
     </div>
 
@@ -130,6 +136,9 @@
             const fig1 = document.getElementById("fig1");
             const fig2 = document.getElementById("fig2");
 
+            // optional: if you add a Back button with id="backBtn"
+            const backBtn = document.getElementById("backBtn");
+
             // ---------- helpers ----------
             function escapeHTML(str) {
                 return String(str ?? "")
@@ -140,17 +149,13 @@
                     .replaceAll("'", "&#039;");
             }
 
-            // Decide whether to use /pages/article or /pages/article.html
-            // Works in local dev (clean URLs) AND static hosting (html files)
+            // Works on localhost clean route (/pages/article) AND static html (/pages/article.html)
             function getArticlePath() {
                 const p = (location.pathname || "").toLowerCase();
                 if (p.endsWith("/article.html") || p.includes("article.html")) return "/pages/article.html";
                 return "/pages/article";
             }
 
-            // Supports:
-            // "## Heading" -> <h2 class="article-h2">Heading</h2>
-            // normal text -> <p>...</p>
             function renderBlock(line) {
                 const s = String(line || "").trim();
                 if (!s) return "";
@@ -178,6 +183,16 @@
 
             function setHTML(el, html) {
                 if (el) el.innerHTML = html ?? "";
+            }
+
+            // ---------- Back button behavior (history-aware) ----------
+            // If you keep ONLY the link, ignore this.
+            // If you add <button id="backBtn">Back</button>, this makes it work.
+            if (backBtn) {
+                backBtn.addEventListener("click", () => {
+                    if (window.history.length > 1) window.history.back();
+                    else window.location.href = "/pages/news.html";
+                });
             }
 
             // ---------- guard: no id ----------
@@ -211,18 +226,18 @@
             document.title = (item.title || "Article") + " | Charlotte Resource Hub";
             setText(titleEl, item.title || "");
 
-            // Eyebrow
+            // Eyebrow: section -> tag
             setText(eyebrowEl, String(item.section || item.tag || "").toUpperCase());
 
-            // Dek/subtitle under title
+            // Dek
             setText(dekEl, item.subtitle || item.dek || "");
             if (!dekEl || !dekEl.textContent.trim()) safeHide(dekEl);
 
-            // Byline pieces
+            // Author
             const author = item.author || "Charlotte Resource Hub Staff";
             setText(byEl, "By " + author);
 
-            // Date formatting
+            // Date
             const d = item.date ? new Date(item.date) : null;
             if (d && !isNaN(d.getTime())) {
                 const pretty = d.toLocaleDateString(undefined, {
@@ -245,7 +260,7 @@
                 safeHide(dot2);
             }
 
-            // Meta line (tag + loc)
+            // Meta (tag + loc)
             setText(tagEl, item.tag || "");
             setText(locEl, item.loc || "");
             if (!tagEl || !tagEl.textContent.trim()) safeHide(tagEl);
@@ -255,10 +270,10 @@
             const intro = Array.isArray(item.intro) ? item.intro : [];
             const body = Array.isArray(item.body) ? item.body : [];
 
-            // Intro rendered as a single paragraph like your current setup
+            // Intro as one "lead" paragraph
             const text1 = intro.length ? [intro.join(" ")] : [];
 
-            // Split body into chunks
+            // Body chunks
             const text2 = body.slice(0, 4);
             const text3 = body.slice(4);
 
@@ -300,7 +315,7 @@
                 moreGrid.innerHTML = others
                     .map((x) => {
                         const href = `${articlePath}?id=${encodeURIComponent(x.id)}`;
-                        const img = String(x.img || "").replaceAll("'", "%27"); // avoid breaking attribute
+                        const img = String(x.img || "").replaceAll("'", "%27");
 
                         return `
               <a class="more-card" href="${href}">
@@ -332,8 +347,6 @@
         }
     })();
 </script>
-
-
 
 </body>
 </html>
