@@ -106,7 +106,7 @@
             const params = new URLSearchParams(location.search);
             const id = (params.get("id") || "").trim();
 
-            // header els
+            // ---------- elements ----------
             const eyebrowEl = document.getElementById("aEyebrow");
             const titleEl = document.getElementById("aTitle");
             const dekEl = document.getElementById("aDek");
@@ -114,11 +114,9 @@
             const dateEl = document.getElementById("aDate");
             const sourceEl = document.getElementById("aSource");
 
-            // meta els
             const tagEl = document.getElementById("aTag");
             const locEl = document.getElementById("aLoc");
 
-            // content els
             const text1El = document.getElementById("aText1");
             const text2El = document.getElementById("aText2");
             const text3El = document.getElementById("aText3");
@@ -132,9 +130,9 @@
             const fig1 = document.getElementById("fig1");
             const fig2 = document.getElementById("fig2");
 
-            // -------- helpers --------
+            // ---------- helpers ----------
             function escapeHTML(str) {
-                return String(str)
+                return String(str ?? "")
                     .replaceAll("&", "&amp;")
                     .replaceAll("<", "&lt;")
                     .replaceAll(">", "&gt;")
@@ -142,9 +140,17 @@
                     .replaceAll("'", "&#039;");
             }
 
+            // Decide whether to use /pages/article or /pages/article.html
+            // Works in local dev (clean URLs) AND static hosting (html files)
+            function getArticlePath() {
+                const p = (location.pathname || "").toLowerCase();
+                if (p.endsWith("/article.html") || p.includes("article.html")) return "/pages/article.html";
+                return "/pages/article";
+            }
+
             // Supports:
-            // "## Heading" → <h2 class="article-h2">Heading</h2>
-            // normal text → <p>...</p>
+            // "## Heading" -> <h2 class="article-h2">Heading</h2>
+            // normal text -> <p>...</p>
             function renderBlock(line) {
                 const s = String(line || "").trim();
                 if (!s) return "";
@@ -153,22 +159,37 @@
                     const heading = s.slice(3).trim();
                     return `<h2 class="article-h2">${escapeHTML(heading)}</h2>`;
                 }
-
                 return `<p>${escapeHTML(s)}</p>`;
             }
 
             const toHTML = (arr) => (arr || []).map(renderBlock).join("");
 
-            // -------- guard: no id --------
+            function safeHide(el) {
+                if (el) el.style.display = "none";
+            }
+
+            function safeShow(el) {
+                if (el) el.style.display = "";
+            }
+
+            function setText(el, text) {
+                if (el) el.textContent = text ?? "";
+            }
+
+            function setHTML(el, html) {
+                if (el) el.innerHTML = html ?? "";
+            }
+
+            // ---------- guard: no id ----------
             if (!id) {
-                titleEl.textContent = "No article selected";
-                text1El.innerHTML = `<p>Please go back and open an article from the News page.</p>`;
-                fig1.style.display = "none";
-                fig2.style.display = "none";
+                setText(titleEl, "No article selected");
+                setHTML(text1El, `<p>Please go back and open an article from the News page.</p>`);
+                safeHide(fig1);
+                safeHide(fig2);
                 return;
             }
 
-            // -------- fetch data --------
+            // ---------- fetch data ----------
             const res = await fetch("/data/news.json", { cache: "no-store" });
             if (!res.ok) throw new Error("news.json not found (status " + res.status + ")");
 
@@ -176,123 +197,129 @@
             const item = items.find((x) => x.id === id);
 
             if (!item) {
-                titleEl.textContent = "Article not found";
-                text1El.innerHTML = `<p>That article id does not exist: <strong>${escapeHTML(id)}</strong></p>`;
-                fig1.style.display = "none";
-                fig2.style.display = "none";
+                setText(titleEl, "Article not found");
+                setHTML(
+                    text1El,
+                    `<p>That article id does not exist: <strong>${escapeHTML(id)}</strong></p>`
+                );
+                safeHide(fig1);
+                safeHide(fig2);
                 return;
             }
 
-            // -------- header fill --------
-            document.title = item.title + " | Charlotte Resource Hub";
-            titleEl.textContent = item.title;
+            // ---------- header fill ----------
+            document.title = (item.title || "Article") + " | Charlotte Resource Hub";
+            setText(titleEl, item.title || "");
 
-            // Eyebrow: use item.section first; else fall back to tag
-            const eyebrow = (item.section || item.tag || "").toUpperCase();
-            eyebrowEl.textContent = eyebrow;
+            // Eyebrow
+            setText(eyebrowEl, String(item.section || item.tag || "").toUpperCase());
 
             // Dek/subtitle under title
-            dekEl.textContent = item.subtitle || item.dek || "";
+            setText(dekEl, item.subtitle || item.dek || "");
+            if (!dekEl || !dekEl.textContent.trim()) safeHide(dekEl);
 
             // Byline pieces
             const author = item.author || "Charlotte Resource Hub Staff";
-            byEl.textContent = "By " + author;
+            setText(byEl, "By " + author);
 
-            // Date formatting (expects item.date like "2026-02-15" OR any parseable date string)
+            // Date formatting
             const d = item.date ? new Date(item.date) : null;
             if (d && !isNaN(d.getTime())) {
                 const pretty = d.toLocaleDateString(undefined, {
                     year: "numeric",
                     month: "long",
-                    day: "numeric"
+                    day: "numeric",
                 });
-                dateEl.textContent = pretty;
+                setText(dateEl, pretty);
                 dateEl.setAttribute("datetime", d.toISOString().slice(0, 10));
             } else {
-                dateEl.textContent = "Updated recently";
+                setText(dateEl, "Updated recently");
                 dateEl.removeAttribute("datetime");
             }
 
             // Source (optional)
-            const source = item.source || "";
-            sourceEl.textContent = source;
-
-            // If no subtitle or no source, hide cleanly
-            if (!dekEl.textContent.trim()) dekEl.style.display = "none";
-            if (!sourceEl.textContent.trim()) {
-                sourceEl.style.display = "none";
+            setText(sourceEl, item.source || "");
+            if (!sourceEl || !sourceEl.textContent.trim()) {
+                safeHide(sourceEl);
                 const dot2 = document.querySelector(".article-dot-2");
-                if (dot2) dot2.style.display = "none";
+                safeHide(dot2);
             }
 
             // Meta line (tag + loc)
-            tagEl.textContent = item.tag || "";
-            locEl.textContent = item.loc || "";
-            if (!tagEl.textContent.trim()) tagEl.style.display = "none";
-            if (!locEl.textContent.trim()) locEl.style.display = "none";
+            setText(tagEl, item.tag || "");
+            setText(locEl, item.loc || "");
+            if (!tagEl || !tagEl.textContent.trim()) safeHide(tagEl);
+            if (!locEl || !locEl.textContent.trim()) safeHide(locEl);
 
-            const intro = item.intro || [];
-            const body = item.body || [];
+            // ---------- content ----------
+            const intro = Array.isArray(item.intro) ? item.intro : [];
+            const body = Array.isArray(item.body) ? item.body : [];
 
-            const text1 = intro.length
-                ? [intro.join(" ")]
-                : [];
+            // Intro rendered as a single paragraph like your current setup
+            const text1 = intro.length ? [intro.join(" ")] : [];
 
-            const text2 = body.slice(0, 4);  // first chunk
-            const text3 = body.slice(4);     // rest of article
+            // Split body into chunks
+            const text2 = body.slice(0, 4);
+            const text3 = body.slice(4);
 
-            text1El.innerHTML = toHTML(text1);
-            text2El.innerHTML = toHTML(text2);
-            text3El.innerHTML = toHTML(text3);
+            setHTML(text1El, toHTML(text1));
+            setHTML(text2El, toHTML(text2));
+            setHTML(text3El, toHTML(text3));
 
-            // -------- images --------
+            // ---------- images ----------
             const img1 = item.img;
             const img2 = item.img2 || item.img;
 
             if (img1 && String(img1).trim()) {
                 img1El.src = img1;
                 img1El.alt = item.title || "Article image";
+                safeShow(fig1);
             } else {
-                fig1.style.display = "none";
+                safeHide(fig1);
             }
 
             if (img2 && String(img2).trim()) {
                 img2El.src = img2;
                 img2El.alt = (item.title || "Article image") + " photo";
+                safeShow(fig2);
             } else {
-                fig2.style.display = "none";
+                safeHide(fig2);
             }
 
-            cap1El.textContent = item.caption1 || "";
-            cap2El.textContent = item.caption2 || "";
+            setText(cap1El, item.caption1 || "");
+            setText(cap2El, item.caption2 || "");
+            if (!cap1El || !cap1El.textContent.trim()) safeHide(cap1El);
+            if (!cap2El || !cap2El.textContent.trim()) safeHide(cap2El);
 
-            if (!cap1El.textContent.trim()) cap1El.style.display = "none";
-            if (!cap2El.textContent.trim()) cap2El.style.display = "none";
-
-            // -------- More Happenings --------
+            // ---------- More Happenings ----------
             const moreGrid = document.getElementById("moreGrid");
             if (moreGrid) {
                 const others = items.filter((x) => x.id !== id).slice(0, 4);
+                const articlePath = getArticlePath();
 
                 moreGrid.innerHTML = others
-                    .map(
-                        (x) => `
-            <a class="more-card" href="/pages/article.html?id=${x.id}">
-              <div class="more-media" style="--img:url('${x.img}')"></div>
-              <div class="more-body">
-                <div class="more-meta">
-                  <span class="more-tag">${escapeHTML(x.tag || "")}</span>
-                  <span class="more-loc">${escapeHTML(x.loc || "")}</span>
+                    .map((x) => {
+                        const href = `${articlePath}?id=${encodeURIComponent(x.id)}`;
+                        const img = String(x.img || "").replaceAll("'", "%27"); // avoid breaking attribute
+
+                        return `
+              <a class="more-card" href="${href}">
+                <div class="more-media" style="--img:url('${img}')"></div>
+                <div class="more-body">
+                  <div class="more-meta">
+                    <span class="more-tag">${escapeHTML(x.tag || "")}</span>
+                    <span class="more-loc">${escapeHTML(x.loc || "")}</span>
+                  </div>
+                  <h3 class="more-h3">${escapeHTML(x.title || "")}</h3>
                 </div>
-                <h3 class="more-h3">${escapeHTML(x.title || "")}</h3>
-              </div>
-            </a>
-          `
-                    )
+              </a>
+            `;
+                    })
                     .join("");
             }
         } catch (err) {
             console.error(err);
+
             const title = document.getElementById("aTitle");
             const text1 = document.getElementById("aText1");
             const fig1 = document.getElementById("fig1");
@@ -305,6 +332,7 @@
         }
     })();
 </script>
+
 
 
 </body>
