@@ -222,7 +222,7 @@
 
                 {
                     page: "faqs.html",
-                    keys: ["faq", "faqs", "questions", "help questions"],
+                    keys: ["faq", "faqs", "questions", "questions"],
                 },
 
                 {
@@ -234,6 +234,7 @@
                         "message",
                         "reach out",
                         "get in touch",
+                        "help",
                     ],
                 },
 
