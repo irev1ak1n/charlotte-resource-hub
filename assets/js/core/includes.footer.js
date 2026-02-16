@@ -1,27 +1,23 @@
 (async () => {
-
     async function injectFooter() {
-
-        // Where the footer will be placed
         const footerMount = document.getElementById("siteFooter");
-        if (!footerMount) return; // stop if page doesn’t have a footer slot
+        if (!footerMount) return;
 
-        // Prevent loading the footer more than once
         if (footerMount.dataset.loaded === "1") return;
         footerMount.dataset.loaded = "1";
 
-        // Check if we are inside /pages/ folder
         const inPages = location.pathname.includes("/pages/");
         const base = inPages ? ".." : ".";
 
-        // Fetch the footer partial
         const res = await fetch(`${base}/partials/footer.html`, { cache: "no-store" });
         if (!res.ok) throw new Error(`Footer include failed: ${res.status}`);
 
-        // Inserts footer HtML into the page
+
         footerMount.innerHTML = await res.text();
 
-        // Fix relative paths when footer is loaded from /pages/
+
+        wireFooterTopicLinks(footerMount, base);
+
         if (inPages) {
             footerMount
                 .querySelectorAll('[src^="assets/"], [href^="assets/"]')
@@ -31,13 +27,30 @@
                 });
         }
 
-        // Initializes newsletter logic after footer is loaded
-        if (window.initNewsletter) {
-            window.initNewsletter();
-        }
+        if (window.initNewsletter) window.initNewsletter();
     }
 
-    // Runs footer injection and catch any errors
-    injectFooter().catch(console.error);
+    function wireFooterTopicLinks(footerMount, base) {
+        const links = footerMount.querySelectorAll("a.footer-topic[data-cat]");
+        if (!links.length) return;
+        
+        const useHtml = /\.html($|[?#])/.test(window.location.pathname);
 
+        links.forEach(a => {
+            const cat = (a.dataset.cat || "").trim().toLowerCase();
+            if (!cat) return;
+
+            // Always handle click ourselves so query NEVER gets lost
+            a.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                const page = useHtml ? "resources.html" : "resources";
+                const dest = `${base}/pages/${page}?cat=${encodeURIComponent(cat)}#directory`;
+                window.location.assign(dest);
+            });
+        });
+    }
+
+
+    injectFooter().catch(console.error);
 })();

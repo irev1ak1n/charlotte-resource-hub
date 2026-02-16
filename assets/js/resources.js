@@ -40,17 +40,18 @@ if (!listEl || !statusEl) {
         return (url.searchParams.get(name) || "").trim();
     }
 
-    // NEW: map smart-search category slugs -> your exact category labels
-    // (Edit right-hand values if your JSON uses slightly different names)
     const CAT_MAP = {
         education: "Education & Learning",
         crisis: "Crisis Support",
         jobs: "Employment & Job Training",
         health: "Health Support",
         food: "Basic Needs Assistance",
-        // enable only if you actually have this category label:
         housing: "Housing & Shelters",
+
+        disability: "Disability Support",
+        environment: "Environmental Assistance",
     };
+
 
     async function loadResources() {
         const url = new URL("../data/resources.json", window.location.href);
