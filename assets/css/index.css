@@ -1473,3 +1473,18 @@
     margin-bottom: 22px;
     color: #1c1c1c;
 }
+
+
+
+
+.home-head {
+    margin-bottom: 28px;
+}
+
+.home-title {
+    font-family: "Bree Serif", serif;
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.2;
+    color: rgba(12,16,24,.92);
+    text-align: left;
+}

@@ -183,5 +183,132 @@
       "Comfortable clothing and closed shoes are recommended. Organizers aim to keep tasks safe and simple.",
       "Attending with friends can make the experience more enjoyable. Volunteering strengthens neighborhoods and shared responsibility."
     ]
+  },
+
+  {
+    "id": "shopping",
+    "section": "Guides",
+    "tag": "SHOPPING",
+    "loc": "Charlotte",
+    "title": "Charlotte Shopping Guide",
+    "subtitle": "From local boutiques to destination shopping districts across the city.",
+    "img": "/assets/img/articles/shopping.jpg",
+    "img2": "/assets/img/articles/shopping-2.jpg",
+    "author": "Charlotte Resource Hub Staff",
+    "date": "2026-02-04",
+    "intro": [
+      "Charlotte has a shopping scene that feels both local and big city at the same time.",
+      "You can spend one day finding small shops with personality and the next day visiting major malls with everything in one place."
+    ],
+    "body": [
+      "## Local favorites",
+      "If you like places that feel personal, start in neighborhoods that are known for small businesses and local makers.",
+      "In areas like NoDa, Plaza Midwood, and South End, you will find vintage stores, gift shops, and small brands that you do not see everywhere.",
+      "These spots are great when you want something that feels unique, like a handmade item, a special card, or a piece of clothing that is not part of the same trend cycle.",
+      "A good tip is to take your time and walk around instead of trying to hit everything fast. The best finds usually happen when you slow down and explore.",
+      "## Major shopping destinations",
+      "When you want variety without driving all over the city, Charlotte has strong main shopping districts that make it easy to compare options.",
+      "SouthPark is one of the biggest destinations, with a mix of popular brands, classic department stores, and places to grab food nearby.",
+      "You can also find open air shopping areas where stores, restaurants, and cafés are close together, which makes the trip feel less like an errand and more like a day out.",
+      "If you are shopping with family or friends, these larger areas are usually the easiest choice because everyone can find something they like.",
+      "## Make the day easier",
+      "If you can, go earlier on weekends because parking is easier and lines are shorter.",
+      "If you are exploring neighborhood shops, wear comfortable shoes and plan for a slower pace. You will enjoy it more and you will notice more along the way."
+    ]
+  },
+
+  {
+    "id": "whitewater",
+    "section": "Guides",
+    "tag": "OUTDOORS & ADVENTURE",
+    "loc": "West Charlotte",
+    "title": "Experience Winter at the Whitewater Center",
+    "subtitle": "Lights, ice skating, and outdoor fun just minutes from Uptown.",
+    "img": "/assets/img/articles/winter-in-charlotte.jpg",
+    "img2": "/assets/img/articles/winter-in-charlotte-2.jpg",
+    "author": "Charlotte Resource Hub Staff",
+    "date": "2026-02-04",
+    "intro": [
+      "Every winter, the Whitewater Center turns into one of the most fun seasonal spots in the Charlotte area.",
+      "It feels like a quick escape from the normal routine, even though it is still close to the city."
+    ],
+    "body": [
+      "## A winter atmosphere that feels special",
+      "The winter season often brings lights, music, and a warm holiday feeling that makes the whole place feel different from a normal day visit.",
+      "Many people come for the atmosphere as much as the activities, because it is a great place to take photos, walk around, and enjoy the night air.",
+      "It is also a good choice when you want something to do that does not feel like the same restaurant plan again.",
+      "## Activities that work for different ages",
+      "Ice skating is one of the main reasons people visit in winter, and it works for families, groups, and couples.",
+      "There are usually trails or walking areas where you can take your time and enjoy the lights without needing to rush to the next thing.",
+      "Some nights may include special events that make the visit feel more like a seasonal tradition than a one time trip.",
+      "## Planning your visit",
+      "Winter activities are often available from late November through February, but it is always smart to check the schedule before you go.",
+      "Weekends tend to be busier, so going earlier in the day can help you avoid long waits and crowded areas.",
+      "If you want a calmer visit, a weekday evening can feel more relaxed while still having the seasonal experience."
+    ]
+  },
+
+  {
+    "id": "spa",
+    "section": "Guides",
+    "tag": "THINGS TO DO",
+    "loc": "Charlotte",
+    "title": "The Ultimate Charlotte Spa Guide",
+    "subtitle": "Relaxation and wellness experiences across the city.",
+    "img": "/assets/img/articles/spa.jpg",
+    "img2": "/assets/img/articles/spa-2.jpg",
+    "author": "Charlotte Resource Hub Staff",
+    "date": "2026-02-05",
+    "intro": [
+      "Charlotte has more wellness options than people expect, and new places continue to grow each year.",
+      "A spa day can be a simple reset when life feels busy and you need time to slow down."
+    ],
+    "body": [
+      "## Why a spa day can be worth it",
+      "A good spa visit is not only about luxury. It can be a real way to feel better, both mentally and physically.",
+      "Even a short massage or facial can help you relax, release tension, and leave feeling more clear headed.",
+      "Some people use spa visits to recover from stress, while others use them as a healthy routine that keeps their energy steady.",
+      "## Day spas and simple services",
+      "Many day spas offer options that fit into a normal schedule, like a one hour massage or a focused skincare treatment.",
+      "If you are new to spas, starting small can help you feel comfortable. You can always build up to longer visits later.",
+      "Staff can also help you choose the right service based on what you want, whether it is relaxation, recovery, or just a calm break from the week.",
+      "## Turning it into a full experience",
+      "Some wellness spots include extra features that make the visit feel more complete, like quiet spaces, calming rooms, or recovery focused options.",
+      "If you want the best experience, booking ahead is a good idea because weekends and evenings can fill up quickly.",
+      "When you plan your visit well, you will not feel rushed and you will actually get the calm feeling you came for."
+    ]
+  },
+
+  {
+    "id": "opened",
+    "section": "Guides",
+    "tag": "EAT & DRINK",
+    "loc": "Charlotte",
+    "title": "Just Opened in Charlotte February 2026",
+    "subtitle": "New restaurants, cafés, and bars worth checking out.",
+    "img": "/assets/img/articles/just-opened-in-charlotte.jpg",
+    "img2": "/assets/img/articles/just-opened-in-charlotte-2new.jpg",
+    "author": "Charlotte Resource Hub Staff",
+    "date": "2026-02-02",
+    "intro": [
+      "Charlotte keeps growing, and one of the most exciting signs is how fast new food spots open across the city.",
+      "Trying a new place can turn a normal week into something memorable, even if it is just a quick lunch stop."
+    ],
+    "body": [
+      "## What makes new openings exciting",
+      "New restaurants and cafés often bring fresh energy to a neighborhood. They add variety and give people new places to gather.",
+      "Some new spots focus on comfort food done really well, while others introduce flavors and ideas that feel new to the city.",
+      "Even if you do not try every new place, keeping an eye on openings helps you stay connected to what is changing around Charlotte.",
+      "## How to pick the right spot",
+      "If you want a calm visit, try going on a weekday because weekends can get crowded fast when a place is new.",
+      "If you are visiting with friends, it can help to look at the menu ahead of time so you are not deciding everything at the table.",
+      "A good rule is to start with one signature item, like the dish or drink people talk about most, then branch out on your next visit.",
+      "## Supporting local businesses",
+      "New businesses depend on early support from the community. One visit can make a bigger impact than people realize.",
+      "Leaving a kind review and telling a friend helps local owners build momentum.",
+      "When you support new spots, you help keep Charlotte’s food scene creative, diverse, and growing."
+    ]
   }
+
+
 ]

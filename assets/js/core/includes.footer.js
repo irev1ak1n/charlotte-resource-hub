@@ -33,7 +33,7 @@
     function wireFooterTopicLinks(footerMount, base) {
         const links = footerMount.querySelectorAll("a.footer-topic[data-cat]");
         if (!links.length) return;
-        
+
         const useHtml = /\.html($|[?#])/.test(window.location.pathname);
 
         links.forEach(a => {

@@ -77,27 +77,24 @@
         </section>
 
         <div class="article-actions">
-            <button class="hl-btn hl-btn-ghost" id="backBtn">
-                ← Back
-            </button>
+            <button class="hl-btn hl-btn-ghost" id="backBtn">← Back</button>
 
-            <a class="hl-btn" href="/pages/news.html">
+            <a class="hl-btn" id="primaryReturnBtn" href="/pages/news.html">
                 Back to News
             </a>
         </div>
     </div>
 
-    <!-- Optional More Happenings -->
-    <section class="more-wrap">
+    <section class="more-wrap" id="moreWrap">
         <div class="container">
             <div class="more-head">
-                <h2 class="more-title">More Happenings</h2>
-                <a class="more-link" href="/pages/news.html">View all</a>
+                <h2 class="more-title" id="moreTitle">More Happenings</h2>
+                <a class="more-link" id="moreLink" href="/pages/news.html">View all</a>
             </div>
-
             <div id="moreGrid" class="more-grid"></div>
         </div>
     </section>
+
 </main>
 
 <div id="siteFooter"></div>
@@ -105,12 +102,15 @@
 <script src="../assets/js/core/includes.footer.js" defer></script>
 <script src="../assets/js/core/newsletter.js" defer></script>
 <script src="../assets/js/core/includes.nav.js" defer></script>
-
 <script>
     (async function () {
         try {
             const params = new URLSearchParams(location.search);
             const id = (params.get("id") || "").trim();
+
+            // NEW: mode (news vs guide)
+            const type = (params.get("type") || "news").trim().toLowerCase();
+            const isGuide = type === "guide";
 
             // ---------- elements ----------
             const eyebrowEl = document.getElementById("aEyebrow");
@@ -136,8 +136,16 @@
             const fig1 = document.getElementById("fig1");
             const fig2 = document.getElementById("fig2");
 
-            // optional: if you add a Back button with id="backBtn"
             const backBtn = document.getElementById("backBtn");
+
+            // NEW: primary return link
+            const primaryReturnBtn = document.getElementById("primaryReturnBtn");
+
+            // NEW: More section ids
+            const moreWrap = document.getElementById("moreWrap");
+            const moreTitle = document.getElementById("moreTitle");
+            const moreLink = document.getElementById("moreLink");
+            const moreGrid = document.getElementById("moreGrid");
 
             // ---------- helpers ----------
             function escapeHTML(str) {
@@ -185,22 +193,50 @@
                 if (el) el.innerHTML = html ?? "";
             }
 
+            function hideMore() {
+                if (moreWrap) moreWrap.style.display = "none";
+            }
+
+            // ---------- buttons and More section mode ----------
+            if (primaryReturnBtn) {
+                if (isGuide) {
+                    primaryReturnBtn.href = "/#services";
+                    primaryReturnBtn.textContent = "Back to Home";
+                } else {
+                    primaryReturnBtn.href = "/pages/news.html";
+                    primaryReturnBtn.textContent = "Back to News";
+                }
+            }
+
+            if (isGuide) {
+                if (moreTitle) moreTitle.textContent = "More Guides";
+                if (moreLink) {
+                    moreLink.textContent = "View all";
+                    moreLink.href = "/#services";
+                }
+            } else {
+                if (moreTitle) moreTitle.textContent = "More Happenings";
+                if (moreLink) {
+                    moreLink.textContent = "View all";
+                    moreLink.href = "/pages/news.html";
+                }
+            }
+
             // ---------- Back button behavior (history-aware) ----------
-            // If you keep ONLY the link, ignore this.
-            // If you add <button id="backBtn">Back</button>, this makes it work.
             if (backBtn) {
                 backBtn.addEventListener("click", () => {
                     if (window.history.length > 1) window.history.back();
-                    else window.location.href = "/pages/news.html";
+                    else window.location.href = isGuide ? "/#services" : "/pages/news.html";
                 });
             }
 
             // ---------- guard: no id ----------
             if (!id) {
                 setText(titleEl, "No article selected");
-                setHTML(text1El, `<p>Please go back and open an article from the News page.</p>`);
+                setHTML(text1El, `<p>Please go back and open an article.</p>`);
                 safeHide(fig1);
                 safeHide(fig2);
+                hideMore();
                 return;
             }
 
@@ -219,6 +255,7 @@
                 );
                 safeHide(fig1);
                 safeHide(fig2);
+                hideMore();
                 return;
             }
 
@@ -306,31 +343,44 @@
             if (!cap1El || !cap1El.textContent.trim()) safeHide(cap1El);
             if (!cap2El || !cap2El.textContent.trim()) safeHide(cap2El);
 
-            // ---------- More Happenings ----------
-            const moreGrid = document.getElementById("moreGrid");
+            // ---------- More cards ----------
             if (moreGrid) {
-                const others = items.filter((x) => x.id !== id).slice(0, 4);
-                const articlePath = getArticlePath();
+                const others = items
+                    .filter((x) => x.id !== id)
+                    .filter((x) =>
+                        isGuide
+                            ? (x.type === "guide" || x.section === "Guides")
+                            : (x.type !== "guide" && x.section !== "Guides")
+                    )
+                    .slice(0, 4);
 
-                moreGrid.innerHTML = others
-                    .map((x) => {
-                        const href = `${articlePath}?id=${encodeURIComponent(x.id)}`;
-                        const img = String(x.img || "").replaceAll("'", "%27");
+                if (!others.length) {
+                    hideMore();
+                } else {
+                    const articlePath = getArticlePath();
 
-                        return `
-              <a class="more-card" href="${href}">
-                <div class="more-media" style="--img:url('${img}')"></div>
-                <div class="more-body">
-                  <div class="more-meta">
-                    <span class="more-tag">${escapeHTML(x.tag || "")}</span>
-                    <span class="more-loc">${escapeHTML(x.loc || "")}</span>
+                    moreGrid.innerHTML = others
+                        .map((x) => {
+                            const href = `${articlePath}?type=${isGuide ? "guide" : "news"}&id=${encodeURIComponent(
+                                x.id
+                            )}`;
+                            const img = String(x.img || "").replaceAll("'", "%27");
+
+                            return `
+                <a class="more-card" href="${href}">
+                  <div class="more-media" style="--img:url('${img}')"></div>
+                  <div class="more-body">
+                    <div class="more-meta">
+                      <span class="more-tag">${escapeHTML(x.tag || "")}</span>
+                      <span class="more-loc">${escapeHTML(x.loc || "")}</span>
+                    </div>
+                    <h3 class="more-h3">${escapeHTML(x.title || "")}</h3>
                   </div>
-                  <h3 class="more-h3">${escapeHTML(x.title || "")}</h3>
-                </div>
-              </a>
-            `;
-                    })
-                    .join("");
+                </a>
+              `;
+                        })
+                        .join("");
+                }
             }
         } catch (err) {
             console.error(err);
@@ -339,14 +389,17 @@
             const text1 = document.getElementById("aText1");
             const fig1 = document.getElementById("fig1");
             const fig2 = document.getElementById("fig2");
+            const moreWrap = document.getElementById("moreWrap");
 
             if (title) title.textContent = "Could not load article";
-            if (text1) text1.innerHTML = `<p>Open DevTools => Console to see the error.</p>`;
+            if (text1) text1.innerHTML = `<p>Open DevTools and check the console for the error.</p>`;
             if (fig1) fig1.style.display = "none";
             if (fig2) fig2.style.display = "none";
+            if (moreWrap) moreWrap.style.display = "none";
         }
     })();
 </script>
+
 
 </body>
 </html>
