@@ -49,6 +49,7 @@ if (!listEl || !statusEl) {
         housing: "Housing & Shelters",
 
         disability: "Disability Support",
+        family: "Family Services",
         environment: "Environmental Assistance",
     };
 

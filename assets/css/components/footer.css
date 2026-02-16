@@ -144,6 +144,19 @@
     overflow: visible !important;
 }
 
+.footer-terms {
+    color: #fff;
+    opacity: .95;
+    font-weight: 800;
+}
+
+
+.footer-terms:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+
 .hub-social a[aria-label="Instagram"]:hover { background:#E1306C; }
 .hub-social a[aria-label="Facebook"]:hover  { background:#1877F2; }
 .hub-social a[aria-label="TikTok"]:hover    { background:#000; }
