@@ -1,7 +1,3 @@
-/* =======  NEWSLETTER — EXPANDABLE FIELDS & STATES ========
-   Handles: expanded form fields, submit button, country dropdown
-   autofill, validation, success UI and mobile responsiveness */
-
 .hub-newsletter{
     background:#000;
     overflow:hidden;
