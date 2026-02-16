@@ -1521,6 +1521,7 @@
     font-size: 18px;
     line-height: 1.75;
     color: rgba(12,16,24,.70);
+    white-space: nowrap;
 }
 
 .cat-spotlight-grid{
