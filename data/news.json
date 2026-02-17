@@ -7,8 +7,8 @@
     "img": "/assets/img/news/articles/mutual-aid-article.jpg",
     "img2": "/assets/img/news/articles/mutual-aid-article-2.jpg",
     "intro": [
-      "In East Charlotte, a new mutual aid center has opened to help neighbors get support faster.",
-      "The center focuses on food, basic supplies, and creating a place where people feel welcome asking for help."
+      "In East Charlotte, a new mutual aid center operated by the East Charlotte Mutual Aid Network has opened to help neighbors get support faster.",
+      "The center focuses on food, basic supplies, and creating a space where people feel welcome and respected when asking for help."
     ],
     "body": [
       "## What the center provides",
@@ -40,7 +40,7 @@
     "img2": "/assets/img/news/articles/job-fair-article-2.jpg",
     "intro": [
       "A job fair in Uptown is bringing employers and training programs together in one place.",
-      "It gives job seekers a chance to explore opportunities and learn what companies are looking for."
+      "It gives job seekers a chance to explore opportunities and learn what companies are looking for. The job fair will take place on March 14 from 10:00 a.m. to 2:00 p.m. at a conference space in Uptown Charlotte near public transportation."
     ],
     "body": [
       "## What you will find there",
@@ -71,7 +71,7 @@
     "img2": "/assets/img/news/articles/wellness-clinic-article-2.jpg",
     "intro": [
       "A free wellness clinic weekend in West Charlotte will offer basic health screenings and support.",
-      "The clinic welcomes families and seniors who want to learn more about their health."
+      "The clinic welcomes families and seniors who want to learn more about their health. The clinic will be held on Saturday and Sunday, March 22–23, from 9:00 a.m. to 4:00 p.m. at a community center in West Charlotte."
     ],
     "body": [
       "## What the clinic offers",
@@ -101,7 +101,7 @@
     "img2": "/assets/img/news/articles/rent-article-2.jpg",
     "intro": [
       "New intake dates are available for residents seeking rent assistance in North Charlotte.",
-      "These programs help families stay housed during challenging financial times."
+      "These programs help families stay housed during challenging financial times. Intake appointments will be available on March 18 and March 20 between 9:00 a.m. and 1:00 p.m. at a housing assistance office in North Charlotte."
     ],
     "body": [
       "## Getting ready to apply",
@@ -132,7 +132,7 @@
     "img2": "/assets/img/news/articles/stem-kid-article-2.jpg",
     "intro": [
       "After school STEM programs are now open for students who enjoy hands on learning.",
-      "These programs help students grow skills while building curiosity and confidence."
+      "These programs help students grow skills while building curiosity and confidence. Programs begin the week of March 25 and run Monday through Friday from 3:30 p.m. to 6:00 p.m. at South End community learning spaces."
     ],
     "body": [
       "## Learning through projects",
@@ -163,7 +163,7 @@
     "img2": "/assets/img/news/articles/volunteer-article-2.jpg",
     "intro": [
       "Citywide volunteer events this Saturday invite residents to support local efforts.",
-      "Activities include food packing, cleanup projects, and donation sorting."
+      "Activities include food packing, cleanup projects, and donation sorting. Volunteer activities will take place this Saturday, March 9, from 9:00 a.m. to 1:00 p.m. at multiple sites across Charlotte."
     ],
     "body": [
       "## Easy to join",
@@ -291,23 +291,26 @@
     "author": "Charlotte Resource Hub Staff",
     "date": "2026-02-02",
     "intro": [
-      "Charlotte keeps growing, and one of the most exciting signs is how fast new food spots open across the city.",
-      "Trying a new place can turn a normal week into something memorable, even if it is just a quick lunch stop."
+      "Charlotte keeps growing, and one of the most exciting signs is how quickly new restaurants and cafés are opening across the city.",
+      "Recent openings in neighborhoods like South End, NoDa, and Plaza Midwood are giving residents new local spots to explore, even if it is just for a quick lunch or coffee break."
     ],
     "body": [
       "## What makes new openings exciting",
       "New restaurants and cafés often bring fresh energy to a neighborhood. They add variety and give people new places to gather.",
       "Some new spots focus on comfort food done really well, while others introduce flavors and ideas that feel new to the city.",
       "Even if you do not try every new place, keeping an eye on openings helps you stay connected to what is changing around Charlotte.",
+
       "## How to pick the right spot",
       "If you want a calm visit, try going on a weekday because weekends can get crowded fast when a place is new.",
       "If you are visiting with friends, it can help to look at the menu ahead of time so you are not deciding everything at the table.",
       "A good rule is to start with one signature item, like the dish or drink people talk about most, then branch out on your next visit.",
+
       "## Supporting local businesses",
       "New businesses depend on early support from the community. One visit can make a bigger impact than people realize.",
       "Leaving a kind review and telling a friend helps local owners build momentum.",
       "When you support new spots, you help keep Charlotte’s food scene creative, diverse, and growing."
     ]
+
   }
 
 
