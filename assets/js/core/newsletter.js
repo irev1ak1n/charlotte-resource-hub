@@ -1,90 +1,72 @@
 window.initNewsletter = function () {
+    const form = document.getElementById("newsletterForm");
+    const email = document.getElementById("nycEmail");
+    const extra = document.getElementById("newsletterExtra");
+    const section = document.querySelector(".hub-newsletter");
+    const btn = document.getElementById("newsletterPrimaryBtn");
 
-    const form  = document.getElementById('newsletterForm');
-    const email = document.getElementById('nycEmail');
-    const extra = document.getElementById('newsletterExtra');
-    const section = document.querySelector('.hub-newsletter');
-    const btn= document.getElementById('newsletterPrimaryBtn');
+    const nameEl = document.getElementById("nycName");
+    const zipEl = document.getElementById("nycZip");
+    const phoneEl = document.getElementById("nycPhone");
 
-    // extra fields
-    const nameEl = document.getElementById('nycName');
-    const zipEl  = document.getElementById('nycZip');
+    const errEmail = document.getElementById("errEmail");
+    const errName = document.getElementById("errName");
+    const errCountry = document.getElementById("errCountry");
+    const errZip = document.getElementById("errZip");
+    const errPhone = document.getElementById("errPhone");
 
-    // error placeholders
-    const errEmail   = document.getElementById('errEmail');
-    const errName    = document.getElementById('errName');
-    const errCountry = document.getElementById('errCountry');
-    const errZip     = document.getElementById('errZip');
-
-    // country dropdown elements
-    const input     = document.getElementById("nycCountryInput");
-    const hidden    = document.getElementById("nycCountryHidden");
-    const list      = document.getElementById("countryList");
-    const box       = document.getElementById("countryBox");
+    const input = document.getElementById("nycCountryInput");
+    const hidden = document.getElementById("nycCountryHidden");
+    const list = document.getElementById("countryList");
+    const box = document.getElementById("countryBox");
     const toggleBtn = box ? box.querySelector(".hub-country-toggle") : null;
 
-    // if newsletter block isn't on this page, do nothing
     if (!form || !email || !extra || !section) return;
 
-    // newsletter expand (locked open)
-
-    // once expanded, never auto-collapse
     let lockedOpen = false;
-    // show red messages after user tries to submit
     let hasTriedSubmit = false;
 
     function looksLikeEmail(v) {
-        v = (v || '').trim();
+        v = (v || "").trim();
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     }
 
     function setExpanded(on) {
-        if (lockedOpen && !on) return; // don't shrink once locked
-        form.classList.toggle('is-expanded', on);
-        section.classList.toggle('is-expanded', on);
-        extra.setAttribute('aria-hidden', String(!on));
+        if (lockedOpen && !on) return;
+        form.classList.toggle("is-expanded", on);
+        section.classList.toggle("is-expanded", on);
+        extra.setAttribute("aria-hidden", String(!on));
     }
 
-    // expand and lock when email becomes valid (won't shrink on delete)
-    email.addEventListener('input', () => {
-        if (looksLikeEmail(email.value)) {
-            lockedOpen = true;
-            setExpanded(true);
-        } else {
-            setExpanded(false);
-        }
-
-        // live clear email error if user is typing
-        if (hasTriedSubmit) setErr(email, errEmail, "");
-    });
-
-    // expand and lock when user clicks SIGN UP
-    if (btn) {
-        btn.addEventListener('click', () => {
-            lockedOpen = true;
-            setExpanded(true);
-            email.focus();
-        });
-    }
-
-    /* red errors */
     function setErr(inputEl, errEl, msg) {
         if (!inputEl || !errEl) return;
         const hasMsg = !!msg;
-
         errEl.textContent = msg || "";
         inputEl.classList.toggle("is-invalid", hasMsg);
-    } //
+    }
 
     function setCountryErr(msg) {
         if (errCountry) errCountry.textContent = msg || "";
         if (box) box.classList.toggle("is-invalid", !!msg);
-    } // setCountryErr
+    }
+
+    function requireDigitsOnly(value, fieldName) {
+        const v = (value || "").trim();
+        if (!v) throw new Error(`${fieldName} is required`);
+        if (!/^\d+$/.test(v)) throw new Error(`${fieldName} must contain numbers only`);
+    }
+
+    function validatePhone(value) {
+        const v = (value || "").trim();
+        if (!v) return;
+        if (!/^[\d\s()+-]+$/.test(v)) throw new Error("Phone number contains invalid characters");
+        const digits = v.replace(/\D/g, "");
+        if (digits.length > 0 && digits.length < 7) throw new Error("Phone number looks too short");
+    }
 
     function validateAll() {
         let ok = true;
 
-        // Email
         if (!looksLikeEmail(email.value)) {
             setErr(email, errEmail, "Email is required");
             ok = false;
@@ -92,7 +74,6 @@ window.initNewsletter = function () {
             setErr(email, errEmail, "");
         }
 
-        // Full Name
         if (nameEl) {
             if (nameEl.value.trim().length < 2) {
                 setErr(nameEl, errName, "Full Name is required");
@@ -102,7 +83,6 @@ window.initNewsletter = function () {
             }
         }
 
-        // Country (hidden field is the actual submitted value)
         if (hidden) {
             if (!hidden.value || hidden.value.trim().length === 0) {
                 setCountryErr("Country is required");
@@ -112,20 +92,48 @@ window.initNewsletter = function () {
             }
         }
 
-        // Zip
         if (zipEl) {
-            if (!zipEl.value.trim()) {
-                setErr(zipEl, errZip, "Zip Code is required");
-                ok = false;
-            } else {
+            try {
+                requireDigitsOnly(zipEl.value, "Zip Code");
                 setErr(zipEl, errZip, "");
+            } catch (err) {
+                setErr(zipEl, errZip, err.message || "Zip Code is invalid");
+                ok = false;
+            }
+        }
+
+        if (phoneEl) {
+            try {
+                validatePhone(phoneEl.value);
+                if (errPhone) setErr(phoneEl, errPhone, "");
+            } catch (err) {
+                if (errPhone) setErr(phoneEl, errPhone, err.message || "Phone number is invalid");
+                else setErr(phoneEl, errZip, err.message || "Phone number is invalid");
+                ok = false;
             }
         }
 
         return ok;
     }
 
-    // Validate on submit (SUBSCRIBE button submits the form)
+    email.addEventListener("input", () => {
+        if (looksLikeEmail(email.value)) {
+            lockedOpen = true;
+            setExpanded(true);
+        } else {
+            setExpanded(false);
+        }
+        if (hasTriedSubmit) setErr(email, errEmail, "");
+    });
+
+    if (btn) {
+        btn.addEventListener("click", () => {
+            lockedOpen = true;
+            setExpanded(true);
+            email.focus();
+        });
+    }
+
     form.addEventListener("submit", (e) => {
         hasTriedSubmit = true;
 
@@ -150,112 +158,92 @@ window.initNewsletter = function () {
                 submitBtn.textContent = "SENDING...";
             }
 
-            // Ensure target exists
             form.setAttribute("target", "mlFrame");
-
-            // MailerLite silent submit
             form.submit();
 
-            // Show success UI
             form.classList.add("hidden");
             if (successBox) successBox.classList.remove("hidden");
 
-            const media = section.querySelector('.hub-newsletter-media');
-            if (media) media.classList.add('hidden');
+            const media = section.querySelector(".hub-newsletter-media");
+            if (media) media.classList.add("hidden");
 
-            // Clear values
             form.reset();
             if (hidden) hidden.value = "";
-
-        } // try
-        catch (err) {
+        } catch (err) {
             extra.insertAdjacentHTML(
                 "afterbegin",
-                `<div class="newsletter-error" style="margin-bottom:10px;" aria-live="polite">
-        Something went wrong. Please try again.
-      </div>`
+                `<div class="newsletter-error" style="margin-bottom:10px;" aria-live="polite">Something went wrong. Please try again.</div>`
             );
-        } // try-catch
-        finally {
+        } finally {
             setTimeout(() => {
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
                 }
             }, 1200);
+        }
+    });
 
-        } // try-finally
-
-    }); // form
-
-    // Live clear errors (after first submit attempt)
     if (nameEl) nameEl.addEventListener("input", () => hasTriedSubmit && setErr(nameEl, errName, ""));
-    if (zipEl)  zipEl.addEventListener("input", () => hasTriedSubmit && setErr(zipEl, errZip, ""));
-    if (input)  input.addEventListener("input", () => hasTriedSubmit && setCountryErr(""));
+    if (zipEl) {
+        zipEl.addEventListener("input", () => {
+            zipEl.value = zipEl.value.replace(/\D/g, "");
+            if (hasTriedSubmit) setErr(zipEl, errZip, "");
+        });
+    }
+    if (phoneEl) {
+        phoneEl.addEventListener("input", () => {
+            phoneEl.value = phoneEl.value.replace(/[^\d\s()+-]/g, "");
+            if (hasTriedSubmit && errPhone) setErr(phoneEl, errPhone, "");
+        });
+    }
+    if (input) input.addEventListener("input", () => hasTriedSubmit && setCountryErr(""));
 
-    /* country dropdown (open by clicking whole box)  */
     if (!input || !hidden || !list || !box || !toggleBtn) return;
 
-    const FLAG = code => `https://flagcdn.com/w20/${code.toLowerCase()}.png`;
+    const FLAG = (code) => `https://flagcdn.com/w20/${code.toLowerCase()}.png`;
 
     const countries = [
-        // North America
-        ["US","United States"],["CA","Canada"],["MX","Mexico"],
-
-        // South America
-        ["BR","Brazil"],["AR","Argentina"],["CL","Chile"],["CO","Colombia"],
-        ["PE","Peru"],["VE","Venezuela"],["UY","Uruguay"],["PY","Paraguay"],
-        ["BO","Bolivia"],["EC","Ecuador"],
-
-        // Europe
-        ["GB","United Kingdom"],["IE","Ireland"],["FR","France"],["DE","Germany"],
-        ["ES","Spain"],["PT","Portugal"],["IT","Italy"],["NL","Netherlands"],
-        ["BE","Belgium"],["CH","Switzerland"],["AT","Austria"],
-        ["PL","Poland"],["CZ","Czech Republic"],["SK","Slovakia"],
-        ["HU","Hungary"],["RO","Romania"],["BG","Bulgaria"],
-        ["UA","Ukraine"],["BY","Belarus"],["RU","Russia"],
-        ["LT","Lithuania"],["LV","Latvia"],["EE","Estonia"],
-        ["FI","Finland"],["SE","Sweden"],["NO","Norway"],["DK","Denmark"],
-        ["IS","Iceland"],["GR","Greece"],["RS","Serbia"],["HR","Croatia"],
-        ["SI","Slovenia"],["BA","Bosnia and Herzegovina"],
-        ["MK","North Macedonia"],["AL","Albania"],["ME","Montenegro"],
-
-        // Caucasus & Central Asia
-        ["GE","Georgia"],["AM","Armenia"],["AZ","Azerbaijan"],
-        ["KZ","Kazakhstan"],["UZ","Uzbekistan"],["TM","Turkmenistan"],
-        ["KG","Kyrgyzstan"],["TJ","Tajikistan"],
-
-        // Middle East
-        ["TR","Turkey"],["IL","Israel"],["SA","Saudi Arabia"],
-        ["AE","United Arab Emirates"],["QA","Qatar"],["KW","Kuwait"],
-        ["OM","Oman"],["BH","Bahrain"],["JO","Jordan"],["LB","Lebanon"],
-        ["IQ","Iraq"],["IR","Iran"],
-
-        // South Asia
-        ["IN","India"],["PK","Pakistan"],["BD","Bangladesh"],
-        ["LK","Sri Lanka"],["NP","Nepal"],
-
-        // East & Southeast Asia
-        ["CN","China"],["JP","Japan"],["KR","South Korea"],
-        ["VN","Vietnam"],["TH","Thailand"],["MY","Malaysia"],
-        ["SG","Singapore"],["ID","Indonesia"],["PH","Philippines"],
-        ["KH","Cambodia"],["LA","Laos"],["MM","Myanmar"],
-
-        // Oceania
-        ["AU","Australia"],["NZ","New Zealand"],["PG","Papua New Guinea"],
-
-        // Africa
-        ["ZA","South Africa"],["EG","Egypt"],["NG","Nigeria"],
-        ["KE","Kenya"],["GH","Ghana"],["MA","Morocco"],
-        ["DZ","Algeria"],["TN","Tunisia"],["ET","Ethiopia"],
-        ["UG","Uganda"],["TZ","Tanzania"]
+        ["US", "United States"], ["CA", "Canada"], ["MX", "Mexico"],
+        ["BR", "Brazil"], ["AR", "Argentina"], ["CL", "Chile"], ["CO", "Colombia"],
+        ["PE", "Peru"], ["VE", "Venezuela"], ["UY", "Uruguay"], ["PY", "Paraguay"],
+        ["BO", "Bolivia"], ["EC", "Ecuador"],
+        ["GB", "United Kingdom"], ["IE", "Ireland"], ["FR", "France"], ["DE", "Germany"],
+        ["ES", "Spain"], ["PT", "Portugal"], ["IT", "Italy"], ["NL", "Netherlands"],
+        ["BE", "Belgium"], ["CH", "Switzerland"], ["AT", "Austria"],
+        ["PL", "Poland"], ["CZ", "Czech Republic"], ["SK", "Slovakia"],
+        ["HU", "Hungary"], ["RO", "Romania"], ["BG", "Bulgaria"],
+        ["UA", "Ukraine"], ["BY", "Belarus"], ["RU", "Russia"],
+        ["LT", "Lithuania"], ["LV", "Latvia"], ["EE", "Estonia"],
+        ["FI", "Finland"], ["SE", "Sweden"], ["NO", "Norway"], ["DK", "Denmark"],
+        ["IS", "Iceland"], ["GR", "Greece"], ["RS", "Serbia"], ["HR", "Croatia"],
+        ["SI", "Slovenia"], ["BA", "Bosnia and Herzegovina"],
+        ["MK", "North Macedonia"], ["AL", "Albania"], ["ME", "Montenegro"],
+        ["GE", "Georgia"], ["AM", "Armenia"], ["AZ", "Azerbaijan"],
+        ["KZ", "Kazakhstan"], ["UZ", "Uzbekistan"], ["TM", "Turkmenistan"],
+        ["KG", "Kyrgyzstan"], ["TJ", "Tajikistan"],
+        ["TR", "Turkey"], ["IL", "Israel"], ["SA", "Saudi Arabia"],
+        ["AE", "United Arab Emirates"], ["QA", "Qatar"], ["KW", "Kuwait"],
+        ["OM", "Oman"], ["BH", "Bahrain"], ["JO", "Jordan"], ["LB", "Lebanon"],
+        ["IQ", "Iraq"], ["IR", "Iran"],
+        ["IN", "India"], ["PK", "Pakistan"], ["BD", "Bangladesh"],
+        ["LK", "Sri Lanka"], ["NP", "Nepal"],
+        ["CN", "China"], ["JP", "Japan"], ["KR", "South Korea"],
+        ["VN", "Vietnam"], ["TH", "Thailand"], ["MY", "Malaysia"],
+        ["SG", "Singapore"], ["ID", "Indonesia"], ["PH", "Philippines"],
+        ["KH", "Cambodia"], ["LA", "Laos"], ["MM", "Myanmar"],
+        ["AU", "Australia"], ["NZ", "New Zealand"], ["PG", "Papua New Guinea"],
+        ["ZA", "South Africa"], ["EG", "Egypt"], ["NG", "Nigeria"],
+        ["KE", "Kenya"], ["GH", "Ghana"], ["MA", "Morocco"],
+        ["DZ", "Algeria"], ["TN", "Tunisia"], ["ET", "Ethiopia"],
+        ["UG", "Uganda"], ["TZ", "Tanzania"]
     ];
 
-    function normalizeCountry(v){
+    function normalizeCountry(v) {
         return (v || "").trim().toLowerCase();
     }
 
-    function syncCountryHiddenFromVisible(){
+    function syncCountryHiddenFromVisible() {
         if (!input || !hidden) return;
 
         const typed = normalizeCountry(input.value);
@@ -264,14 +252,12 @@ window.initNewsletter = function () {
             return;
         }
 
-        // match against the known list
         const match = countries.find(([code, name]) => normalizeCountry(name) === typed);
 
         if (match) {
-            hidden.value = match[1]; // store full name (same as your click handler)
+            hidden.value = match[1];
             if (hasTriedSubmit) setCountryErr("");
         } else {
-            // if user typed something that isn't a real option, keep hidden empty
             hidden.value = "";
         }
     }
@@ -287,16 +273,12 @@ window.initNewsletter = function () {
         filtered.forEach(([code, name]) => {
             const item = document.createElement("div");
             item.className = "nyc-countryitem";
-            item.innerHTML = `
-        <img class="hub-flag" src="${FLAG(code)}" alt="">
-        <span>${name}</span>`;
+            item.innerHTML = `<img class="hub-flag" src="${FLAG(code)}" alt=""><span>${name}</span>`;
 
             item.addEventListener("click", () => {
                 input.value = name;
                 hidden.value = name;
-
-                if (hasTriedSubmit) setCountryErr(""); // clear red error if any
-
+                if (hasTriedSubmit) setCountryErr("");
                 close();
             });
 
@@ -323,6 +305,7 @@ window.initNewsletter = function () {
         list.classList.remove("open");
         input.setAttribute("aria-expanded", "false");
         list.setAttribute("aria-hidden", "true");
+        syncCountryHiddenFromVisible();
     }
 
     function toggleOpenFromBox(e) {
@@ -336,17 +319,14 @@ window.initNewsletter = function () {
         }
     }
 
-    // Clicking the whole control toggles
     box.addEventListener("click", toggleOpenFromBox);
 
-    // Arrow toggles too (avoid double-trigger)
     toggleBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         toggleOpenFromBox(e);
     });
 
-    // typing filters only if dropdown is open
     input.addEventListener("input", () => {
         if (list.classList.contains("open")) render(input.value);
         syncCountryHiddenFromVisible();
@@ -355,7 +335,6 @@ window.initNewsletter = function () {
     input.addEventListener("change", syncCountryHiddenFromVisible);
     input.addEventListener("blur", syncCountryHiddenFromVisible);
 
-    // clicking outside closes
     document.addEventListener("click", (e) => {
         if (!box.contains(e.target) && !list.contains(e.target)) close();
     });

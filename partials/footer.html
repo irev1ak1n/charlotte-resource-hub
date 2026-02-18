@@ -58,13 +58,28 @@
 
                         <div>
                             <label for="nycZip">*Zip Code</label>
-                            <input id="nycZip" name="fields[zip]" type="text" inputmode="numeric" autocomplete="postal-code">
+                            <input
+                                    id="nycZip"
+                                    name="fields[zip]"
+                                    type="text"
+                                    inputmode="numeric"
+                                    autocomplete="postal-code"
+                                    maxlength="10"
+                            />
                             <div class="newsletter-error" id="errZip" aria-live="polite"></div>
                         </div>
                     </div>
 
                     <label for="nycPhone">Phone Number (optional)</label>
-                    <input id="nycPhone" name="fields[phone]" type="tel" autocomplete="tel">
+                    <input
+                            id="nycPhone"
+                            name="fields[phone]"
+                            type="tel"
+                            inputmode="tel"
+                            autocomplete="tel"
+                            maxlength="20"
+                    />
+                    <div class="newsletter-error" id="errPhone" aria-live="polite"></div>
 
                     <button type="submit" class="nyc-submit">SUBSCRIBE</button>
 
