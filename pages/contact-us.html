@@ -73,7 +73,7 @@
                     <label class="cu-field">
                         <span class="cu-label">PHONE</span>
                         <input name="phone" inputmode="tel" placeholder="PHONE (OPTIONAL)" autocomplete="tel" />
-                        <!-- no error span here (optional field) -->
+                        <span class="cu-error">Please enter a valid phone number.</span>
                     </label>
 
                     <label class="cu-field">
@@ -97,28 +97,103 @@
 <script>
     const form = document.getElementById("contactForm");
 
+    function setFieldError(fieldEl, on, msg) {
+        if (!fieldEl) return;
+        fieldEl.classList.toggle("has-error", !!on);
+        const err = fieldEl.querySelector(".cu-error");
+        if (err && typeof msg === "string" && msg.length) err.textContent = msg;
+    }
+
+    function looksLikeEmail(v) {
+        v = (v || "").trim();
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    }
+
+    function validatePhone(v) {
+        const val = (v || "").trim();
+        if (!val) return;
+
+        if (!/^[\d\s()+-]+$/.test(val)) {
+            throw new Error("Phone can only include numbers and symbols: ( ) + -");
+        }
+
+        const digits = val.replace(/\D/g, "");
+        if (digits.length > 0 && digits.length < 7) {
+            throw new Error("Phone number looks too short.");
+        }
+    }
+
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
+        const nameField = form.querySelector('.cu-field input[name="name"]')?.closest(".cu-field");
+        const emailField = form.querySelector('.cu-field input[name="email"]')?.closest(".cu-field");
+        const phoneField = form.querySelector('.cu-field input[name="phone"]')?.closest(".cu-field");
+        const msgField = form.querySelector('textarea[name="message"]')?.closest(".cu-field");
+
+        const nameInput = form.querySelector('input[name="name"]');
+        const emailInput = form.querySelector('input[name="email"]');
+        const phoneInput = form.querySelector('input[name="phone"]');
+        const msgInput = form.querySelector('textarea[name="message"]');
+
+        [nameField, emailField, phoneField, msgField].forEach(f => setFieldError(f, false));
+
         let valid = true;
 
-        form.querySelectorAll(".cu-field").forEach(field => {
-            const input = field.querySelector("input, textarea");
-            const isRequired = input?.hasAttribute("required");
+        try {
+            const name = (nameInput?.value || "").trim();
+            if (name.length < 2) throw new Error("Please enter your name.");
+            setFieldError(nameField, false);
+        } catch (err) {
+            setFieldError(nameField, true, err.message);
+            valid = false;
+        }
 
-            field.classList.remove("has-error");
+        try {
+            const email = (emailInput?.value || "").trim();
+            if (!looksLikeEmail(email)) throw new Error("Please enter a valid email address.");
+            setFieldError(emailField, false);
+        } catch (err) {
+            setFieldError(emailField, true, err.message);
+            valid = false;
+        }
 
-            if (isRequired && !input.value.trim()) {
-                field.classList.add("has-error");
-                valid = false;
+        try {
+            validatePhone(phoneInput?.value || "");
+            setFieldError(phoneField, false);
+        } catch (err) {
+            if (!phoneField.querySelector(".cu-error")) {
+                const s = document.createElement("span");
+                s.className = "cu-error";
+                phoneField.appendChild(s);
             }
-        });
+            setFieldError(phoneField, true, err.message);
+            valid = false;
+        }
+
+        try {
+            const msg = (msgInput?.value || "").trim();
+            if (msg.length < 3) throw new Error("Please enter a message.");
+            setFieldError(msgField, false);
+        } catch (err) {
+            setFieldError(msgField, true, err.message);
+            valid = false;
+        }
 
         if (!valid) return;
 
         document.getElementById("submitSuccess")?.removeAttribute("hidden");
         form.reset();
     });
+
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput) {
+        phoneInput.addEventListener("input", () => {
+            phoneInput.value = phoneInput.value.replace(/[^\d\s()+-]/g, "");
+            const phoneField = phoneInput.closest(".cu-field");
+            setFieldError(phoneField, false);
+        });
+    }
 </script>
 
 <div id="siteFooter"></div>
