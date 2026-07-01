@@ -79,7 +79,6 @@
             const allowed = /^[a-z0-9\s'&.,-]+$/i;
             if (!allowed.test(s)) return false;
 
-            // at least 2 chars
             if (s.length < 2) return false;
 
             // reject if mostly punctuation
